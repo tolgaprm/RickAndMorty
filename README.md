@@ -1,1 +1,1 @@
-"# RickyAndMorty" 
+# RickyAndMorty
