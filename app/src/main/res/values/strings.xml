@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Ricky and Morty</string>
+    <string name="character">Character</string>
+    <string name="filter_icon_description">Filter Icon</string>
+    <string name="location">Location</string>
+    <string name="Episode">Episode</string>
 </resources>

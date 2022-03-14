@@ -3,8 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/drawable/ic_character.xml" value="0.1" />
+        <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/drawable/ic_character_selected.xml" value="0.1" />
+        <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/drawable/selector.xml" value="0.1" />
         <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/drawable/splash_image.xml" value="0.263" />
-        <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/layout/activity_main.xml" value="0.5" />
+        <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/layout/activity_character.xml" value="0.25" />
+        <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/layout/activity_charecter.xml" value="0.34479166666666666" />
+        <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/layout/activity_episode.xml" value="0.30925925925925923" />
+        <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/layout/activity_location.xml" value="0.27314814814814814" />
+        <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/layout/activity_main.xml" value="0.34479166666666666" />
+        <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/menu/bottom_bar_menu.xml" value="0.34479166666666666" />
       </map>
     </option>
   </component>
