@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/character_nav_graph"
+    app:startDestination="@id/characterListFragment">
+
+    <fragment
+        android:id="@+id/characterListFragment"
+        android:name="comprmto.rickyandmorty.presentation.character.fragments.CharacterListFragment"
+        android:label="CharacterListFragment"
+        tools:layout="@layout/fragment_character_list" >
+        <action
+            android:id="@+id/action_characterListFragment_to_characterDetailFragment"
+            app:destination="@id/characterDetailFragment" />
+        <action
+            android:id="@+id/action_characterListFragment_to_filterDialog"
+            app:destination="@id/filterDialog" />
+    </fragment>
+    <fragment
+        android:id="@+id/characterDetailFragment"
+        android:name="comprmto.rickyandmorty.presentation.character.fragments.CharacterDetailFragment"
+        android:label="CharacterDetailFragment"
+        tools:layout="@layout/fragment_character_detail" />
+    <dialog
+        android:id="@+id/filterDialog"
+        android:name="comprmto.rickyandmorty.presentation.character.fragments.FilterDialog"
+        android:label="FilterDialog" />
+</navigation>

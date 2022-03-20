@@ -8,7 +8,9 @@ import comprmto.rickyandmorty.R
 import comprmto.rickyandmorty.databinding.ActivityCharacterBinding
 import comprmto.rickyandmorty.presentation.episode.EpisodeActivity
 import comprmto.rickyandmorty.util.BottomNavigationHelper
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class CharacterActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityCharacterBinding

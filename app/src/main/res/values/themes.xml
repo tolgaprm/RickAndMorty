@@ -19,6 +19,7 @@
     </style>
 
 
+
     <style name="splashScreenTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowBackground">@drawable/splash_image</item>
         <item name="android:statusBarColor">@color/basic_black</item>
@@ -58,6 +59,7 @@
     <style name="TextAppearance.subtitle1" parent="TextAppearance.MaterialComponents.Subtitle1">
         <item name="android:fontFamily">@font/roboto</item>
         <item name="android:textSize">16sp</item>
+
     </style>
 
     <style name="TextAppearance.subtitle2" parent="TextAppearance.MaterialComponents.Subtitle2">

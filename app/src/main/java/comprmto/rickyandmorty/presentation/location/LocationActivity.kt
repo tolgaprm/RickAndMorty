@@ -6,7 +6,9 @@ import androidx.core.view.get
 import comprmto.rickyandmorty.R
 import comprmto.rickyandmorty.databinding.ActivityLocationBinding
 import comprmto.rickyandmorty.util.BottomNavigationHelper
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class LocationActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLocationBinding
