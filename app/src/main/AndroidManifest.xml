@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="comprmto.rickyandmorty">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:name=".RickyAndMortyApplication"
         android:allowBackup="true"

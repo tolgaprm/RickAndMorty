@@ -84,7 +84,7 @@
     </style>
 
     <style name="TextAppearance.caption" parent="TextAppearance.MaterialComponents.Caption">
-        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:fontFamily">@font/roboto_medium</item>
         <item name="android:textSize">12sp</item>
     </style>
 

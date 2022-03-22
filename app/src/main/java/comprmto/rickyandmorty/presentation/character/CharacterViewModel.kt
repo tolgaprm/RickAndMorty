@@ -13,7 +13,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class CharacterViewModel @Inject constructor(
-    val getCharacterUseCase: GetCharacterUseCase
+    private val getCharacterUseCase: GetCharacterUseCase
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(CharacterActivityState())
@@ -21,6 +21,7 @@ class CharacterViewModel @Inject constructor(
 
     init {
         getCharacters()
+
     }
 
     private fun getCharacters() {
