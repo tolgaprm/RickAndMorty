@@ -81,4 +81,11 @@ dependencies {
     //Coil
     implementation("io.coil-kt:coil:1.4.0")
     implementation("io.coil-kt:coil-svg:1.2.0")
+
+    //Paging Library
+    def paging_version = "3.0.0"
+    implementation "androidx.paging:paging-runtime-ktx:$paging_version"
+
+    // Circle Image View
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
 }

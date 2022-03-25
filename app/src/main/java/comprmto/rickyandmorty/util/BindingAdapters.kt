@@ -1,12 +1,17 @@
 package comprmto.rickyandmorty.util
 
+import android.graphics.Color
 import android.widget.ImageView
+import androidx.cardview.widget.CardView
 import androidx.databinding.BindingAdapter
+import androidx.paging.PagingData
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import comprmto.rickyandmorty.R
 import comprmto.rickyandmorty.domain.CharactersDomain
+import comprmto.rickyandmorty.domain.model.EpisodeDomain
 import comprmto.rickyandmorty.presentation.adapter.CharacterAdapter
+import comprmto.rickyandmorty.presentation.adapter.EpisodeAdapter
 
 @BindingAdapter("imageUrl")
 fun downloadImage(imageView: ImageView, url: String?) {
@@ -21,12 +26,27 @@ fun downloadImage(imageView: ImageView, url: String?) {
     }
 }
 
-
 @BindingAdapter("bindList")
-fun bindList(recyclerView: RecyclerView, characterList: List<CharactersDomain>) {
+fun bindEpisodeList(recyclerView: RecyclerView, episodeList: List<EpisodeDomain>) {
 
-    if (!characterList.isNullOrEmpty()) {
-        val adapter = recyclerView.adapter as CharacterAdapter
-        adapter.submitList(characterList)
+    if (!episodeList.isNullOrEmpty()) {
+
+        val adapter = recyclerView.adapter as EpisodeAdapter
+        adapter.submitList(episodeList)
+    }
+}
+
+
+
+
+@BindingAdapter("isDead")
+fun changeColor(card: CardView, status: String) {
+
+    if (status == "Dead") {
+        card.setCardBackgroundColor(Color.RED)
+    } else if (status == "Alive") {
+        card.setCardBackgroundColor(Color.GREEN)
+    } else {
+        card.setCardBackgroundColor(Color.GRAY)
     }
 }

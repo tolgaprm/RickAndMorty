@@ -2,14 +2,14 @@ package comprmto.rickyandmorty.presentation.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import comprmto.rickyandmorty.databinding.CharacterItemRcwBinding
 import comprmto.rickyandmorty.domain.CharactersDomain
 
-class CharacterAdapter :
-    ListAdapter<CharactersDomain, CharacterAdapter.CharacterViewHolder>(DiffUtilCallBack()) {
+class CharacterAdapter(private val onClickListener: ItemClickListener) :
+    PagingDataAdapter<CharactersDomain, CharacterAdapter.CharacterViewHolder>(DiffUtilCallBack()) {
 
     class CharacterViewHolder(val binding: CharacterItemRcwBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -27,7 +27,7 @@ class CharacterAdapter :
         }
 
         fun bind(characterModel: CharactersDomain) {
-            binding.character = characterModel
+            binding.characterModel = characterModel
             binding.executePendingBindings()
         }
 
@@ -41,9 +41,19 @@ class CharacterAdapter :
 
         val characterModel = getItem(position)
 
-        holder.bind(characterModel)
+        holder.bind(characterModel!!)
+
+        holder.itemView.setOnClickListener {
+            onClickListener.onClick(characterModel.id)
+        }
 
     }
+
+    class ItemClickListener(val clickListener: (characterId: Int) -> Unit) {
+        fun onClick(characterId: Int) = clickListener(characterId)
+
+    }
+
 }
 
 

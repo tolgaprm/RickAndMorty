@@ -21,4 +21,9 @@
     <string name="genderless">Genderless</string>
     <string name="gender">Gender</string>
     <string name="apply">Apply</string>
+    <string name="character_detail_back_btn_desc">Back to character list</string>
+    <string name="informations">Informations</string>
+    <string name="origin">Origin</string>
+    <string name="type">Type</string>
+    <string name="episodes">Episodes</string>
 </resources>

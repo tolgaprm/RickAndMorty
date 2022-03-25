@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import comprmto.rickyandmorty.databinding.DialogFilterBinding
-import comprmto.rickyandmorty.presentation.character.CharacterViewModel
+import comprmto.rickyandmorty.presentation.character.fragments.viewmodel.CharacterViewModel
 
 class FilterDialog : BottomSheetDialogFragment() {
 

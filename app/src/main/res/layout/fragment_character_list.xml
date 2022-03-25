@@ -8,7 +8,7 @@
 
         <variable
             name="viewModel"
-            type="comprmto.rickyandmorty.presentation.character.CharacterViewModel" />
+            type="comprmto.rickyandmorty.presentation.character.fragments.viewmodel.CharacterViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -39,6 +39,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/character"
                     android:textAppearance="@style/TextAppearance.h6"
+                    android:textColor="@color/basic_black"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -64,9 +65,8 @@
             android:id="@+id/characterList"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+
             android:layout_marginHorizontal="16dp"
-            android:paddingTop="30dp"
-            app:bindList="@{viewModel.state.characters}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

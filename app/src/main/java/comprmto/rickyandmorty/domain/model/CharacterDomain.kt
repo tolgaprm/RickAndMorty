@@ -1,7 +1,7 @@
 package comprmto.rickyandmorty.domain.model
 
-import comprmto.rickyandmorty.data.remote.dto.character.Result
+import comprmto.rickyandmorty.data.remote.dto.character.CharacterData
 
 data class CharacterDomain(
-    val result: Result
+    val result: CharacterData
 )

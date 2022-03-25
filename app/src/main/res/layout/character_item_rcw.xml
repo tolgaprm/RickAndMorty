@@ -4,7 +4,7 @@
     <data>
 
         <variable
-            name="character"
+            name="characterModel"
             type="comprmto.rickyandmorty.domain.CharactersDomain" />
     </data>
 
@@ -13,9 +13,10 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
         android:elevation="16dp"
         app:cardCornerRadius="8dp">
 
@@ -29,19 +30,36 @@
                 android:layout_width="150dp"
                 android:layout_height="140dp"
                 android:scaleType="centerCrop"
-                app:imageUrl="@{character.image}"
+                app:imageUrl="@{characterModel.image}"
                 tools:src="@tools:sample/avatars" />
 
 
-            <TextView
-                android:id="@+id/characterStatus"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="12dp"
-                android:text="@{character.status}"
-                android:textAppearance="@style/TextAppearance.caption"
-                tools:text="Dead" />
+                android:orientation="horizontal">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    app:cardCornerRadius="10dp"
+                    app:isDead="@{characterModel.status}" />
+
+                <TextView
+                    android:id="@+id/characterStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="12dp"
+                    android:text="@{characterModel.status}"
+                    android:textAppearance="@style/TextAppearance.caption"
+                    tools:text="Dead" />
+
+
+
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/characterName"
@@ -51,7 +69,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="12dp"
                 android:layout_marginBottom="12dp"
-                android:text="@{character.name}"
+                android:text="@{characterModel.name}"
                 android:textAppearance="@style/TextAppearance.subtitle1"
                 android:textColor="@color/basic_black"
                 tools:text="Agency Director" />

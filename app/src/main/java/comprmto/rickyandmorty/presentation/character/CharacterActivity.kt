@@ -1,12 +1,10 @@
 package comprmto.rickyandmorty.presentation.character
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.get
 import comprmto.rickyandmorty.R
 import comprmto.rickyandmorty.databinding.ActivityCharacterBinding
-import comprmto.rickyandmorty.presentation.episode.EpisodeActivity
 import comprmto.rickyandmorty.util.BottomNavigationHelper
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -21,6 +19,7 @@ class CharacterActivity : AppCompatActivity() {
         binding = ActivityCharacterBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setupNavigation()
+
 
 
     }

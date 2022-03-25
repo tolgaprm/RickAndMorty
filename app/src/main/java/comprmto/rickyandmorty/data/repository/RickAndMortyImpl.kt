@@ -1,21 +1,31 @@
 package comprmto.rickyandmorty.data.repository
 
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
 import comprmto.rickyandmorty.data.remote.RickyAndMortyApi
-import comprmto.rickyandmorty.data.remote.dto.character.CharacterDto
-import comprmto.rickyandmorty.data.remote.dto.character.CharactersDto
+import comprmto.rickyandmorty.data.remote.dto.character.CharacterData
 import comprmto.rickyandmorty.data.remote.dto.episode.EpisodeDto
 import comprmto.rickyandmorty.data.remote.dto.episode.EpisodeResult
 import comprmto.rickyandmorty.data.remote.dto.location.LocationDto
 import comprmto.rickyandmorty.data.remote.dto.location.LocationResults
 import comprmto.rickyandmorty.domain.repository.RickAndMortyRepository
+import comprmto.rickyandmorty.paging.CharactersPagingDataSource
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class RickAndMortyImpl @Inject constructor(val api: RickyAndMortyApi) : RickAndMortyRepository {
-    override suspend fun getAllCharacters(): CharactersDto {
-        return api.getAllCharacters()
+
+    override suspend fun getAllCharacters(): Flow<PagingData<CharacterData>> {
+        return Pager(
+            config = PagingConfig(enablePlaceholders = false, pageSize = 30),
+            pagingSourceFactory = {
+                CharactersPagingDataSource(api)
+            }
+        ).flow
     }
 
-    override suspend fun getCharacterDetailById(characterId: String): CharacterDto {
+    override suspend fun getCharacterDetailById(characterId: Int): CharacterData {
 
         return api.getCharacter(characterId)
     }
@@ -32,7 +42,7 @@ class RickAndMortyImpl @Inject constructor(val api: RickyAndMortyApi) : RickAndM
         return api.getAllEpisode()
     }
 
-    override suspend fun getEpisodeById(episodeId: String): EpisodeResult {
+    override suspend fun getEpisodeById(episodeId: Int): EpisodeResult {
         return api.getEpisodeById(episodeId)
     }
 

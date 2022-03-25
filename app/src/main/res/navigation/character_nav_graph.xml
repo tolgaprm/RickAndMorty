@@ -21,7 +21,16 @@
         android:id="@+id/characterDetailFragment"
         android:name="comprmto.rickyandmorty.presentation.character.fragments.CharacterDetailFragment"
         android:label="CharacterDetailFragment"
-        tools:layout="@layout/fragment_character_detail" />
+        tools:layout="@layout/fragment_character_detail" >
+        <argument
+            android:name="characterID"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_characterDetailFragment_to_characterListFragment"
+            app:destination="@id/characterListFragment"
+            app:popUpTo="@id/characterDetailFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
     <dialog
         android:id="@+id/filterDialog"
         android:name="comprmto.rickyandmorty.presentation.character.fragments.FilterDialog"
