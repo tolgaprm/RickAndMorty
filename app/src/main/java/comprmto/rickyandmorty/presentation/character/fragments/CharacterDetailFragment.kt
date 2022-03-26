@@ -5,13 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import comprmto.rickyandmorty.databinding.FragmentCharacterDetailBinding
 import comprmto.rickyandmorty.presentation.adapter.EpisodeAdapter
-import comprmto.rickyandmorty.presentation.character.fragments.viewmodel.CharacterViewModel
+import comprmto.rickyandmorty.presentation.character.fragments.viewmodel.CharacterDetailViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -20,8 +20,8 @@ class CharacterDetailFragment : Fragment() {
 
     private lateinit var binding: FragmentCharacterDetailBinding
     private val characterArgument: CharacterDetailFragmentArgs by navArgs()
-    private val viewModel: CharacterViewModel by activityViewModels()
-    private lateinit var adapter: EpisodeAdapter
+    private lateinit var viewModel: CharacterDetailViewModel
+    private val adapter: EpisodeAdapter by lazy { EpisodeAdapter() }
 
     override
     fun onCreateView(
@@ -31,6 +31,7 @@ class CharacterDetailFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentCharacterDetailBinding.inflate(layoutInflater, container, false)
 
+        viewModel = ViewModelProvider(this)[CharacterDetailViewModel::class.java]
 
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
@@ -38,12 +39,12 @@ class CharacterDetailFragment : Fragment() {
         val characterID = characterArgument.characterID
         viewModel.setCharacterId(characterID)
         viewModel.getCharacterInvoke()
-        viewModel.getEpisodesByCharacters()
+
+
 
         binding.recyclerViewEpisode.layoutManager = LinearLayoutManager(requireContext())
-        adapter = EpisodeAdapter()
-        adapter.submitList(viewModel.state.value.episodeInfoList)
         binding.recyclerViewEpisode.adapter = adapter
+
 
 
         binding.imageButton.setOnClickListener {
@@ -51,9 +52,6 @@ class CharacterDetailFragment : Fragment() {
                 CharacterDetailFragmentDirections.actionCharacterDetailFragmentToCharacterListFragment()
             findNavController().navigate(action)
         }
-
-
-
 
 
         return binding.root

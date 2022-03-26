@@ -7,15 +7,15 @@
 
         <variable
             name="viewModel"
-            type="comprmto.rickyandmorty.presentation.character.fragments.viewmodel.CharacterViewModel" />
+            type="comprmto.rickyandmorty.presentation.character.fragments.viewmodel.CharacterDetailViewModel" />
     </data>
 
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollIndicators="right"
-        android:isScrollContainer="true">
+        android:isScrollContainer="true"
+        android:scrollIndicators="right">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -317,10 +317,10 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerViewEpisode"
-                bindList="@{viewModel.state.episodeInfoList}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingBottom="50dp"
+                app:bindList="@{viewModel.episodeList}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/episodesText" />

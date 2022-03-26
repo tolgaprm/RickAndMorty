@@ -4,6 +4,7 @@ import android.graphics.Color
 import android.widget.ImageView
 import androidx.cardview.widget.CardView
 import androidx.databinding.BindingAdapter
+import androidx.lifecycle.LiveData
 import androidx.paging.PagingData
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
@@ -27,12 +28,12 @@ fun downloadImage(imageView: ImageView, url: String?) {
 }
 
 @BindingAdapter("bindList")
-fun bindEpisodeList(recyclerView: RecyclerView, episodeList: List<EpisodeDomain>) {
+fun bindEpisodeList(recyclerView: RecyclerView, episodeList: LiveData<List<EpisodeDomain>>) {
 
-    if (!episodeList.isNullOrEmpty()) {
+    if (!episodeList.value.isNullOrEmpty()) {
 
         val adapter = recyclerView.adapter as EpisodeAdapter
-        adapter.submitList(episodeList)
+        adapter.submitList(episodeList.value!!)
     }
 }
 

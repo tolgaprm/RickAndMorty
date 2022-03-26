@@ -2,17 +2,14 @@ package comprmto.rickyandmorty.presentation.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import comprmto.rickyandmorty.databinding.EpisodeItemRowBinding
 import comprmto.rickyandmorty.domain.model.EpisodeDomain
 
-class EpisodeAdapter : RecyclerView.Adapter<EpisodeAdapter.EpisodeViewHolder>() {
+class EpisodeAdapter : ListAdapter<EpisodeDomain, EpisodeAdapter.EpisodeViewHolder>(Diff()) {
 
-    private var episodeList: List<EpisodeDomain> = emptyList()
-
-    fun submitList(episodeList: List<EpisodeDomain>) {
-        this.episodeList = episodeList
-    }
 
     class EpisodeViewHolder(val binding: EpisodeItemRowBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -40,11 +37,20 @@ class EpisodeAdapter : RecyclerView.Adapter<EpisodeAdapter.EpisodeViewHolder>() 
 
     override fun onBindViewHolder(holder: EpisodeViewHolder, position: Int) {
 
-        val episode = episodeList[position]
+        val episode = getItem(position)
         holder.bind(episode)
     }
 
-    override fun getItemCount(): Int {
-        return episodeList.size
+
+    class Diff() : DiffUtil.ItemCallback<EpisodeDomain>() {
+        override fun areItemsTheSame(oldItem: EpisodeDomain, newItem: EpisodeDomain): Boolean {
+            return oldItem.id == newItem.id
+        }
+
+        override fun areContentsTheSame(oldItem: EpisodeDomain, newItem: EpisodeDomain): Boolean {
+            return oldItem == newItem
+        }
+
     }
+
 }
