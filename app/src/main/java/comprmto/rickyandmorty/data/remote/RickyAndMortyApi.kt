@@ -22,7 +22,7 @@ interface RickyAndMortyApi {
     suspend fun getAllLocation(): LocationDto
 
     @GET("location/{id}")
-    suspend fun getLocation(@Path("id") locationId: String): LocationResults
+    suspend fun getLocation(@Path("id") locationId: Int): LocationResults
 
     @GET("episode")
     suspend fun getAllEpisode(): EpisodeDto

@@ -19,7 +19,7 @@ interface RickAndMortyRepository {
 
     suspend fun getAllLocation(): LocationDto
 
-    suspend fun getLocationDetailById(locationId: String): LocationResults
+    suspend fun getLocationDetailById(locationId: Int): LocationResults
 
     suspend fun getAllEpisode(): EpisodeDto
 

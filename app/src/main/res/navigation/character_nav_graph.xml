@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+ <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/character_nav_graph"
@@ -30,9 +30,29 @@
             app:destination="@id/characterListFragment"
             app:popUpTo="@id/characterDetailFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/actionToLocationDetail"
+            app:destination="@id/locationDetailFragment" />
     </fragment>
     <dialog
         android:id="@+id/filterDialog"
         android:name="comprmto.rickyandmorty.presentation.character.fragments.FilterDialog"
-        android:label="FilterDialog" />
+        android:label="FilterDialog"
+        tools:layout="@layout/dialog_filter"/>
+    <fragment
+        android:id="@+id/locationDetailFragment"
+        android:name="comprmto.rickyandmorty.presentation.character.fragments.LocationDetailFragment"
+        android:label="LocationDetailFragment"
+        tools:layout="@layout/fragment_location_detail">
+        <argument
+            android:name="locationId"
+            app:argType="integer" />
+        <action
+            android:id="@+id/actionToCharacterDetail"
+            app:destination="@id/characterDetailFragment"
+            app:popUpTo="@id/locationDetailFragment" />
+        <argument
+            android:name="characterID"
+            app:argType="integer" />
+    </fragment>
 </navigation>

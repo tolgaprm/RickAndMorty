@@ -261,26 +261,38 @@
                     android:layout_height="1dp"
                     android:background="@color/light_black" />
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:id="@+id/locationGroup"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:fontFamily="@font/roboto_medium"
-                    android:paddingBottom="4dp"
-                    android:text="@string/location"
-                    android:textColor="@color/basic_black"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="@drawable/ripple_effect"
+                    android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/characterLocation"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="12dp"
-                    android:text="@{viewModel.state.character.location.name}"
-                    android:textAppearance="@style/TextAppearance.subtitle1"
-                    android:textColor="#6E798C"
-                    tools:text="Earth (Replacement Dimension)" />
+                    <TextView
+                        android:id="@+id/location"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/roboto_medium"
+                        android:paddingBottom="4dp"
+                        android:text="@string/location"
+                        android:textColor="@color/basic_black"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/characterLocation"
+                        android:layout_width="355dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"
+                        android:text="@{viewModel.state.character.location.name}"
+                        android:textAppearance="@style/TextAppearance.subtitle1"
+                        android:textColor="#6E798C"
+                        tools:text="Earth (Replacement Dimension)" />
+
+                </LinearLayout>
 
 
                 <View
@@ -296,7 +308,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="250dp"
+                android:layout_marginTop="240dp"
                 android:layout_marginEnd="16dp"
                 android:importantForAccessibility="no"
                 android:src="@drawable/ic_arrow_forward"
@@ -320,7 +332,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingBottom="50dp"
-                app:bindList="@{viewModel.episodeList}"
+                app:bindEpisodeList="@{viewModel.state.episodeList}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/episodesText" />

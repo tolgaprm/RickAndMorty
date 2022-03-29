@@ -38,3 +38,16 @@ fun Flow<PagingData<CharacterData>>.toCharactersDomain(): Flow<PagingData<Charac
 
     }
 }
+
+
+fun CharacterData.toCharactersDomain(): CharactersDomain {
+    return CharactersDomain(
+        id = id,
+        name = name,
+        status = status,
+        gender = gender,
+        image = image,
+        species = species
+    )
+
+}

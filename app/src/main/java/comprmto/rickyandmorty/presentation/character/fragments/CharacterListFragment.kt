@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
@@ -15,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import comprmto.rickyandmorty.databinding.FragmentCharacterListBinding
 import comprmto.rickyandmorty.presentation.adapter.CharacterAdapter
 import comprmto.rickyandmorty.presentation.character.fragments.viewmodel.CharacterViewModel
+import comprmto.rickyandmorty.util.ItemClickListener
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -39,19 +39,17 @@ class CharacterListFragment : Fragment() {
 
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
-
-
-
         prepareCharacterAdapter()
 
 
 
 
+
+
         lifecycleScope.launch {
-            viewModel.getListData()
-                .collectLatest {
-                    characterAdapter.submitData(it)
-                }
+            viewModel.getListData()?.collectLatest {
+                characterAdapter.submitData(it)
+            }
         }
 
 
@@ -66,7 +64,7 @@ class CharacterListFragment : Fragment() {
 
 
         characterAdapter = CharacterAdapter(
-            CharacterAdapter.ItemClickListener {
+            ItemClickListener {
                 val action =
                     CharacterListFragmentDirections.actionCharacterListFragmentToCharacterDetailFragment(
                         it

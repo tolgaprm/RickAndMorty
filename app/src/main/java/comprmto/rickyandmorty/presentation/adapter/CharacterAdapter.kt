@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import comprmto.rickyandmorty.databinding.CharacterItemRcwBinding
 import comprmto.rickyandmorty.domain.CharactersDomain
+import comprmto.rickyandmorty.util.ItemClickListener
 
 class CharacterAdapter(private val onClickListener: ItemClickListener) :
     PagingDataAdapter<CharactersDomain, CharacterAdapter.CharacterViewHolder>(DiffUtilCallBack()) {
@@ -49,10 +50,7 @@ class CharacterAdapter(private val onClickListener: ItemClickListener) :
 
     }
 
-    class ItemClickListener(val clickListener: (characterId: Int) -> Unit) {
-        fun onClick(characterId: Int) = clickListener(characterId)
 
-    }
 
 }
 

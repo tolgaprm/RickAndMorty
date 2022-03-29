@@ -19,9 +19,6 @@ class CharacterActivity : AppCompatActivity() {
         binding = ActivityCharacterBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setupNavigation()
-
-
-
     }
 
     private fun setupNavigation() {

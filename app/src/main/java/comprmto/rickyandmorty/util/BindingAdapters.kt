@@ -1,18 +1,18 @@
 package comprmto.rickyandmorty.util
 
 import android.graphics.Color
+import android.view.View
 import android.widget.ImageView
+import android.widget.ProgressBar
 import androidx.cardview.widget.CardView
 import androidx.databinding.BindingAdapter
-import androidx.lifecycle.LiveData
-import androidx.paging.PagingData
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import comprmto.rickyandmorty.R
 import comprmto.rickyandmorty.domain.CharactersDomain
 import comprmto.rickyandmorty.domain.model.EpisodeDomain
-import comprmto.rickyandmorty.presentation.adapter.CharacterAdapter
 import comprmto.rickyandmorty.presentation.adapter.EpisodeAdapter
+import comprmto.rickyandmorty.presentation.adapter.LocationDetailAdapter
 
 @BindingAdapter("imageUrl")
 fun downloadImage(imageView: ImageView, url: String?) {
@@ -27,17 +27,35 @@ fun downloadImage(imageView: ImageView, url: String?) {
     }
 }
 
-@BindingAdapter("bindList")
-fun bindEpisodeList(recyclerView: RecyclerView, episodeList: LiveData<List<EpisodeDomain>>) {
+@BindingAdapter("bindEpisodeList")
+fun bindEpisodeList(recyclerView: RecyclerView, episodeList: List<EpisodeDomain>?) {
 
-    if (!episodeList.value.isNullOrEmpty()) {
+    if (!episodeList.isNullOrEmpty()) {
 
         val adapter = recyclerView.adapter as EpisodeAdapter
-        adapter.submitList(episodeList.value!!)
+        adapter.submitList(episodeList)
     }
 }
 
+@BindingAdapter("bindCharacterList")
+fun bindCharactersList(recyclerView: RecyclerView, characters: List<CharactersDomain>?) {
 
+    if (!characters.isNullOrEmpty()) {
+
+        val adapter = recyclerView.adapter as LocationDetailAdapter
+        adapter.submitList(characters)
+    }
+}
+
+@BindingAdapter("isLoading")
+fun isLoading(progressBar: ProgressBar, isLoading: Boolean) {
+
+    if (isLoading) {
+        progressBar.visibility = View.VISIBLE
+    } else {
+        progressBar.visibility = View.GONE
+    }
+}
 
 
 @BindingAdapter("isDead")

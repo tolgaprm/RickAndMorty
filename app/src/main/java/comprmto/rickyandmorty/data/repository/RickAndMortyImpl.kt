@@ -34,7 +34,7 @@ class RickAndMortyImpl @Inject constructor(val api: RickyAndMortyApi) : RickAndM
         return api.getAllLocation()
     }
 
-    override suspend fun getLocationDetailById(locationId: String): LocationResults {
+    override suspend fun getLocationDetailById(locationId: Int): LocationResults {
         return api.getLocation(locationId)
     }
 

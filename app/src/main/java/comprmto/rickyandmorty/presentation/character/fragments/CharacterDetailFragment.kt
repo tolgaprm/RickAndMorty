@@ -18,7 +18,8 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class CharacterDetailFragment : Fragment() {
 
-    private lateinit var binding: FragmentCharacterDetailBinding
+    private var _binding: FragmentCharacterDetailBinding? = null
+    private val binding get() = _binding!!
     private val characterArgument: CharacterDetailFragmentArgs by navArgs()
     private lateinit var viewModel: CharacterDetailViewModel
     private val adapter: EpisodeAdapter by lazy { EpisodeAdapter() }
@@ -29,7 +30,7 @@ class CharacterDetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        binding = FragmentCharacterDetailBinding.inflate(layoutInflater, container, false)
+        _binding = FragmentCharacterDetailBinding.inflate(layoutInflater, container, false)
 
         viewModel = ViewModelProvider(this)[CharacterDetailViewModel::class.java]
 
@@ -46,6 +47,32 @@ class CharacterDetailFragment : Fragment() {
         binding.recyclerViewEpisode.adapter = adapter
 
 
+        binding.locationGroup.setOnClickListener {
+            val locationUrl = viewModel.state.value.character?.location?.url
+
+
+
+            locationUrl?.let {
+                val locationId = (locationUrl.split("/"))[5].toInt()
+                viewModel.setNavigateLocationId(locationId)
+
+
+                if (viewModel.getNavigationLocationID() != null) {
+                    val action =
+                        CharacterDetailFragmentDirections.actionToLocationDetail(
+                            viewModel.getNavigationLocationID()!!,
+                            viewModel.state.value.characterIdFromCharacterListFragment
+                        )
+
+                    findNavController().navigate(action)
+
+                    viewModel.displayDetailComplete()
+                }
+
+
+            }
+
+        }
 
         binding.imageButton.setOnClickListener {
             val action =
@@ -60,6 +87,11 @@ class CharacterDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 

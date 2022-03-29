@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import comprmto.rickyandmorty.data.remote.dto.episode.toEpisodeDomain
 import comprmto.rickyandmorty.domain.model.EpisodeDomain
 import comprmto.rickyandmorty.domain.repository.RickAndMortyRepository
+import comprmto.rickyandmorty.presentation.character.fragments.viewmodel.states.CharacterDetailState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -20,9 +21,6 @@ class CharacterDetailViewModel @Inject constructor(
 
     private val _state = MutableStateFlow(CharacterDetailState())
     val state: StateFlow<CharacterDetailState> get() = _state
-
-    private val _episodeList = MutableLiveData<List<EpisodeDomain>>()
-    val episodeList: LiveData<List<EpisodeDomain>> get() = _episodeList
 
 
     private fun getCharacter(characterID: Int) {
@@ -51,10 +49,11 @@ class CharacterDetailViewModel @Inject constructor(
                     list.add(episode.toEpisodeDomain())
 
 
-
                 }
 
-                _episodeList.value = list
+                _state.value = _state.value.copy(
+                    episodeList = list
+                )
             }
 
 
@@ -73,38 +72,25 @@ class CharacterDetailViewModel @Inject constructor(
 
     }
 
-    private fun getEpisodesByCharacters(episodeList: List<String>) {
-
-        val episodeValueList: MutableList<EpisodeDomain> = mutableListOf()
-
-
-        viewModelScope.launch {
-            episodeList.let {
-                episodeList.forEach { episodeUrl ->
-
-                    val episodeId = (episodeUrl.split("/"))[5]
-
-                    val episode = repository.getEpisodeById(episodeId.toInt())
-
-                    episodeValueList.add(episode.toEpisodeDomain())
-                    _state.value = _state.value.copy(
-                        episodeInfoList = episodeValueList
-                    )
-
-
-                }
-
-
-            }
-        }
-
-    }
-
-
     private fun getCharacterIDFromFragmentList(): Int {
         return _state.value.characterIdFromCharacterListFragment
     }
 
+    fun setNavigateLocationId(locationId: Int) {
+        _state.value = _state.value.copy(
+            navigateArgLocationId = locationId
+        )
+    }
+
+    fun getNavigationLocationID(): Int? {
+        return _state.value.navigateArgLocationId
+    }
+
+    fun displayDetailComplete() {
+        _state.value = _state.value.copy(
+            navigateArgLocationId = null
+        )
+    }
 
 }
 
