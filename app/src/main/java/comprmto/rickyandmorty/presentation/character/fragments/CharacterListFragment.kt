@@ -43,9 +43,6 @@ class CharacterListFragment : Fragment() {
 
 
 
-
-
-
         lifecycleScope.launch {
             viewModel.getListData()?.collectLatest {
                 characterAdapter.submitData(it)
@@ -67,7 +64,8 @@ class CharacterListFragment : Fragment() {
             ItemClickListener {
                 val action =
                     CharacterListFragmentDirections.actionCharacterListFragmentToCharacterDetailFragment(
-                        it
+                        it,
+                        true
                     )
                 findNavController().navigate(action)
             }

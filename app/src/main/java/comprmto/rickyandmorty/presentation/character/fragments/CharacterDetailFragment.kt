@@ -38,6 +38,9 @@ class CharacterDetailFragment : Fragment() {
         binding.viewModel = viewModel
 
         val characterID = characterArgument.characterID
+        val isFromCharacterList = characterArgument.isFromCharacterList
+        val locationID = characterArgument.locationID
+
         viewModel.setCharacterId(characterID)
         viewModel.getCharacterInvoke()
 
@@ -58,14 +61,8 @@ class CharacterDetailFragment : Fragment() {
 
 
                 if (viewModel.getNavigationLocationID() != null) {
-                    val action =
-                        CharacterDetailFragmentDirections.actionToLocationDetail(
-                            viewModel.getNavigationLocationID()!!,
-                            viewModel.state.value.characterIdFromCharacterListFragment
-                        )
 
-                    findNavController().navigate(action)
-
+                    navigateToLocationDetail(viewModel.getNavigationLocationID()!!)
                     viewModel.displayDetailComplete()
                 }
 
@@ -75,13 +72,29 @@ class CharacterDetailFragment : Fragment() {
         }
 
         binding.imageButton.setOnClickListener {
-            val action =
-                CharacterDetailFragmentDirections.actionCharacterDetailFragmentToCharacterListFragment()
-            findNavController().navigate(action)
+            if (isFromCharacterList) {
+                val action =
+                    CharacterDetailFragmentDirections.actionCharacterDetailFragmentToCharacterListFragment()
+                findNavController().navigate(action)
+            } else {
+                navigateToLocationDetail(locationID)
+            }
+
         }
 
 
         return binding.root
+    }
+
+
+    private fun navigateToLocationDetail(locationID: Int) {
+        val action =
+            CharacterDetailFragmentDirections.actionToLocationDetail(
+                locationID,
+                viewModel.state.value.characterIdFromCharacterListFragment
+            )
+
+        findNavController().navigate(action)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

@@ -41,7 +41,8 @@ class LocationDetailFragment : Fragment() {
 
         adapter = LocationDetailAdapter(
             ItemClickListener {
-                val action = LocationDetailFragmentDirections.actionToCharacterDetail(it)
+                val action = LocationDetailFragmentDirections.actionToCharacterDetail(it, false)
+                action.locationID = locationID
                 findNavController().navigate(action)
             }
         )
@@ -60,7 +61,11 @@ class LocationDetailFragment : Fragment() {
 
         binding.imageButton.setOnClickListener {
             val action =
-                LocationDetailFragmentDirections.actionToCharacterDetail(locationArgs.characterID)
+                LocationDetailFragmentDirections.actionToCharacterDetail(
+                    locationArgs.characterID,
+                    true
+                )
+
             findNavController().navigate(action)
         }
 

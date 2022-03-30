@@ -33,6 +33,12 @@
         <action
             android:id="@+id/actionToLocationDetail"
             app:destination="@id/locationDetailFragment" />
+        <argument android:name="isFromCharacterList"
+            app:argType="boolean" />
+        <argument
+            android:name="locationID"
+            app:argType="integer"
+            android:defaultValue="0" />
     </fragment>
     <dialog
         android:id="@+id/filterDialog"
@@ -50,7 +56,9 @@
         <action
             android:id="@+id/actionToCharacterDetail"
             app:destination="@id/characterDetailFragment"
-            app:popUpTo="@id/locationDetailFragment" />
+            app:launchSingleTop="false"
+            app:popUpTo="@id/locationDetailFragment"
+            app:popUpToInclusive="true" />
         <argument
             android:name="characterID"
             app:argType="integer" />
