@@ -7,10 +7,11 @@ import comprmto.rickyandmorty.data.remote.RickyAndMortyApi
 import comprmto.rickyandmorty.data.remote.dto.character.CharacterData
 import comprmto.rickyandmorty.data.remote.dto.episode.EpisodeDto
 import comprmto.rickyandmorty.data.remote.dto.episode.EpisodeResult
-import comprmto.rickyandmorty.data.remote.dto.location.LocationDto
 import comprmto.rickyandmorty.data.remote.dto.location.LocationResults
+import comprmto.rickyandmorty.domain.model.LocationDomain
 import comprmto.rickyandmorty.domain.repository.RickAndMortyRepository
 import comprmto.rickyandmorty.paging.CharactersPagingDataSource
+import comprmto.rickyandmorty.paging.LocationPagingDataSource
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
@@ -30,8 +31,15 @@ class RickAndMortyImpl @Inject constructor(val api: RickyAndMortyApi) : RickAndM
         return api.getCharacter(characterId)
     }
 
-    override suspend fun getAllLocation(): LocationDto {
-        return api.getAllLocation()
+    override suspend fun getAllLocation(): Flow<PagingData<LocationDomain>> {
+        return Pager(
+            config = PagingConfig(
+                enablePlaceholders = false, pageSize = 24
+            ),
+            pagingSourceFactory = {
+                LocationPagingDataSource(api)
+            }
+        ).flow
     }
 
     override suspend fun getLocationDetailById(locationId: Int): LocationResults {

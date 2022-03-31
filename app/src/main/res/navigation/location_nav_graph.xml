@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/location_nav_graph"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/locationListFragment">
+
+    <fragment
+        android:id="@+id/locationListFragment"
+        android:name="comprmto.rickyandmorty.presentation.location.fragments.LocationListFragment"
+        android:label="LocationListFragment"
+        tools:layout="@layout/fragment_location_list"/>
+</navigation>

@@ -58,6 +58,7 @@ fun isLoading(progressBar: ProgressBar, isLoading: Boolean) {
 }
 
 
+// We determine the color according to the status of the characters.
 @BindingAdapter("isDead")
 fun changeColor(card: CardView, status: String) {
 

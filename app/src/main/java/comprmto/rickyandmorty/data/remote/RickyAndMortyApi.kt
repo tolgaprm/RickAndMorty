@@ -19,7 +19,7 @@ interface RickyAndMortyApi {
     suspend fun getCharacter(@Path("id") id: Int): CharacterData
 
     @GET("location")
-    suspend fun getAllLocation(): LocationDto
+    suspend fun getAllLocation(@Query("page") page: Int? = null): LocationDto
 
     @GET("location/{id}")
     suspend fun getLocation(@Path("id") locationId: Int): LocationResults

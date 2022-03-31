@@ -26,7 +26,7 @@ class CharacterViewModel @Inject constructor(
     init {
 
         viewModelScope.launch {
-            getListData()?.collect {
+            getListData().collect {
                 _state.value = _state.value.copy(
                     characters = it
                 )
