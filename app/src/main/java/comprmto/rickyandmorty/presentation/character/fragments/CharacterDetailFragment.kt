@@ -91,8 +91,9 @@ class CharacterDetailFragment : Fragment() {
         val action =
             CharacterDetailFragmentDirections.actionToLocationDetail(
                 locationID,
-                viewModel.state.value.characterIdFromCharacterListFragment
+                false
             )
+        action.characterID = viewModel.state.value.characterIdFromCharacterListFragment
 
         findNavController().navigate(action)
     }

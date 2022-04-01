@@ -3,10 +3,19 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/drawable/bottom_nav_selector.xml" value="0.3465" />
+        <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/drawable/episode.xml" value="0.3465" />
+        <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/drawable/episode_selector.xml" value="0.2525" />
         <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/drawable/ic_arrow_back.xml" value="0.1" />
         <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/drawable/ic_character.xml" value="0.1" />
         <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/drawable/ic_character_selected.xml" value="0.1" />
+        <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/drawable/ic_filter.xml" value="0.3465" />
+        <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/drawable/ic_loading.xml" value="0.3465" />
+        <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/drawable/ic_location.xml" value="0.3465" />
+        <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/drawable/ic_location_selected.xml" value="0.3465" />
+        <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/drawable/location_selector.xml" value="0.2525" />
         <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/drawable/ripple_efect.xml" value="0.3465" />
+        <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/drawable/ripple_effect.xml" value="0.3465" />
         <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/drawable/selector.xml" value="0.1" />
         <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/drawable/splash_image.xml" value="0.263" />
         <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/layout/activity_character.xml" value="0.34479166666666666" />

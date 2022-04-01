@@ -40,8 +40,7 @@ class CharacterListFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
         prepareCharacterAdapter()
-
-
+        
 
         lifecycleScope.launch {
             viewModel.getListData()?.collectLatest {

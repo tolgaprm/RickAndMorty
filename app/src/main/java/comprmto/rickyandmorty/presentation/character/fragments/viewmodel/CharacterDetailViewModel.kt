@@ -1,7 +1,5 @@
 package comprmto.rickyandmorty.presentation.character.fragments.viewmodel
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import comprmto.rickyandmorty.data.remote.dto.episode.toEpisodeDomain

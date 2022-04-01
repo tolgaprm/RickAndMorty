@@ -17,7 +17,6 @@ import comprmto.rickyandmorty.util.ItemClickListener
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import timber.log.Timber
 
 @AndroidEntryPoint
 class LocationDetailFragment : Fragment() {
@@ -36,18 +35,13 @@ class LocationDetailFragment : Fragment() {
 
 
         val locationID = locationArgs.locationId
+        val isFromNavigateLocationList = locationArgs.isFromLocationList
         viewModel.setLocationID(locationID)
         viewModel.getLocationInfo()
 
-        adapter = LocationDetailAdapter(
-            ItemClickListener {
-                val action = LocationDetailFragmentDirections.actionToCharacterDetail(it, false)
-                action.locationID = locationID
-                findNavController().navigate(action)
-            }
-        )
-        binding.recyclerView.adapter = adapter
-        binding.recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
+        prepareAdapter(locationID)
+
+
 
         lifecycleScope.launch {
             viewModel.state.collectLatest {
@@ -60,16 +54,44 @@ class LocationDetailFragment : Fragment() {
         }
 
         binding.imageButton.setOnClickListener {
-            val action =
-                LocationDetailFragmentDirections.actionToCharacterDetail(
-                    locationArgs.characterID,
-                    true
-                )
 
-            findNavController().navigate(action)
+            if (isFromNavigateLocationList) {
+                navigateToLocationList()
+            } else {
+                navigateToCharacterDetail()
+            }
+
         }
 
         return binding.root
+    }
+
+    private fun navigateToLocationList() {
+        val action = LocationDetailFragmentDirections.actionToLocationList()
+
+        findNavController().navigate(action)
+    }
+
+    private fun navigateToCharacterDetail() {
+        val action =
+            LocationDetailFragmentDirections.actionToCharacterDetail(
+                locationArgs.characterID,
+                true
+            )
+
+        findNavController().navigate(action)
+    }
+
+    private fun prepareAdapter(locationID: Int) {
+        adapter = LocationDetailAdapter(
+            ItemClickListener {
+                val action = LocationDetailFragmentDirections.actionToCharacterDetail(it, false)
+                action.locationID = locationID
+                findNavController().navigate(action)
+            }
+        )
+        binding.recyclerView.adapter = adapter
+        binding.recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

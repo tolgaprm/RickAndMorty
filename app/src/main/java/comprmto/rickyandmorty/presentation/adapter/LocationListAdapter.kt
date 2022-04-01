@@ -7,8 +7,11 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import comprmto.rickyandmorty.databinding.LocationItemRowBinding
 import comprmto.rickyandmorty.domain.model.LocationDomain
+import comprmto.rickyandmorty.util.ItemClickListener
 
-class LocationListAdapter :
+class LocationListAdapter (
+    private val onClickListener:ItemClickListener
+        ):
     PagingDataAdapter<LocationDomain, LocationListAdapter.LocationViewHolder>(DiffUtilLocation()) {
 
 
@@ -38,6 +41,10 @@ class LocationListAdapter :
         val location = getItem(position)
 
         holder.bind(location!!)
+
+        holder.itemView.setOnClickListener {
+            onClickListener.onClick(location.id)
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LocationViewHolder {

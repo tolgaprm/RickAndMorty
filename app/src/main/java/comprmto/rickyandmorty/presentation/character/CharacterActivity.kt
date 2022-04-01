@@ -2,10 +2,10 @@ package comprmto.rickyandmorty.presentation.character
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.get
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
 import comprmto.rickyandmorty.R
 import comprmto.rickyandmorty.databinding.ActivityCharacterBinding
-import comprmto.rickyandmorty.util.BottomNavigationHelper
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -18,19 +18,12 @@ class CharacterActivity : AppCompatActivity() {
         setTheme(R.style.Theme_RickyAndMorty)
         binding = ActivityCharacterBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setupNavigation()
-    }
 
-    private fun setupNavigation() {
-        val bottomNavBar = binding.bottomNavigationBar
-        BottomNavigationHelper.setupNavigation(this, bottomNavBar)
+        val navHostFragment =supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
 
-        val menu = bottomNavBar.menu
-        val menuItem = menu[0]
-        menuItem.isChecked = true
-        menuItem.setIcon(R.drawable.ic_character_selected)
+        val navController = navHostFragment.navController
 
-
+        binding.bottomNavigationBar.setupWithNavController(navController)
     }
 
 }

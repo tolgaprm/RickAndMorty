@@ -7,9 +7,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.navigation.fragment.findNavController
 import comprmto.rickyandmorty.databinding.FragmentLocationListBinding
 import comprmto.rickyandmorty.presentation.adapter.LocationListAdapter
+import comprmto.rickyandmorty.util.ItemClickListener
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -20,6 +21,7 @@ class LocationListFragment : Fragment() {
     private var _binding: FragmentLocationListBinding? = null
     private val binding get() = _binding!!
     private val viewModel: LocationListViewModel by viewModels()
+    private lateinit var adapter: LocationListAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,9 +30,8 @@ class LocationListFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentLocationListBinding.inflate(layoutInflater, container, false)
 
-        val adapter = LocationListAdapter()
+        prepareAdapter()
 
-        binding.recyclerView.adapter = adapter
 
         lifecycleScope.launch {
             viewModel.getLocationData().collectLatest {
@@ -38,6 +39,21 @@ class LocationListFragment : Fragment() {
             }
         }
         return binding.root
+    }
+
+    private fun prepareAdapter() {
+        adapter = LocationListAdapter(
+            ItemClickListener { locationId ->
+                navigateToLocationDetail(locationId)
+            }
+        )
+
+        binding.recyclerView.adapter = adapter
+    }
+
+    private fun navigateToLocationDetail(locationId: Int) {
+        val action = LocationListFragmentDirections.actionToLocationDetail(locationId, true)
+        findNavController().navigate(action)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

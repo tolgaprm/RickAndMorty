@@ -12,15 +12,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RickyAndMorty">
         <activity
-            android:name=".presentation.location.LocationActivity"
-            android:exported="false" />
-        <activity
-            android:name=".presentation.episode.EpisodeActivity"
-            android:exported="false" />
-        <activity
-            android:name=".presentation.character.CharecterActivity"
-            android:exported="false" />
-        <activity
             android:name=".presentation.character.CharacterActivity"
             android:exported="true">
             <intent-filter>
