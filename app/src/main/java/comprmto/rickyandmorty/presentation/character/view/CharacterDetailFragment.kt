@@ -1,4 +1,4 @@
-package comprmto.rickyandmorty.presentation.character.fragments
+package comprmto.rickyandmorty.presentation.character.view
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,7 +11,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import comprmto.rickyandmorty.databinding.FragmentCharacterDetailBinding
 import comprmto.rickyandmorty.presentation.adapter.EpisodeAdapter
-import comprmto.rickyandmorty.presentation.character.fragments.viewmodel.CharacterDetailViewModel
+import comprmto.rickyandmorty.presentation.character.viewmodel.CharacterDetailViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 

@@ -25,7 +25,7 @@ interface RickyAndMortyApi {
     suspend fun getLocation(@Path("id") locationId: Int): LocationResults
 
     @GET("episode")
-    suspend fun getAllEpisode(): EpisodeDto
+    suspend fun getAllEpisode(@Query("page") page: Int? = null): EpisodeDto
 
     @GET("episode/{id}")
     suspend fun getEpisodeById(@Path("id") episodeId: Int): EpisodeResult

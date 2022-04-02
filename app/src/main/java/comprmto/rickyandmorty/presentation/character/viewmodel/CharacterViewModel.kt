@@ -1,4 +1,4 @@
-package comprmto.rickyandmorty.presentation.character.fragments.viewmodel
+package comprmto.rickyandmorty.presentation.character.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -6,7 +6,7 @@ import androidx.paging.PagingData
 import comprmto.rickyandmorty.data.remote.dto.character.toCharactersDomain
 import comprmto.rickyandmorty.domain.CharactersDomain
 import comprmto.rickyandmorty.domain.repository.RickAndMortyRepository
-import comprmto.rickyandmorty.presentation.character.fragments.viewmodel.states.CharacterActivityState
+import comprmto.rickyandmorty.presentation.character.viewmodel.states.CharacterActivityState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow

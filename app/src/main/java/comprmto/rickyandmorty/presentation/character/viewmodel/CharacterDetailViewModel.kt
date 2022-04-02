@@ -1,11 +1,11 @@
-package comprmto.rickyandmorty.presentation.character.fragments.viewmodel
+package comprmto.rickyandmorty.presentation.character.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import comprmto.rickyandmorty.data.remote.dto.episode.toEpisodeDomain
 import comprmto.rickyandmorty.domain.model.EpisodeDomain
 import comprmto.rickyandmorty.domain.repository.RickAndMortyRepository
-import comprmto.rickyandmorty.presentation.character.fragments.viewmodel.states.CharacterDetailState
+import comprmto.rickyandmorty.presentation.character.viewmodel.states.CharacterDetailState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

@@ -1,4 +1,4 @@
-package comprmto.rickyandmorty.presentation.location.fragments
+package comprmto.rickyandmorty.presentation.location.viewModel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

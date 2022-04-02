@@ -1,4 +1,4 @@
-package comprmto.rickyandmorty.presentation.character.fragments
+package comprmto.rickyandmorty.presentation.character.view
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,7 +12,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import comprmto.rickyandmorty.databinding.FragmentLocationDetailBinding
 import comprmto.rickyandmorty.presentation.adapter.LocationDetailAdapter
-import comprmto.rickyandmorty.presentation.character.fragments.viewmodel.LocationViewModel
+import comprmto.rickyandmorty.presentation.character.viewmodel.LocationViewModel
 import comprmto.rickyandmorty.util.ItemClickListener
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest

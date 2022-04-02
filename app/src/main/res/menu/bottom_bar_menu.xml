@@ -10,7 +10,7 @@
         android:icon="@drawable/location_selector"
         android:title="@string/location" />
     <item
-        android:id="@+id/ic_episode"
+        android:id="@+id/episodeListFragment"
         android:icon="@drawable/episode_selector"
         android:title="@string/Episode" />
 </menu>

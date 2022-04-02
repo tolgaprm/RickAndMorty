@@ -1,5 +1,6 @@
 package comprmto.rickyandmorty.data.remote.dto.episode
 
+import comprmto.rickyandmorty.data.remote.dto.Info
 import comprmto.rickyandmorty.domain.model.EpisodeDetail
 import comprmto.rickyandmorty.domain.model.EpisodeDomain
 
@@ -9,7 +10,7 @@ data class EpisodeResult(
     val air_date: String,
     val characters: List<String>,
     val url: String,
-    val episode:String,
+    val episode: String,
     val created: String
 )
 
@@ -30,7 +31,8 @@ fun EpisodeResult.toEpisodeDomain(): EpisodeDomain {
         id = id,
         name = name,
         air_date = air_date,
-        episode = episode
+        episode = episode,
+        characters = characters
     )
 
 }

@@ -1,4 +1,4 @@
-package comprmto.rickyandmorty.presentation.character.fragments.viewmodel.states
+package comprmto.rickyandmorty.presentation.character.viewmodel.states
 
 import comprmto.rickyandmorty.data.remote.dto.character.CharacterData
 import comprmto.rickyandmorty.domain.model.EpisodeDomain

@@ -13,7 +13,6 @@ fun LocationDto.toLocationDomain(): List<LocationDomain> {
 
     return results.map {
         LocationDomain(
-            info = info,
             dimension = it.dimension,
             id = it.id,
             name = it.name,

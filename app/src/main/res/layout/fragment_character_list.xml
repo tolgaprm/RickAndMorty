@@ -8,7 +8,7 @@
 
         <variable
             name="viewModel"
-            type="comprmto.rickyandmorty.presentation.character.fragments.viewmodel.CharacterViewModel" />
+            type="comprmto.rickyandmorty.presentation.character.viewmodel.CharacterViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

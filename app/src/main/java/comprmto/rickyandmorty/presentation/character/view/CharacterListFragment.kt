@@ -1,4 +1,4 @@
-package comprmto.rickyandmorty.presentation.character.fragments
+package comprmto.rickyandmorty.presentation.character.view
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import comprmto.rickyandmorty.databinding.FragmentCharacterListBinding
 import comprmto.rickyandmorty.presentation.adapter.CharacterAdapter
-import comprmto.rickyandmorty.presentation.character.fragments.viewmodel.CharacterViewModel
+import comprmto.rickyandmorty.presentation.character.viewmodel.CharacterViewModel
 import comprmto.rickyandmorty.util.ItemClickListener
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest

@@ -5,12 +5,13 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import comprmto.rickyandmorty.data.remote.RickyAndMortyApi
 import comprmto.rickyandmorty.data.remote.dto.character.CharacterData
-import comprmto.rickyandmorty.data.remote.dto.episode.EpisodeDto
 import comprmto.rickyandmorty.data.remote.dto.episode.EpisodeResult
 import comprmto.rickyandmorty.data.remote.dto.location.LocationResults
+import comprmto.rickyandmorty.domain.model.EpisodeDomain
 import comprmto.rickyandmorty.domain.model.LocationDomain
 import comprmto.rickyandmorty.domain.repository.RickAndMortyRepository
 import comprmto.rickyandmorty.paging.CharactersPagingDataSource
+import comprmto.rickyandmorty.paging.EpisodePagingDataSource
 import comprmto.rickyandmorty.paging.LocationPagingDataSource
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
@@ -19,7 +20,7 @@ class RickAndMortyImpl @Inject constructor(val api: RickyAndMortyApi) : RickAndM
 
     override suspend fun getAllCharacters(): Flow<PagingData<CharacterData>> {
         return Pager(
-            config = PagingConfig(enablePlaceholders = false, pageSize = 30),
+            config = PagingConfig(pageSize = 25),
             pagingSourceFactory = {
                 CharactersPagingDataSource(api)
             }
@@ -33,8 +34,7 @@ class RickAndMortyImpl @Inject constructor(val api: RickyAndMortyApi) : RickAndM
 
     override suspend fun getAllLocation(): Flow<PagingData<LocationDomain>> {
         return Pager(
-            config = PagingConfig(
-                enablePlaceholders = false, pageSize = 24
+            config = PagingConfig(pageSize = 25
             ),
             pagingSourceFactory = {
                 LocationPagingDataSource(api)
@@ -46,8 +46,13 @@ class RickAndMortyImpl @Inject constructor(val api: RickyAndMortyApi) : RickAndM
         return api.getLocation(locationId)
     }
 
-    override suspend fun getAllEpisode(): EpisodeDto {
-        return api.getAllEpisode()
+    override suspend fun getAllEpisode(): Flow<PagingData<EpisodeDomain>> {
+        return Pager(
+            config = PagingConfig(pageSize = 25),
+            pagingSourceFactory = {
+                EpisodePagingDataSource(api)
+            }
+        ).flow
     }
 
     override suspend fun getEpisodeById(episodeId: Int): EpisodeResult {

@@ -15,7 +15,8 @@ fun EpisodeDto.toEpisodeDomain(): List<EpisodeDomain> {
             id = it.id,
             name = it.name,
             air_date = it.air_date,
-            episode = it.episode
+            episode = it.episode,
+            characters = it.characters
         )
     }
 }

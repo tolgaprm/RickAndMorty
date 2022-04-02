@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/characterListFragment"
-        android:name="comprmto.rickyandmorty.presentation.character.fragments.CharacterListFragment"
+        android:name="comprmto.rickyandmorty.presentation.character.view.CharacterListFragment"
         android:label="CharacterListFragment"
         tools:layout="@layout/fragment_character_list">
         <action
@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/characterDetailFragment"
-        android:name="comprmto.rickyandmorty.presentation.character.fragments.CharacterDetailFragment"
+        android:name="comprmto.rickyandmorty.presentation.character.view.CharacterDetailFragment"
         android:label="CharacterDetailFragment"
         tools:layout="@layout/fragment_character_detail">
         <argument
@@ -43,12 +43,12 @@
     </fragment>
     <dialog
         android:id="@+id/filterDialog"
-        android:name="comprmto.rickyandmorty.presentation.character.fragments.FilterDialog"
+        android:name="comprmto.rickyandmorty.presentation.character.view.FilterDialog"
         android:label="FilterDialog"
         tools:layout="@layout/dialog_filter" />
     <fragment
         android:id="@+id/locationDetailFragment"
-        android:name="comprmto.rickyandmorty.presentation.character.fragments.LocationDetailFragment"
+        android:name="comprmto.rickyandmorty.presentation.character.view.LocationDetailFragment"
         android:label="LocationDetailFragment"
         tools:layout="@layout/fragment_location_detail">
         <argument
@@ -73,11 +73,16 @@
     </fragment>
     <fragment
         android:id="@+id/locationListFragment"
-        android:name="comprmto.rickyandmorty.presentation.location.fragments.LocationListFragment"
+        android:name="comprmto.rickyandmorty.presentation.location.view.LocationListFragment"
         android:label="LocationListFragment"
         tools:layout="@layout/fragment_location_list">
         <action
             android:id="@+id/actionToLocationDetail"
             app:destination="@id/locationDetailFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/episodeListFragment"
+        tools:layout="@layout/fragment_episode_list"
+        android:name="comprmto.rickyandmorty.presentation.episode.view.EpisodeListFragment"
+        android:label="EpisodeListFragment" />
 </navigation>
