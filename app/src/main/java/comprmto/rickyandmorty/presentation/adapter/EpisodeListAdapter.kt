@@ -5,11 +5,14 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import comprmto.rickyandmorty.R
 import comprmto.rickyandmorty.databinding.EpisodeItemRowBinding
+import comprmto.rickyandmorty.databinding.SeparatorItemViewBinding
 import comprmto.rickyandmorty.domain.model.EpisodeDomain
+import comprmto.rickyandmorty.domain.model.EpisodeListItem
 
 class EpisodeListAdapter :
-    PagingDataAdapter<EpisodeDomain, EpisodeListAdapter.EpisodeViewHolder>(DiffUtilEpisode()) {
+    PagingDataAdapter<EpisodeListItem, RecyclerView.ViewHolder>(DiffUtilEpisode()) {
 
     class EpisodeViewHolder(val binding: EpisodeItemRowBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -32,25 +35,67 @@ class EpisodeListAdapter :
         }
     }
 
-    override fun onBindViewHolder(holder: EpisodeViewHolder, position: Int) {
-        val episode = getItem(position)
+    class SeparatorViewHolder(val binding: SeparatorItemViewBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
-        holder.bind(episode!!)
+        companion object {
+            fun from(parent: ViewGroup): SeparatorViewHolder {
+                val binding = SeparatorItemViewBinding.inflate(
+                    LayoutInflater.from(parent.context),
+                    parent,
+                    false
+                )
 
-    }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EpisodeViewHolder {
-        return EpisodeViewHolder.from(parent)
-    }
-
-    class DiffUtilEpisode : DiffUtil.ItemCallback<EpisodeDomain>() {
-        override fun areItemsTheSame(oldItem: EpisodeDomain, newItem: EpisodeDomain): Boolean {
-            return oldItem.id == newItem.id
+                return SeparatorViewHolder(binding)
+            }
         }
 
-        override fun areContentsTheSame(oldItem: EpisodeDomain, newItem: EpisodeDomain): Boolean {
+        fun bind(separatorText: String) {
+            binding.separatorText.text = separatorText
+        }
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        return if (viewType == R.layout.separator_item_view) {
+            SeparatorViewHolder.from(parent)
+        } else {
+            EpisodeViewHolder.from(parent)
+        }
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return when (getItem(position)) {
+            is EpisodeListItem.EpisodeItem -> R.layout.episode_item_row
+            is EpisodeListItem.SeparatorItem -> R.layout.separator_item_view
+            null -> throw UnsupportedOperationException("Unknown view")
+        }
+    }
+
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        val episodeModel = getItem(position)
+
+        episodeModel.let {
+            when (it) {
+                is EpisodeListItem.EpisodeItem -> (holder as EpisodeViewHolder).bind(it.episode)
+                is EpisodeListItem.SeparatorItem -> (holder as SeparatorViewHolder).bind(it.season)
+            }
+        }
+    }
+
+    class DiffUtilEpisode : DiffUtil.ItemCallback<EpisodeListItem>() {
+        override fun areItemsTheSame(oldItem: EpisodeListItem, newItem: EpisodeListItem): Boolean {
+            return (oldItem is EpisodeListItem.EpisodeItem && newItem is EpisodeListItem.EpisodeItem && oldItem.episode.id == newItem.episode.id) ||
+                    (oldItem is EpisodeListItem.SeparatorItem && newItem is EpisodeListItem.SeparatorItem && oldItem.season == newItem.season)
+        }
+
+        override fun areContentsTheSame(
+            oldItem: EpisodeListItem,
+            newItem: EpisodeListItem
+        ): Boolean {
             return oldItem == newItem
         }
 
     }
+
+
 }
