@@ -1,4 +1,4 @@
-package comprmto.rickyandmorty.presentation.character.viewmodel.states
+package comprmto.rickyandmorty.presentation.location.state
 
 import comprmto.rickyandmorty.domain.CharactersDomain
 import comprmto.rickyandmorty.domain.model.LocationByIdDomain

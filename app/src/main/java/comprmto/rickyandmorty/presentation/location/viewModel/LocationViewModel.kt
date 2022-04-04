@@ -1,4 +1,4 @@
-package comprmto.rickyandmorty.presentation.character.viewmodel
+package comprmto.rickyandmorty.presentation.location.viewModel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -6,7 +6,7 @@ import comprmto.rickyandmorty.data.remote.dto.character.toCharactersDomain
 import comprmto.rickyandmorty.data.remote.dto.location.toLocationByIdDomain
 import comprmto.rickyandmorty.domain.CharactersDomain
 import comprmto.rickyandmorty.domain.repository.RickAndMortyRepository
-import comprmto.rickyandmorty.presentation.character.viewmodel.states.LocationDetailState
+import comprmto.rickyandmorty.presentation.location.state.LocationDetailState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -61,7 +61,7 @@ class LocationViewModel @Inject constructor(
 
         }catch (e:Exception){
             _state.value = _state.value.copy(
-                error = "An unexpected error ocuured"
+                error = "An unexpected error occured"
             )
         }catch (e:HttpException){
             _state.value = _state.value.copy(

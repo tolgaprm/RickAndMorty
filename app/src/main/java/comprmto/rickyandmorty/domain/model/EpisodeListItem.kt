@@ -1,6 +1,6 @@
 package comprmto.rickyandmorty.domain.model
 
-sealed class EpisodeListItem {
+sealed class EpisodeListItem() {
     data class EpisodeItem(val episode: EpisodeDomain) : EpisodeListItem()
 
     data class SeparatorItem(val season: String) : EpisodeListItem()

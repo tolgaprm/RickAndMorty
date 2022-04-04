@@ -10,8 +10,9 @@ import comprmto.rickyandmorty.databinding.EpisodeItemRowBinding
 import comprmto.rickyandmorty.databinding.SeparatorItemViewBinding
 import comprmto.rickyandmorty.domain.model.EpisodeDomain
 import comprmto.rickyandmorty.domain.model.EpisodeListItem
+import comprmto.rickyandmorty.util.ItemClickListener
 
-class EpisodeListAdapter :
+class EpisodeListAdapter(val onclickListener: ItemClickListener) :
     PagingDataAdapter<EpisodeListItem, RecyclerView.ViewHolder>(DiffUtilEpisode()) {
 
     class EpisodeViewHolder(val binding: EpisodeItemRowBinding) :
@@ -74,12 +75,23 @@ class EpisodeListAdapter :
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val episodeModel = getItem(position)
 
-        episodeModel.let {
-            when (it) {
-                is EpisodeListItem.EpisodeItem -> (holder as EpisodeViewHolder).bind(it.episode)
-                is EpisodeListItem.SeparatorItem -> (holder as SeparatorViewHolder).bind(it.season)
+
+
+        episodeModel.let { episodeListItem ->
+            when (episodeListItem) {
+                is EpisodeListItem.EpisodeItem -> {
+                    (holder as EpisodeViewHolder).bind(episodeListItem.episode)
+                    (holder as EpisodeViewHolder).itemView.setOnClickListener {
+                        onclickListener.onClick(episodeListItem.episode.id)
+                    }
+                }
+                is EpisodeListItem.SeparatorItem -> (holder as SeparatorViewHolder).bind(
+                    episodeListItem.season
+                )
             }
         }
+
+
     }
 
     class DiffUtilEpisode : DiffUtil.ItemCallback<EpisodeListItem>() {

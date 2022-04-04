@@ -5,4 +5,5 @@ data class EpisodeDetail(
     val name: String,
     val air_date: String,
     val characters: List<String>,
+    val episode: String,
 )

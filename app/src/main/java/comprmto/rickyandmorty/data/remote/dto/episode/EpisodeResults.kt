@@ -1,6 +1,5 @@
 package comprmto.rickyandmorty.data.remote.dto.episode
 
-import comprmto.rickyandmorty.data.remote.dto.Info
 import comprmto.rickyandmorty.domain.model.EpisodeDetail
 import comprmto.rickyandmorty.domain.model.EpisodeDomain
 
@@ -20,6 +19,7 @@ fun EpisodeResult.toEpisodeByIdDetail(): EpisodeDetail {
         id = id,
         name = name,
         air_date = air_date,
+        episode =episode,
         characters = characters
     )
 
