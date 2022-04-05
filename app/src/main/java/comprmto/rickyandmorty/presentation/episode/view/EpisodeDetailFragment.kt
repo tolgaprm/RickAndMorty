@@ -13,8 +13,8 @@ import comprmto.rickyandmorty.databinding.FragmentEpisodeDetailBinding
 import comprmto.rickyandmorty.presentation.adapter.LocationDetailAdapter
 import comprmto.rickyandmorty.presentation.episode.viewModel.EpisodeDetailViewModel
 import comprmto.rickyandmorty.util.ItemClickListener
+import comprmto.rickyandmorty.util.NavigateState
 import dagger.hilt.android.AndroidEntryPoint
-import timber.log.Timber
 
 @AndroidEntryPoint
 class EpisodeDetailFragment : Fragment() {
@@ -54,8 +54,8 @@ class EpisodeDetailFragment : Fragment() {
 
     private fun prepareAdapter() {
         val adapter = LocationDetailAdapter(
-            ItemClickListener {
-                Timber.d(it.toString())
+            ItemClickListener { characterId ->
+                navigateToCharacterDetail(characterId)
             }
         )
 
@@ -63,6 +63,15 @@ class EpisodeDetailFragment : Fragment() {
 
         binding.recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
 
+    }
+
+    private fun navigateToCharacterDetail(characterId: Int) {
+        val action = EpisodeDetailFragmentDirections.actionToCharacterDetailFragment(
+            characterId,
+            NavigateState.EPISODEDETAIL
+        )
+        action.episodeId = episodeDetailArgs.episodeId
+        findNavController().navigate(action)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

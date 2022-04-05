@@ -34,12 +34,19 @@
             android:id="@+id/actionToLocationDetail"
             app:destination="@id/locationDetailFragment" />
         <argument
-            android:name="isFromCharacterList"
-            app:argType="boolean" />
-        <argument
             android:name="locationID"
             android:defaultValue="0"
             app:argType="integer" />
+        <action
+            android:id="@+id/actionToEpisodeDetailFragment"
+            app:destination="@id/episodeDetailFragment" />
+        <argument
+            android:name="stateNavigate"
+            app:argType="comprmto.rickyandmorty.util.NavigateState" />
+        <argument
+            android:name="episodeId"
+            app:argType="integer"
+            android:defaultValue="0" />
     </fragment>
     <dialog
         android:id="@+id/filterDialog"
@@ -102,5 +109,8 @@
         <argument
             android:name="episodeId"
             app:argType="integer" />
+        <action
+            android:id="@+id/actionToCharacterDetailFragment"
+            app:destination="@id/characterDetailFragment" />
     </fragment>
 </navigation>

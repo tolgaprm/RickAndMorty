@@ -14,6 +14,7 @@ import comprmto.rickyandmorty.databinding.FragmentLocationDetailBinding
 import comprmto.rickyandmorty.presentation.adapter.LocationDetailAdapter
 import comprmto.rickyandmorty.presentation.location.viewModel.LocationViewModel
 import comprmto.rickyandmorty.util.ItemClickListener
+import comprmto.rickyandmorty.util.NavigateState
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -77,7 +78,7 @@ class LocationDetailFragment : Fragment() {
         val action =
             LocationDetailFragmentDirections.actionToCharacterDetail(
                 locationArgs.characterID,
-                true
+                NavigateState.LOCATIONDETAIL
             )
 
         findNavController().navigate(action)
@@ -89,7 +90,7 @@ class LocationDetailFragment : Fragment() {
                 val action =
                     LocationDetailFragmentDirections.actionToCharacterDetail(
                         it,
-                        false
+                        NavigateState.LOCATIONDETAIL
                     )
                 action.locationID = locationID
                 findNavController().navigate(action)

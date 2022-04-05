@@ -15,6 +15,7 @@ import comprmto.rickyandmorty.databinding.FragmentCharacterListBinding
 import comprmto.rickyandmorty.presentation.adapter.CharacterAdapter
 import comprmto.rickyandmorty.presentation.character.viewmodel.CharacterViewModel
 import comprmto.rickyandmorty.util.ItemClickListener
+import comprmto.rickyandmorty.util.NavigateState
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -40,7 +41,7 @@ class CharacterListFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
         prepareCharacterAdapter()
-        
+
 
         lifecycleScope.launch {
             viewModel.getListData()?.collectLatest {
@@ -64,7 +65,7 @@ class CharacterListFragment : Fragment() {
                 val action =
                     CharacterListFragmentDirections.actionCharacterListFragmentToCharacterDetailFragment(
                         it,
-                        true
+                        NavigateState.CHARACTERLIST
                     )
                 findNavController().navigate(action)
             }

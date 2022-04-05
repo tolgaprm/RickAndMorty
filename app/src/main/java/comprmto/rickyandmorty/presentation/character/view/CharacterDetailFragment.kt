@@ -10,8 +10,10 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import comprmto.rickyandmorty.databinding.FragmentCharacterDetailBinding
+
 import comprmto.rickyandmorty.presentation.adapter.EpisodeAdapter
 import comprmto.rickyandmorty.presentation.character.viewmodel.CharacterDetailViewModel
+import comprmto.rickyandmorty.util.NavigateState
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -38,8 +40,9 @@ class CharacterDetailFragment : Fragment() {
         binding.viewModel = viewModel
 
         val characterID = characterArgument.characterID
-        val isFromCharacterList = characterArgument.isFromCharacterList
+        val stateNavigate = characterArgument.stateNavigate
         val locationID = characterArgument.locationID
+        val episodeID = characterArgument.episodeId
 
         viewModel.setCharacterId(characterID)
         viewModel.getCharacterInvoke()
@@ -72,18 +75,29 @@ class CharacterDetailFragment : Fragment() {
         }
 
         binding.imageButton.setOnClickListener {
-            if (isFromCharacterList) {
-                val action =
-                    CharacterDetailFragmentDirections.actionCharacterDetailFragmentToCharacterListFragment()
-                findNavController().navigate(action)
-            } else {
-                navigateToLocationDetail(locationID)
+
+            when (stateNavigate) {
+                NavigateState.LOCATIONDETAIL -> navigateToLocationDetail(locationID)
+                NavigateState.CHARACTERLIST -> navigateToCharacterList()
+                NavigateState.EPISODEDETAIL -> navigateToEpisodeDetail(episodeID)
             }
+
 
         }
 
 
         return binding.root
+    }
+
+    private fun navigateToEpisodeDetail(episodeID: Int) {
+        val action = CharacterDetailFragmentDirections.actionToEpisodeDetailFragment(episodeID)
+        findNavController().navigate(action)
+    }
+
+    private fun navigateToCharacterList() {
+        val action =
+            CharacterDetailFragmentDirections.actionCharacterDetailFragmentToCharacterListFragment()
+        findNavController().navigate(action)
     }
 
 
