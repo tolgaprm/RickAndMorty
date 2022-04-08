@@ -6,12 +6,19 @@ import comprmto.rickyandmorty.data.remote.dto.episode.EpisodeResult
 import comprmto.rickyandmorty.data.remote.dto.location.LocationResults
 import comprmto.rickyandmorty.domain.model.EpisodeDomain
 import comprmto.rickyandmorty.domain.model.LocationDomain
+import comprmto.rickyandmorty.util.GenderState
+import comprmto.rickyandmorty.util.StatusState
 import kotlinx.coroutines.flow.Flow
 import retrofit2.http.Path
 
 interface RickAndMortyRepository {
 
-    suspend fun getAllCharacters(): Flow<PagingData<CharacterData>>
+    suspend fun getAllCharacters(
+        status: StatusState=StatusState.NONE,
+        gender: GenderState=GenderState.NONE,
+        name: String = ""
+    ): Flow<PagingData<CharacterData>>
+
 
     suspend fun getCharacterDetailById(characterId: Int): CharacterData
 

@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
@@ -19,13 +19,14 @@ import comprmto.rickyandmorty.util.NavigateState
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 @AndroidEntryPoint
 class CharacterListFragment : Fragment() {
 
     private var _binding: FragmentCharacterListBinding? = null
     private val binding get() = _binding!!
-    val viewModel: CharacterViewModel by viewModels()
+    lateinit var viewModel: CharacterViewModel
     private lateinit var characterAdapter: CharacterAdapter
 
 
@@ -35,25 +36,25 @@ class CharacterListFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         _binding = FragmentCharacterListBinding.inflate(layoutInflater, container, false)
-
-
+        Timber.d("asas")
+        viewModel = ViewModelProvider(requireActivity())[CharacterViewModel::class.java]
 
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
+
         prepareCharacterAdapter()
+
+       viewModel.checkIfTheFilterHasBeenApplied()
 
 
         lifecycleScope.launch {
-            viewModel.getListData()?.collectLatest {
+            viewModel.getListData().collectLatest {
                 characterAdapter.submitData(it)
             }
         }
-
-
-
-
         return binding.root
     }
+
 
     private fun prepareCharacterAdapter() {
         val layoutManager = GridLayoutManager(requireContext(), 2)
@@ -70,6 +71,7 @@ class CharacterListFragment : Fragment() {
                 findNavController().navigate(action)
             }
         )
+
         characterAdapter.stateRestorationPolicy =
             RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
         binding.characterList.adapter = characterAdapter
@@ -86,7 +88,6 @@ class CharacterListFragment : Fragment() {
             Navigation.findNavController(it).navigate(action)
         }
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()

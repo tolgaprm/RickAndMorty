@@ -77,9 +77,9 @@ class CharacterDetailFragment : Fragment() {
         binding.imageButton.setOnClickListener {
 
             when (stateNavigate) {
-                NavigateState.LOCATIONDETAIL -> navigateToLocationDetail(locationID)
                 NavigateState.CHARACTERLIST -> navigateToCharacterList()
                 NavigateState.EPISODEDETAIL -> navigateToEpisodeDetail(episodeID)
+                else -> navigateToCharacterList()
             }
 
 

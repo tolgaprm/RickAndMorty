@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="comprmto.rickyandmorty.presentation.character.viewmodel.CharacterViewModel" />
+    </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
@@ -14,7 +22,7 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="?attr/colorPrimary"
+                android:background="@color/white"
                 android:elevation="16dp"
                 android:minHeight="?attr/actionBarSize"
                 android:theme="?attr/actionBarTheme"
@@ -39,7 +47,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/imageButton"
+                        android:id="@+id/clear"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_gravity="end"
@@ -47,90 +55,74 @@
                         android:text="@string/clear"
                         android:textAppearance="@style/TextAppearance.AppCompat.Button"
                         android:textColor="@color/indigo"
+                        android:visibility="gone"
+                        app:isFilter="@{()->viewModel.checkIfTheFilterHasBeenApplied()}"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:visibility="visible" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.appcompat.widget.Toolbar>
 
-            <LinearLayout
-                android:id="@+id/linearLayout"
+
+            <!--    <LinearLayout
+                    android:id="@+id/linearLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingHorizontal="16dp"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_medium"
+                        android:paddingBottom="4dp"
+                        android:text="@string/name"
+                        android:textColor="@color/basic_black"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto"
+                        android:paddingBottom="8dp"
+                        android:text="@string/give_a_name"
+                        android:textColor="@color/light_black"
+                        android:textSize="14sp" />
+
+                    <View
+                        android:id="@+id/divider"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/light_black" />
+
+
+                </LinearLayout> !-->
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/inputLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingHorizontal="16dp"
-                android:paddingTop="16dp"
-                android:paddingBottom="8dp"
+                android:layout_margin="16dp"
+                android:hint="Character Name"
+                app:layout_constraintBottom_toTopOf="@id/textView"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto_medium"
-                    android:paddingBottom="4dp"
-                    android:text="@string/name"
-                    android:textColor="@color/basic_black"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto"
-                    android:paddingBottom="8dp"
-                    android:text="@string/give_a_name"
-                    android:textColor="@color/light_black"
-                    android:textSize="14sp" />
-
-                <View
-                    android:id="@+id/divider"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/characterName"
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/light_black" />
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/linearLayout2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingHorizontal="16dp"
-                android:paddingTop="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout">
-
-                <TextView
-                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto_medium"
-                    android:paddingBottom="4dp"
-                    android:text="@string/species"
-                    android:textColor="@color/basic_black"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto"
-                    android:paddingBottom="8dp"
-                    android:text="@string/select_one"
-                    android:textColor="@color/light_black"
-                    android:textSize="14sp" />
-
-                <View
-                    android:id="@+id/divider2"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/light_black" />
-
-
-            </LinearLayout>
+                    android:text="@={viewModel.state.queryCharacterName}" />
+            </com.google.android.material.textfield.TextInputLayout>
 
 
             <TextView
@@ -138,16 +130,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingHorizontal="20dp"
-                android:paddingTop="20dp"
+                android:paddingTop="8dp"
                 android:paddingBottom="5dp"
                 android:text="@string/status"
                 android:textAppearance="@style/TextAppearance.body2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+                app:layout_constraintTop_toBottomOf="@id/inputLayout"
+                tools:layout_editor_absoluteY="62dp" />
 
             <RadioGroup
-                android:id="@+id/radioGroupStatus"
+                android:id="@+id/rgStatus"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingHorizontal="12dp"
@@ -156,7 +149,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView">
 
                 <RadioButton
-                    android:id="@+id/alive"
+                    android:id="@+id/rbAlive"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/alive"
@@ -169,7 +162,7 @@
                     android:background="@color/light_black" />
 
                 <RadioButton
-                    android:id="@+id/dead"
+                    android:id="@+id/rbDead"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/dead" />
@@ -181,7 +174,7 @@
                     android:background="@color/light_black" />
 
                 <RadioButton
-                    android:id="@+id/unknown"
+                    android:id="@+id/rbUnknown"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/unknown" />
@@ -198,16 +191,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingHorizontal="20dp"
-                android:paddingTop="20dp"
+                android:paddingTop="8dp"
                 android:paddingBottom="5dp"
                 android:text="@string/gender"
                 android:textAppearance="@style/TextAppearance.body2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/radioGroupStatus" />
+                app:layout_constraintTop_toBottomOf="@+id/rgStatus" />
 
             <RadioGroup
-                android:id="@+id/radioGroupGender"
+                android:id="@+id/rgGender"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingHorizontal="12dp"
@@ -216,7 +209,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView2">
 
                 <RadioButton
-                    android:id="@+id/female"
+                    android:id="@+id/rbFemale"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/female"
@@ -229,7 +222,7 @@
                     android:background="@color/light_black" />
 
                 <RadioButton
-                    android:id="@+id/male"
+                    android:id="@+id/rbMale"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/male" />
@@ -241,7 +234,7 @@
                     android:background="@color/light_black" />
 
                 <RadioButton
-                    android:id="@+id/genderless"
+                    android:id="@+id/rbGenderless"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/genderless" />
@@ -251,19 +244,38 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="@color/light_black" />
+
+                <RadioButton
+                    android:id="@+id/rbgUnknown"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/unknown" />
+
             </RadioGroup>
 
 
             <Button
+                android:id="@+id/btnApply"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:backgroundTint="@color/indigo"
                 android:text="@string/apply"
+                android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/radioGroupGender" />
+                app:layout_constraintTop_toBottomOf="@+id/rgGender" />
+
+            <View
+                android:id="@+id/divider9"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="2dp"
+                android:background="@color/light_black"
+                app:layout_constraintBottom_toTopOf="@+id/btnApply"
+                app:layout_constraintTop_toBottomOf="@+id/rgGender"
+                tools:layout_editor_absoluteX="14dp" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

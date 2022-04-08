@@ -5,16 +5,27 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import comprmto.rickyandmorty.data.remote.RickyAndMortyApi
 import comprmto.rickyandmorty.data.remote.dto.character.CharacterData
+import comprmto.rickyandmorty.util.GenderState
+import comprmto.rickyandmorty.util.StatusState
 import javax.inject.Inject
 
 class CharactersPagingDataSource @Inject constructor(
-    private val rickyAndMortyApi: RickyAndMortyApi
+    private val rickyAndMortyApi: RickyAndMortyApi,
+    private val statusState: StatusState,
+    private val genderState: GenderState,
+    private val nameQuery: String
 ) : PagingSource<Int, CharacterData>() {
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, CharacterData> {
         val pageNumber = params.key ?: 1
 
         return try {
-            val response = rickyAndMortyApi.getAllCharacters(pageNumber)
+            val response =
+                rickyAndMortyApi.getAllCharacters(
+                    page = pageNumber,
+                    status = statusState.title,
+                    gender = genderState.title,
+                    name = nameQuery
+                )
             val data = response.results
 
             var nextPageNumber: Int? = null

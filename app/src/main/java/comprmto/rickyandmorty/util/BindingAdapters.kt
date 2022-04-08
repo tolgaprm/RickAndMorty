@@ -4,6 +4,7 @@ import android.graphics.Color
 import android.view.View
 import android.widget.ImageView
 import android.widget.ProgressBar
+import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -36,6 +37,18 @@ fun bindEpisodeList(recyclerView: RecyclerView, episodeList: List<EpisodeDomain>
         adapter.submitList(episodeList)
     }
 }
+
+@BindingAdapter("isFilter")
+fun isFilter(cardView: CardView, isFilter: Boolean) {
+    cardView.visibility = if (isFilter) View.VISIBLE else View.GONE
+}
+
+@BindingAdapter("isFilter")
+fun isFilter(textView: TextView, checkIsFilter: () -> Boolean) {
+
+    textView.visibility = if (checkIsFilter.invoke()) View.VISIBLE else View.GONE
+}
+
 
 @BindingAdapter("bindCharacterList")
 fun bindCharactersList(recyclerView: RecyclerView, characters: List<CharactersDomain>?) {

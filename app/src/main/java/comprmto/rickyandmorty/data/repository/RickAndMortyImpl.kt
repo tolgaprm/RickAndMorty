@@ -13,19 +13,32 @@ import comprmto.rickyandmorty.domain.repository.RickAndMortyRepository
 import comprmto.rickyandmorty.paging.CharactersPagingDataSource
 import comprmto.rickyandmorty.paging.EpisodePagingDataSource
 import comprmto.rickyandmorty.paging.LocationPagingDataSource
+import comprmto.rickyandmorty.util.GenderState
+import comprmto.rickyandmorty.util.StatusState
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class RickAndMortyImpl @Inject constructor(val api: RickyAndMortyApi) : RickAndMortyRepository {
 
-    override suspend fun getAllCharacters(): Flow<PagingData<CharacterData>> {
+
+    override suspend fun getAllCharacters(
+        status: StatusState,
+        gender: GenderState,
+        name: String
+    ): Flow<PagingData<CharacterData>> {
         return Pager(
             config = PagingConfig(pageSize = 25),
             pagingSourceFactory = {
-                CharactersPagingDataSource(api)
+                CharactersPagingDataSource(
+                    api,
+                    statusState = status,
+                    genderState = gender,
+                    nameQuery = name
+                )
             }
         ).flow
     }
+
 
     override suspend fun getCharacterDetailById(characterId: Int): CharacterData {
 
@@ -34,7 +47,8 @@ class RickAndMortyImpl @Inject constructor(val api: RickyAndMortyApi) : RickAndM
 
     override suspend fun getAllLocation(): Flow<PagingData<LocationDomain>> {
         return Pager(
-            config = PagingConfig(pageSize = 25
+            config = PagingConfig(
+                pageSize = 25
             ),
             pagingSourceFactory = {
                 LocationPagingDataSource(api)

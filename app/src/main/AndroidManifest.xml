@@ -4,7 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <application
-        android:name=".RickyAndMortyApplication"
+        android:name="comprmto.rickyandmorty.RickyAndMortyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RickyAndMorty">
         <activity
-            android:name=".presentation.character.CharacterActivity"
+            android:name="comprmto.rickyandmorty.presentation.character.CharacterActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

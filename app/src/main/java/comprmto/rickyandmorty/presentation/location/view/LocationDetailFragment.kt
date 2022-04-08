@@ -86,10 +86,10 @@ class LocationDetailFragment : Fragment() {
 
     private fun prepareAdapter(locationID: Int) {
         adapter = LocationDetailAdapter(
-            ItemClickListener {
+            ItemClickListener {characterId->
                 val action =
                     LocationDetailFragmentDirections.actionToCharacterDetail(
-                        it,
+                        characterId,
                         NavigateState.LOCATIONDETAIL
                     )
                 action.locationID = locationID
