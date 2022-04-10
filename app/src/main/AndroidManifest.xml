@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="comprmto.rickyandmorty">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:name="comprmto.rickyandmorty.RickyAndMortyApplication"
         android:allowBackup="true"
@@ -10,7 +10,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.RickyAndMorty">
+        android:theme="@style/Theme.SplashScreenTheme">
         <activity
             android:name="comprmto.rickyandmorty.presentation.character.CharacterActivity"
             android:exported="true">

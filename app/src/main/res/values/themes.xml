@@ -20,7 +20,7 @@
 
 
 
-    <style name="splashScreenTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="Theme.SplashScreenTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowBackground">@drawable/splash_image</item>
         <item name="android:statusBarColor">@color/basic_black</item>
     </style>
