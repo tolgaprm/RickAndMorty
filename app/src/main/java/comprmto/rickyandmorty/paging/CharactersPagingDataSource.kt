@@ -7,6 +7,7 @@ import comprmto.rickyandmorty.data.remote.RickyAndMortyApi
 import comprmto.rickyandmorty.data.remote.dto.character.CharacterData
 import comprmto.rickyandmorty.util.GenderState
 import comprmto.rickyandmorty.util.StatusState
+import kotlinx.coroutines.delay
 import timber.log.Timber
 import javax.inject.Inject
 

@@ -8,12 +8,15 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import comprmto.rickyandmorty.databinding.FragmentEpisodeListBinding
 import comprmto.rickyandmorty.presentation.adapter.EpisodeListAdapter
 import comprmto.rickyandmorty.presentation.episode.viewModel.EpisodeListViewModel
 import comprmto.rickyandmorty.util.ItemClickListener
+import comprmto.rickyandmorty.util.Util
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -36,12 +39,30 @@ class EpisodeListFragment : Fragment() {
 
         binding.lifecycleOwner = viewLifecycleOwner
 
+        getListData()
+
+        lifecycleScope.launch {
+            adapter.loadStateFlow.collect {
+                Util.loadingState(it, binding.lottieAnimationView, binding.refreshBtn)
+            }
+        }
+
+        binding.refreshBtn.setOnClickListener {
+            getListData()
+        }
+
+
+
+        return binding.root
+    }
+
+
+    private fun getListData() {
         lifecycleScope.launch {
             viewModel.getEpisodeList().collectLatest {
                 adapter.submitData(it)
             }
         }
-        return binding.root
     }
 
     private fun prepareAdapter() {
