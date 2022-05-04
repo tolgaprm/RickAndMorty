@@ -23,6 +23,10 @@ Rick and Morty demonstrates modern Android development with Hilt, Coroutines, Fl
 - [Moshi](https://github.com/square/moshi) - A modern JSON library for Android, Java and Kotlin
 - [Timber](https://github.com/JakeWharton/timber) - Timber is a logger with a small, extensible API which provides utility on top of Android's normal Log class.
 - [Coil](https://github.com/coil-kt/coil) - An image loading library for Android backed by Kotlin Coroutines.
+
+# Demo
+![Demo1](https://media.giphy.com/media/OPvdbIZIkFypU9IHMn/giphy.gif)
+
 # MAD Score
 ![summary](https://user-images.githubusercontent.com/53945332/162614771-97e82be4-6794-46dc-87a2-b8dc6594f6ac.png)
 
