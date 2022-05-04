@@ -40,15 +40,15 @@
                     android:layout_width="13dp"
                     android:layout_height="13dp"
                     android:layout_marginEnd="18dp"
-                    app:cardBackgroundColor="@color/indigo"
                     android:visibility="gone"
-                    tools:visibility="visible"
+                    app:cardBackgroundColor="@color/indigo"
                     app:cardCornerRadius="13dp"
                     app:isFilter="@{viewModel.state.filter}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@+id/imageButton"
                     app:layout_constraintTop_toTopOf="@+id/imageButton"
-                    app:layout_constraintVertical_bias="0.066" />
+                    app:layout_constraintVertical_bias="0.066"
+                    tools:visibility="visible" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -88,6 +88,30 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/toolbar"
             app:layout_constraintVertical_bias="0.0" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottieAnimationView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="network-error.json"
+            app:lottie_loop="true" />
+
+        <Button
+            android:id="@+id/refreshBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="68dp"
+            android:visibility="gone"
+            android:text="@string/refresh"
+            app:layout_constraintBottom_toBottomOf="@+id/characterList"
+            app:layout_constraintEnd_toEndOf="@+id/characterList"
+            app:layout_constraintStart_toStartOf="@+id/characterList" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

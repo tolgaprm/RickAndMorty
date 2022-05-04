@@ -16,16 +16,16 @@ import comprmto.rickyandmorty.presentation.adapter.CharacterAdapter
 import comprmto.rickyandmorty.presentation.character.viewmodel.CharacterViewModel
 import comprmto.rickyandmorty.util.ItemClickListener
 import comprmto.rickyandmorty.util.NavigateState
+import comprmto.rickyandmorty.util.Util
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import timber.log.Timber
 
 @AndroidEntryPoint
 class CharacterListFragment : Fragment() {
 
-    private var _binding: FragmentCharacterListBinding? = null
-    private val binding get() = _binding!!
+    private lateinit var binding: FragmentCharacterListBinding
     lateinit var viewModel: CharacterViewModel
     private lateinit var characterAdapter: CharacterAdapter
 
@@ -35,7 +35,7 @@ class CharacterListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        _binding = FragmentCharacterListBinding.inflate(layoutInflater, container, false)
+        binding = FragmentCharacterListBinding.inflate(layoutInflater, container, false)
         viewModel = ViewModelProvider(requireActivity())[CharacterViewModel::class.java]
 
         binding.lifecycleOwner = viewLifecycleOwner
@@ -43,17 +43,33 @@ class CharacterListFragment : Fragment() {
 
         prepareCharacterAdapter()
 
-       viewModel.checkIfTheFilterHasBeenApplied()
+        viewModel.checkIfTheFilterHasBeenApplied()
+
+        getListData()
+
+        lifecycleScope.launch {
+            characterAdapter.loadStateFlow.collect {
+                Util.loadingState(it, binding.lottieAnimationView, binding.refreshBtn)
+            }
+        }
+
+        binding.refreshBtn.setOnClickListener {
+            getListData()
+        }
 
 
+
+        return binding.root
+    }
+
+
+    private fun getListData() {
         lifecycleScope.launch {
             viewModel.getListData().collectLatest {
                 characterAdapter.submitData(it)
             }
         }
-        return binding.root
     }
-
 
     private fun prepareCharacterAdapter() {
         val layoutManager = GridLayoutManager(requireContext(), 2)
@@ -85,8 +101,4 @@ class CharacterListFragment : Fragment() {
         }
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
 }
