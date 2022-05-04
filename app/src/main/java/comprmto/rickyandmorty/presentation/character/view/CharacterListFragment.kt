@@ -36,7 +36,6 @@ class CharacterListFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         _binding = FragmentCharacterListBinding.inflate(layoutInflater, container, false)
-        Timber.d("asas")
         viewModel = ViewModelProvider(requireActivity())[CharacterViewModel::class.java]
 
         binding.lifecycleOwner = viewLifecycleOwner
@@ -79,9 +78,6 @@ class CharacterListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
-
 
         binding.imageButton.setOnClickListener {
             val action = CharacterListFragmentDirections.actionCharacterListFragmentToFilterDialog()
