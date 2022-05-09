@@ -50,7 +50,7 @@ class LocationListFragment : Fragment() {
         }
 
         binding.refreshBtn.setOnClickListener {
-            getListData()
+            adapter.retry()
         }
 
 

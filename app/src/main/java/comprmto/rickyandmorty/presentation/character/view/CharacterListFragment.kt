@@ -64,7 +64,7 @@ class CharacterListFragment : Fragment() {
         }
 
         binding.refreshBtn.setOnClickListener {
-            getListData()
+            characterAdapter.retry()
         }
 
 
