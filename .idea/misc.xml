@@ -23,9 +23,10 @@
         <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/layout/activity_episode.xml" value="0.30925925925925923" />
         <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/layout/activity_location.xml" value="0.34427083333333336" />
         <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/layout/activity_main.xml" value="0.34479166666666666" />
-        <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/layout/character_item_rcw.xml" value="0.5" />
+        <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/layout/character_item_rcw.xml" value="0.25" />
         <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/layout/character_item_rcy.xml" value="0.34479166666666666" />
         <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/layout/character_list.xml" value="0.34479166666666666" />
+        <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/layout/character_load_state_footer_view_item.xml" value="0.33" />
         <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/layout/dialog_filter.xml" value="0.33" />
         <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/layout/episode_item_row.xml" value="0.33" />
         <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/layout/fragment_character_detail.xml" value="0.34479166666666666" />
@@ -33,9 +34,12 @@
         <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/layout/fragment_episode_detail.xml" value="0.34479166666666666" />
         <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/layout/fragment_episode_list.xml" value="0.34479166666666666" />
         <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/layout/fragment_location_detail.xml" value="0.34479166666666666" />
-        <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/layout/fragment_location_list.xml" value="0.34479166666666666" />
+        <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/layout/fragment_location_list.xml" value="0.33" />
+        <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/layout/load_state_footer_item.xml" value="0.34479166666666666" />
+        <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/layout/load_state_layout.xml" value="0.34479166666666666" />
         <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/layout/location_item_row.xml" value="0.34479166666666666" />
         <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/layout/location_litem_row.xml" value="0.5" />
+        <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/layout/repos_load_state_footer_view_item.xml" value="0.34479166666666666" />
         <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/layout/separator_item_view.xml" value="0.34479166666666666" />
         <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/menu/bottom_bar_menu.xml" value="0.34479166666666666" />
         <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.219" />
@@ -47,5 +51,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.34479166666666666" />
+      </ProjectState>
+    </option>
   </component>
 </project>

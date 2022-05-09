@@ -27,5 +27,6 @@
     <string name="type">Type</string>
     <string name="episodes">Episodes</string>
     <string name="characters">Characters</string>
-    <string name="refresh">Refresh</string>
+    <string name="retry">Retry</string>
+    <string name="no_character_found_matching_your_selections">No character found matching your selections</string>
 </resources>

@@ -4,12 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import androidx.paging.LoadState
 import comprmto.rickyandmorty.databinding.FragmentLocationListBinding
 import comprmto.rickyandmorty.presentation.adapter.LocationListAdapter
 import comprmto.rickyandmorty.presentation.location.viewModel.LocationListViewModel
@@ -43,7 +41,11 @@ class LocationListFragment : Fragment() {
 
         lifecycleScope.launch {
             adapter.loadStateFlow.collect {
-                Util.loadingState(it, binding.lottieAnimationView, binding.refreshBtn)
+                Util.loadingState(
+                    it,
+                    binding.lottieAnimationView,
+                    binding.refreshBtn
+                )
             }
         }
 

@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import comprmto.rickyandmorty.databinding.FragmentEpisodeListBinding
 import comprmto.rickyandmorty.presentation.adapter.EpisodeListAdapter
@@ -43,7 +42,11 @@ class EpisodeListFragment : Fragment() {
 
         lifecycleScope.launch {
             adapter.loadStateFlow.collect {
-                Util.loadingState(it, binding.lottieAnimationView, binding.refreshBtn)
+                Util.loadingState(
+                    it,
+                    binding.lottieAnimationView,
+                    binding.refreshBtn,
+                )
             }
         }
 

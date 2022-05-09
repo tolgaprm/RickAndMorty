@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import comprmto.rickyandmorty.databinding.FragmentCharacterListBinding
@@ -49,7 +50,16 @@ class CharacterListFragment : Fragment() {
 
         lifecycleScope.launch {
             characterAdapter.loadStateFlow.collect {
-                Util.loadingState(it, binding.lottieAnimationView, binding.refreshBtn)
+                val isListEmpty =
+                    it.refresh is LoadState.Error && characterAdapter.itemCount == 0
+                Util.loadingState(
+                    it,
+                    binding.lottieAnimationView,
+                    binding.refreshBtn,
+                    isListEmpty,
+                    binding.filterErrorMessage,
+                    viewModel.checkIfTheFilterHasBeenApplied()
+                )
             }
         }
 

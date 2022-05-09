@@ -91,27 +91,47 @@
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/lottieAnimationView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:visibility="gone"
+            android:clickable="false"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/toolbar"
             app:lottie_autoPlay="true"
             app:lottie_fileName="network-error.json"
-            app:lottie_loop="true" />
+            app:lottie_loop="true"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/filterErrorMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/no_character_found_matching_your_selections"
+            android:textAlignment="center"
+            android:textColor="@color/indigo"
+            android:textSize="24sp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/refreshBtn"
+            app:layout_constraintEnd_toEndOf="@+id/refreshBtn"
+            app:layout_constraintHorizontal_bias="0.502"
+            app:layout_constraintStart_toStartOf="@+id/refreshBtn"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.926"
+            tools:visibility="visible" />
 
         <Button
             android:id="@+id/refreshBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="68dp"
+            android:text="@string/retry"
             android:visibility="gone"
-            android:text="@string/refresh"
             app:layout_constraintBottom_toBottomOf="@+id/characterList"
             app:layout_constraintEnd_toEndOf="@+id/characterList"
-            app:layout_constraintStart_toStartOf="@+id/characterList" />
+            app:layout_constraintStart_toStartOf="@+id/characterList"
+            tools:visibility="visible" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
