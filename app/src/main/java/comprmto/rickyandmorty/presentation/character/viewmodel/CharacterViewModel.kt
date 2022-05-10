@@ -15,7 +15,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
@@ -28,7 +27,7 @@ class CharacterViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            getListData().collect {
+            getListData().collect { it ->
                 _state.value = _state.value.copy(
                     characters = it
                 )
@@ -46,11 +45,18 @@ class CharacterViewModel @Inject constructor(
             characterName = ""
         }
 
+        val list = listOf<CharactersDomain>(
+            CharactersDomain(1, "Rick Sanchez", "Alive", "Male", "https://rickandmortyapi.com/api/character/avatar/1.jpeg", "Human"),
+            CharactersDomain(3, "Summer Smith", "Alive", "Female", "https://rickandmortyapi.com/api/character/avatar/3.jpeg", "Human"),
+            CharactersDomain(6, "Abadango Cluster Princess", "Alive", "Female", "https://rickandmortyapi.com/api/character/avatar/6.jpeg", "Alien"),
+
+        )
+
         return repository.getAllCharacters(
             status = _state.value.statusState,
             gender = _state.value.genderState,
             characterName
-        ).toCharactersDomain()
+        ).toCharactersDomain(list)
     }
 
     fun setStatusState(status: StatusState) {

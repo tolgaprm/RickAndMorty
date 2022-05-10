@@ -4,7 +4,6 @@
     <string name="filter_icon_description">Filter Icon</string>
     <string name="location">Location</string>
     <string name="Episode">Episode</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="filter">Filter</string>
     <string name="clear">Clear</string>
@@ -29,4 +28,5 @@
     <string name="characters">Characters</string>
     <string name="retry">Retry</string>
     <string name="no_character_found_matching_your_selections">No character found matching your selections</string>
+    <string name="favorite">Favorite</string>
 </resources>

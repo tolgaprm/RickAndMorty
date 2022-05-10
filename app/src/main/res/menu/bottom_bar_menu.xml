@@ -13,4 +13,9 @@
         android:id="@+id/episodeListFragment"
         android:icon="@drawable/episode_selector"
         android:title="@string/Episode" />
+
+    <item
+        android:id="@+id/favoriteListFragment"
+        android:icon="@drawable/favorite_icon_selector"
+        android:title="@string/favorite"/>
 </menu>

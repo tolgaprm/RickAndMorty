@@ -10,9 +10,11 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
+import androidx.paging.map
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import comprmto.rickyandmorty.databinding.FragmentCharacterListBinding
+import comprmto.rickyandmorty.domain.CharactersDomain
 import comprmto.rickyandmorty.presentation.adapter.CharacterAdapter
 import comprmto.rickyandmorty.presentation.character.viewmodel.CharacterViewModel
 import comprmto.rickyandmorty.util.ItemClickListener
@@ -75,8 +77,9 @@ class CharacterListFragment : Fragment() {
 
     private fun getListData() {
         lifecycleScope.launch {
-            viewModel.getListData().collectLatest {
+            viewModel.getListData().collectLatest { it ->
                 characterAdapter.submitData(it)
+
             }
         }
     }

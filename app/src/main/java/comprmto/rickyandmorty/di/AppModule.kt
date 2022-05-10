@@ -15,7 +15,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
 
 
-val moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
+val moshi: Moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
 
 @Module
 @InstallIn(SingletonComponent::class)

@@ -23,18 +23,22 @@ data class CharacterData(
 )
 
 
-fun Flow<PagingData<CharacterData>>.toCharactersDomain(): Flow<PagingData<CharactersDomain>> {
-    return map { it ->
-        it.map {
+fun Flow<PagingData<CharacterData>>.toCharactersDomain(list: List<CharactersDomain>): Flow<PagingData<CharactersDomain>> {
+
+
+    return map { pagingData ->
+        pagingData.map { characterData ->
             CharactersDomain(
-                id = it.id,
-                name = it.name,
-                status = it.status,
-                gender = it.gender,
-                image = it.image,
-                species = it.species
+                id = characterData.id,
+                name = characterData.name,
+                status = characterData.status,
+                gender = characterData.gender,
+                image = characterData.image,
+                species = characterData.species,
+                isFavorite = list.contains(characterData.toCharactersDomain())
             )
         }
+
 
     }
 }

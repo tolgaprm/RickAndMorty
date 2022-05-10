@@ -45,14 +45,14 @@
             app:argType="comprmto.rickyandmorty.util.NavigateState" />
         <argument
             android:name="episodeId"
-            app:argType="integer"
-            android:defaultValue="0" />
+            android:defaultValue="0"
+            app:argType="integer" />
     </fragment>
     <dialog
         android:id="@+id/filterDialog"
         android:name="comprmto.rickyandmorty.presentation.character.view.FilterDialog"
         android:label="FilterDialog"
-        tools:layout="@layout/dialog_filter" >
+        tools:layout="@layout/dialog_filter">
         <action
             android:id="@+id/action_filterDialog_to_characterListFragment"
             app:destination="@id/characterListFragment" />
@@ -73,8 +73,8 @@
             app:popUpToInclusive="true" />
         <argument
             android:name="characterID"
-            app:argType="integer"
-            android:defaultValue="0" />
+            android:defaultValue="0"
+            app:argType="integer" />
         <argument
             android:name="isFromLocationList"
             app:argType="boolean" />
@@ -93,9 +93,9 @@
     </fragment>
     <fragment
         android:id="@+id/episodeListFragment"
-        tools:layout="@layout/fragment_episode_list"
         android:name="comprmto.rickyandmorty.presentation.episode.view.EpisodeListFragment"
-        android:label="EpisodeListFragment" >
+        android:label="EpisodeListFragment"
+        tools:layout="@layout/fragment_episode_list">
         <action
             android:id="@+id/actionToEpisodeDetail"
             app:destination="@id/episodeDetailFragment" />
@@ -117,4 +117,9 @@
             android:id="@+id/actionToCharacterDetailFragment"
             app:destination="@id/characterDetailFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/favoriteListFragment"
+        android:name="comprmto.rickyandmorty.presentation.favorite.view.FavoriteListFragment"
+        android:label="FavoriteListFragment"
+        tools:layout="@layout/fragment_favorite_list" />
 </navigation>

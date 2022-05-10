@@ -6,5 +6,6 @@ data class CharactersDomain(
     val status: String,
     val gender: String,
     val image: String,
-    val species: String
+    val species: String,
+    val isFavorite:Boolean =false
 )
