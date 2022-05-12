@@ -9,6 +9,7 @@ import androidx.cardview.widget.CardView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import com.google.android.material.card.MaterialCardView
 import comprmto.rickyandmorty.R
 import comprmto.rickyandmorty.domain.CharactersDomain
 import comprmto.rickyandmorty.domain.model.EpisodeDomain
@@ -81,5 +82,15 @@ fun changeColor(card: CardView, status: String) {
         card.setCardBackgroundColor(Color.GREEN)
     } else {
         card.setCardBackgroundColor(Color.GRAY)
+    }
+}
+
+// if character is in the my favorite list, new view of the card  have stroke
+@BindingAdapter("withStrokeIfIsFavorite")
+fun withStrokeIfIsFavorite(cardView: MaterialCardView, isFavorite: Boolean) {
+    if (isFavorite) {
+        cardView.strokeWidth = 4
+    } else {
+        cardView.strokeWidth = 0
     }
 }

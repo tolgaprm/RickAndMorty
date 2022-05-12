@@ -1,8 +1,10 @@
 package comprmto.rickyandmorty.presentation.character.viewmodel
 
+import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
+import comprmto.rickyandmorty.R
 import comprmto.rickyandmorty.data.remote.dto.character.toCharactersDomain
 import comprmto.rickyandmorty.domain.CharactersDomain
 import comprmto.rickyandmorty.domain.repository.RickAndMortyRepository
@@ -15,23 +17,36 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
+import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
 class CharacterViewModel @Inject constructor(
     private val repository: RickAndMortyRepository,
+    private val app: Application
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(CharacterActivityState())
     val state: StateFlow<CharacterActivityState> get() = _state
 
     init {
+
+
+        getAllFavoriteCharacters()
+
+
         viewModelScope.launch {
+
             getListData().collect { it ->
                 _state.value = _state.value.copy(
                     characters = it
                 )
             }
+        }
+
+        _state.value.favoriteCharacter.forEach {
+            Timber.d(it.name)
         }
 
 
@@ -45,12 +60,8 @@ class CharacterViewModel @Inject constructor(
             characterName = ""
         }
 
-        val list = listOf<CharactersDomain>(
-            CharactersDomain(1, "Rick Sanchez", "Alive", "Male", "https://rickandmortyapi.com/api/character/avatar/1.jpeg", "Human"),
-            CharactersDomain(3, "Summer Smith", "Alive", "Female", "https://rickandmortyapi.com/api/character/avatar/3.jpeg", "Human"),
-            CharactersDomain(6, "Abadango Cluster Princess", "Alive", "Female", "https://rickandmortyapi.com/api/character/avatar/6.jpeg", "Alien"),
+        val list = _state.value.favoriteCharacter
 
-        )
 
         return repository.getAllCharacters(
             status = _state.value.statusState,
@@ -71,7 +82,6 @@ class CharacterViewModel @Inject constructor(
         )
     }
 
-
     fun checkIfTheFilterHasBeenApplied(): Boolean {
 
         val statusValue = _state.value.statusState
@@ -91,5 +101,59 @@ class CharacterViewModel @Inject constructor(
         return _state.value.isFilter
     }
 
+
+    fun insertMyFavoriteList(character: CharactersDomain) {
+        viewModelScope.launch {
+            try {
+                repository.insertMyFavoriteList(character)
+                updateToastMessage(app.getString(R.string.toast_message_success))
+            } catch (e: Exception) {
+                updateToastMessage(app.getString(R.string.toast_message_error))
+            }
+        }
+        updateToastState()
+    }
+
+    fun getAllFavoriteCharacters() {
+        runBlocking {
+            val favoritelist = repository.getAllFavoriteCharacters()
+            _state.value = _state.value.copy(
+                favoriteCharacter = favoritelist
+            )
+        }
+
+    }
+
+    fun deleteCharacterFromMyFavoriteList(characterId: Int) {
+        viewModelScope.launch {
+            try {
+                repository.deleteCharacterFromMyFavoriteList(characterId)
+                updateToastMessage(app.getString(R.string.toast_message_success))
+            } catch (e: Exception) {
+                updateToastMessage(app.getString(R.string.toast_message_error))
+            }
+        }
+        updateToastState()
+    }
+
+    private fun updateToastMessage(message: String) {
+        _state.value = _state.value.copy(
+            toastMessage = message
+        )
+    }
+
+    private fun updateToastState() {
+        _state.value = _state.value.copy(
+            isShowToastMessage = true
+        )
+    }
+
+    fun showedToastMessage() {
+
+        _state.value = _state.value.copy(
+            isShowToastMessage = false,
+            toastMessage = ""
+        )
+    }
 
 }

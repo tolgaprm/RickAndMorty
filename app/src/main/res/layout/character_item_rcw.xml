@@ -17,8 +17,8 @@
         android:layout_marginTop="30dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
-        android:elevation="16dp"
-        app:cardCornerRadius="8dp">
+        app:cardCornerRadius="8dp"
+        app:cardElevation="8dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -58,7 +58,6 @@
                     tools:text="Dead" />
 
 
-
             </LinearLayout>
 
             <TextView
@@ -73,6 +72,7 @@
                 android:textAppearance="@style/TextAppearance.subtitle1"
                 android:textColor="@color/basic_black"
                 tools:text="Agency Director" />
+
 
         </LinearLayout>
 

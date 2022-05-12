@@ -2,6 +2,7 @@ package comprmto.rickyandmorty.data.remote.dto.character
 
 import androidx.paging.PagingData
 import androidx.paging.map
+import comprmto.rickyandmorty.data.local.entity.FavoriteCharacter
 import comprmto.rickyandmorty.data.remote.dto.location.Location
 import comprmto.rickyandmorty.domain.CharactersDomain
 import kotlinx.coroutines.flow.Flow

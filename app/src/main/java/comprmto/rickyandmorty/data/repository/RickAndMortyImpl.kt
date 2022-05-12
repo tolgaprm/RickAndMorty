@@ -3,10 +3,12 @@ package comprmto.rickyandmorty.data.repository
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
+import comprmto.rickyandmorty.data.local.RickAndMortyDao
 import comprmto.rickyandmorty.data.remote.RickyAndMortyApi
 import comprmto.rickyandmorty.data.remote.dto.character.CharacterData
 import comprmto.rickyandmorty.data.remote.dto.episode.EpisodeResult
 import comprmto.rickyandmorty.data.remote.dto.location.LocationResults
+import comprmto.rickyandmorty.domain.CharactersDomain
 import comprmto.rickyandmorty.domain.model.EpisodeDomain
 import comprmto.rickyandmorty.domain.model.LocationDomain
 import comprmto.rickyandmorty.domain.repository.RickAndMortyRepository
@@ -18,7 +20,10 @@ import comprmto.rickyandmorty.util.StatusState
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-class RickAndMortyImpl @Inject constructor(val api: RickyAndMortyApi) : RickAndMortyRepository {
+class RickAndMortyImpl @Inject constructor(
+    val api: RickyAndMortyApi,
+    private val dao: RickAndMortyDao
+) : RickAndMortyRepository {
 
 
     override suspend fun getAllCharacters(
@@ -71,6 +76,18 @@ class RickAndMortyImpl @Inject constructor(val api: RickyAndMortyApi) : RickAndM
 
     override suspend fun getEpisodeById(episodeId: Int): EpisodeResult {
         return api.getEpisodeById(episodeId)
+    }
+
+    override suspend fun getAllFavoriteCharacters(): List<CharactersDomain> {
+        return dao.getAllFavoriteCharacters()
+    }
+
+    override suspend fun insertMyFavoriteList(character: CharactersDomain) {
+        dao.insertFavoriteCharacter(character = character)
+    }
+
+    override suspend fun deleteCharacterFromMyFavoriteList(characterId: Int) {
+        dao.deleteFavoriteCharacter(characterId)
     }
 
 

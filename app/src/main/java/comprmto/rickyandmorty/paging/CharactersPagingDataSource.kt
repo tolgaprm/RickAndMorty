@@ -7,11 +7,10 @@ import comprmto.rickyandmorty.data.remote.RickyAndMortyApi
 import comprmto.rickyandmorty.data.remote.dto.character.CharacterData
 import comprmto.rickyandmorty.util.GenderState
 import comprmto.rickyandmorty.util.StatusState
-import kotlinx.coroutines.delay
-import timber.log.Timber
 import javax.inject.Inject
 
 const val STARTING_PAGE_INDEX = 1
+
 class CharactersPagingDataSource @Inject constructor(
     private val rickyAndMortyApi: RickyAndMortyApi,
     private val statusState: StatusState,
@@ -29,6 +28,7 @@ class CharactersPagingDataSource @Inject constructor(
                     gender = genderState.title,
                     name = nameQuery
                 )
+
             val data = response.results
 
             var nextPageNumber: Int? = null

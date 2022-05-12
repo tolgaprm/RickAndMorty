@@ -29,4 +29,16 @@
     <string name="retry">Retry</string>
     <string name="no_character_found_matching_your_selections">No character found matching your selections</string>
     <string name="favorite">Favorite</string>
+
+    // Dialog
+    <string name="dialog_question_add_character_favorite">Are you sure to want to add character of the %s in the your favorites?</string>
+    <string name="dialog_question_remove_character_favorite">Are you sure to want to remove character of the %s in the your favorites?</string>
+    <string name="dialog_header_add_favorite">Add Favorite List</string>
+    <string name="dialog_header_remove_favorite">Remove Favorite List</string>
+
+    // Toast Message
+    <string name="toast_message_error">The operation failed, try again later</string>
+    <string name="toast_message_success_added">Successfully added to your Favorite List</string>
+    <string name="toast_message_success">Successfully completed</string>
+    <string name="toast_message_success_remove">Successfully removed to your from Favorite List</string>
 </resources>

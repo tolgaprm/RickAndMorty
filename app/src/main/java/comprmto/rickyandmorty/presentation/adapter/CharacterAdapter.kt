@@ -8,8 +8,12 @@ import androidx.recyclerview.widget.RecyclerView
 import comprmto.rickyandmorty.databinding.CharacterItemRcwBinding
 import comprmto.rickyandmorty.domain.CharactersDomain
 import comprmto.rickyandmorty.util.ItemClickListener
+import comprmto.rickyandmorty.util.ItemLongClickListener
 
-class CharacterAdapter(private val onClickListener: ItemClickListener) :
+class CharacterAdapter(
+    private val onClickListener: ItemClickListener,
+    private val onLongClickListener: ItemLongClickListener
+) :
     PagingDataAdapter<CharactersDomain, CharacterAdapter.CharacterViewHolder>(DiffUtilCallBack()) {
 
     class CharacterViewHolder(val binding: CharacterItemRcwBinding) :
@@ -48,8 +52,13 @@ class CharacterAdapter(private val onClickListener: ItemClickListener) :
             onClickListener.onClick(characterModel.id)
         }
 
-    }
+        holder.itemView.setOnLongClickListener {
+            onLongClickListener.onLongClick(characterModel)
+            it == it
+        }
 
+
+    }
 
 
 }

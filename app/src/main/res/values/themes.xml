@@ -18,7 +18,11 @@
         <!-- Customize your theme here. -->
     </style>
 
-
+    <style name="Widget.MyOutlinedButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="strokeColor">@color/purple_200</item>
+        <item name="strokeWidth">2dp</item>
+        <item name="android:backgroundTint">@color/white</item>
+    </style>
 
     <style name="Theme.SplashScreenTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowBackground">@drawable/splash_image</item>
