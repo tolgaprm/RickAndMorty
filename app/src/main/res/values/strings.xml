@@ -41,4 +41,10 @@
     <string name="toast_message_success_added">Successfully added to your Favorite List</string>
     <string name="toast_message_success">Successfully completed</string>
     <string name="toast_message_success_remove">Successfully removed to your from Favorite List</string>
+
+    // favorite character item
+    <string name="gender_favorite">Gender :</string>
+    <string name="species_favorite">Species:</string>
+    <string name="status_favorite">Status:</string>
+
 </resources>

@@ -78,7 +78,7 @@ class RickAndMortyImpl @Inject constructor(
         return api.getEpisodeById(episodeId)
     }
 
-    override suspend fun getAllFavoriteCharacters(): List<CharactersDomain> {
+    override suspend fun getAllFavoriteCharacters(): Flow<List<CharactersDomain>> {
         return dao.getAllFavoriteCharacters()
     }
 

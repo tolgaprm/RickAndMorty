@@ -31,7 +31,7 @@ interface RickAndMortyRepository {
 
     suspend fun getEpisodeById(@Path("id") episodeId: Int): EpisodeResult
 
-    suspend fun getAllFavoriteCharacters(): List<CharactersDomain>
+    suspend fun getAllFavoriteCharacters(): Flow<List<CharactersDomain>>
 
     suspend fun insertMyFavoriteList(character: CharactersDomain)
 

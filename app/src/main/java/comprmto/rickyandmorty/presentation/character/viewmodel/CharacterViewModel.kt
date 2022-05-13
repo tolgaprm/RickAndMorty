@@ -115,12 +115,16 @@ class CharacterViewModel @Inject constructor(
     }
 
     fun getAllFavoriteCharacters() {
-        runBlocking {
-            val favoritelist = repository.getAllFavoriteCharacters()
-            _state.value = _state.value.copy(
-                favoriteCharacter = favoritelist
-            )
+        viewModelScope.launch {
+            repository.getAllFavoriteCharacters().collect {
+                _state.value = _state.value.copy(
+                    favoriteCharacter = it
+                )
+            }
         }
+
+
+
 
     }
 

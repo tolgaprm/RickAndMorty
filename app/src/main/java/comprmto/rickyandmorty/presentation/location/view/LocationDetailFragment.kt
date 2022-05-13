@@ -47,10 +47,6 @@ class LocationDetailFragment : Fragment() {
         lifecycleScope.launch {
             viewModel.state.collectLatest {
                 binding.viewModel = viewModel
-                it.characterList?.forEach {
-                    println(it.name)
-                }
-
             }
         }
 

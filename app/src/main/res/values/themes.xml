@@ -18,16 +18,7 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="Widget.MyOutlinedButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
-        <item name="strokeColor">@color/purple_200</item>
-        <item name="strokeWidth">2dp</item>
-        <item name="android:backgroundTint">@color/white</item>
-    </style>
 
-    <style name="Theme.SplashScreenTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="android:windowBackground">@drawable/splash_image</item>
-        <item name="android:statusBarColor">@color/basic_black</item>
-    </style>
 
     <style name="TextAppearance.h1" parent="TextAppearance.MaterialComponents.Headline1">
         <item name="android:fontFamily">@font/roboto_light</item>
@@ -74,6 +65,7 @@
     <style name="TextAppearance.body1" parent="TextAppearance.MaterialComponents.Body1">
         <item name="android:fontFamily">@font/roboto</item>
         <item name="android:textSize">16sp</item>
+
     </style>
 
     <style name="TextAppearance.body2" parent="TextAppearance.MaterialComponents.Body2">
@@ -97,5 +89,8 @@
         <item name="android:textSize">12sp</item>
         <item name="android:textAllCaps">true</item>
     </style>
+
+
+
 
 </resources>

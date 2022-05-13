@@ -31,7 +31,7 @@
                 android:layout_height="140dp"
                 android:scaleType="centerCrop"
                 app:imageUrl="@{characterModel.image}"
-                tools:src="@tools:sample/avatars" />
+                tools:srcCompat="@tools:sample/avatars" />
 
 
             <LinearLayout

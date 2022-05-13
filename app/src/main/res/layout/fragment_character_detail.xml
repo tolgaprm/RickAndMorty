@@ -184,12 +184,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto_medium"
                     android:paddingBottom="4dp"
                     android:text="@string/gender"
-                    android:textColor="@color/basic_black"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+                    style="@style/Theme.SubTitle"
+                    />
 
                 <TextView
                     android:id="@+id/characterGender"
@@ -211,12 +209,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:fontFamily="@font/roboto_medium"
                     android:paddingBottom="4dp"
                     android:text="@string/origin"
-                    android:textColor="@color/basic_black"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+                    style="@style/Theme.SubTitle"
+                    />
 
                 <TextView
                     android:id="@+id/characterOrigin"
@@ -238,12 +234,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:fontFamily="@font/roboto_medium"
                     android:paddingBottom="4dp"
                     android:text="@string/type"
-                    android:textColor="@color/basic_black"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+                    style="@style/Theme.SubTitle" />
 
                 <TextView
                     android:id="@+id/characterType"
@@ -275,12 +268,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:fontFamily="@font/roboto_medium"
                         android:paddingBottom="4dp"
                         android:text="@string/location"
-                        android:textColor="@color/basic_black"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
+                        style="@style/Theme.SubTitle" />
 
                     <TextView
                         android:id="@+id/characterLocation"

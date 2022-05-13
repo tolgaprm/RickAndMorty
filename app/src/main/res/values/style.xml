@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Widget.MyOutlinedButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="strokeColor">@color/purple_200</item>
+        <item name="strokeWidth">2dp</item>
+        <item name="android:backgroundTint">@color/white</item>
+    </style>
+
+    <style name="Theme.SplashScreenTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash_image</item>
+        <item name="android:statusBarColor">@color/basic_black</item>
+    </style>
+
+
+    <style name="Theme.SubTitle" parent="TextAppearance.AppCompat.Widget.ActionBar.Subtitle">
+        <item name="android:fontFamily">@font/roboto_medium</item>
+        <item name="android:textColor">@color/basic_black</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">0.05</item>
+    </style>
+
+
+</resources>

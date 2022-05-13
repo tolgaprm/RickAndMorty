@@ -5,6 +5,7 @@ import androidx.room.Insert
 import androidx.room.Query
 import comprmto.rickyandmorty.data.local.entity.FavoriteCharacter
 import comprmto.rickyandmorty.domain.CharactersDomain
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface RickAndMortyDao {
@@ -16,5 +17,5 @@ interface RickAndMortyDao {
     suspend fun deleteFavoriteCharacter(characterId: Int)
 
     @Query("SELECT * FROM charactersdomain")
-    suspend fun getAllFavoriteCharacters(): List<CharactersDomain>
+     fun getAllFavoriteCharacters(): Flow<List<CharactersDomain>>
 }
