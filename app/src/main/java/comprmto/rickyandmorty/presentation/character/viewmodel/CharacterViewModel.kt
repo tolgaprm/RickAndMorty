@@ -4,11 +4,15 @@ import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import comprmto.rickyandmorty.R
 import comprmto.rickyandmorty.data.remote.dto.character.toCharactersDomain
 import comprmto.rickyandmorty.domain.CharactersDomain
 import comprmto.rickyandmorty.domain.repository.RickAndMortyRepository
 import comprmto.rickyandmorty.presentation.character.viewmodel.states.CharacterActivityState
+import comprmto.rickyandmorty.presentation.character.viewmodel.states.ListType
 import comprmto.rickyandmorty.util.GenderState
 import comprmto.rickyandmorty.util.StatusState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -17,7 +21,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -31,8 +34,6 @@ class CharacterViewModel @Inject constructor(
     val state: StateFlow<CharacterActivityState> get() = _state
 
     init {
-
-
         getAllFavoriteCharacters()
 
 
@@ -124,8 +125,6 @@ class CharacterViewModel @Inject constructor(
         }
 
 
-
-
     }
 
     fun deleteCharacterFromMyFavoriteList(characterId: Int) {
@@ -158,6 +157,32 @@ class CharacterViewModel @Inject constructor(
             isShowToastMessage = false,
             toastMessage = ""
         )
+    }
+
+
+    private fun setListLayoutManager( newType: ListType) {
+        _state.value = _state.value.copy(
+            listType = newType
+        )
+    }
+
+    fun getListType(): ListType {
+        return _state.value.listType
+    }
+
+    fun getIsShowToastMessage(): Boolean {
+        return _state.value.isShowToastMessage
+    }
+
+    fun getToastMessage(): String {
+        return _state.value.toastMessage
+    }
+
+    fun setLayoutManager() {
+        when (this.getListType()) {
+            ListType.GridLayout -> this.setListLayoutManager(ListType.LinearLayout)
+            else -> this.setListLayoutManager(ListType.GridLayout)
+        }
     }
 
 }

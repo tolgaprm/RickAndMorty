@@ -39,7 +39,7 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="13dp"
                     android:layout_height="13dp"
-                    android:layout_marginEnd="18dp"
+                    android:layout_marginEnd="30dp"
                     android:visibility="gone"
                     app:cardBackgroundColor="@color/indigo"
                     app:cardCornerRadius="13dp"
@@ -47,10 +47,11 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@+id/imageButton"
                     app:layout_constraintTop_toTopOf="@+id/imageButton"
-                    app:layout_constraintVertical_bias="0.066"
+                    app:layout_constraintVertical_bias="0.19"
                     tools:visibility="visible" />
 
                 <TextView
+                    android:id="@+id/textView8"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/character"
@@ -62,11 +63,12 @@
 
                 <ImageButton
                     android:id="@+id/imageButton"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
                     android:layout_gravity="end"
                     android:background="@color/white"
                     android:contentDescription="@string/filter_icon_description"
+                    android:padding="6dp"
                     android:scaleType="centerCrop"
                     android:src="@drawable/ic_filter"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -74,21 +76,50 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:tint="@color/indigo"
                     tools:ignore="TouchTargetSizeCheck" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.appcompat.widget.Toolbar>
 
+
+        <TextView
+            android:id="@+id/txtListType"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="4dp"
+            android:text="@string/list_type"
+            android:textAppearance="@style/TextAppearance.h6"
+            android:textColor="@color/gray"
+            app:layout_constraintEnd_toStartOf="@+id/imgListType"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+        <ImageView
+            android:id="@+id/imgListType"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginHorizontal="16dp"
+            android:contentDescription="@string/list_type"
+            android:padding="8dp"
+            android:src="@drawable/grid_list"
+            app:layout_constraintBottom_toBottomOf="@+id/txtListType"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/txtListType"
+            app:layout_constraintVertical_bias="0.0"
+            app:tint="@color/indigo" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/characterList"
             android:layout_width="0dp"
             android:layout_height="0dp"
-
             android:layout_marginBottom="50dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toBottomOf="@+id/imgListType"
+            />
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/lottieAnimationView"

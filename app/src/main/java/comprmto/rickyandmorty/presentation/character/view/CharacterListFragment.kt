@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -14,6 +13,7 @@ import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import comprmto.rickyandmorty.R
 import comprmto.rickyandmorty.databinding.DialogViewBinding
@@ -21,6 +21,7 @@ import comprmto.rickyandmorty.databinding.FragmentCharacterListBinding
 import comprmto.rickyandmorty.domain.CharactersDomain
 import comprmto.rickyandmorty.presentation.adapter.CharacterAdapter
 import comprmto.rickyandmorty.presentation.character.viewmodel.CharacterViewModel
+import comprmto.rickyandmorty.presentation.character.viewmodel.states.ListType
 import comprmto.rickyandmorty.util.ItemClickListener
 import comprmto.rickyandmorty.util.ItemLongClickListener
 import comprmto.rickyandmorty.util.NavigateState
@@ -55,7 +56,6 @@ class CharacterListFragment : Fragment() {
 
         getListData()
 
-
         lifecycleScope.launch {
             characterAdapter.loadStateFlow.collect {
                 val isListEmpty =
@@ -75,11 +75,32 @@ class CharacterListFragment : Fragment() {
             characterAdapter.retry()
         }
 
+        binding.imgListType.apply {
+            this.setOnClickListener {
+                viewModel.setLayoutManager()
+                val icon = when (viewModel.getListType()) {
+                    ListType.GridLayout -> R.drawable.grid_list
+                    else -> R.drawable.ic_list_icon
+                }
+                this.setImageResource(icon)
+
+                setCharacterListLayoutManager()
+            }
 
 
+        }
         return binding.root
     }
 
+    private fun setCharacterListLayoutManager() {
+        if (viewModel.getListType() == ListType.GridLayout) {
+            binding.characterList.layoutManager = GridLayoutManager(requireContext(), 2)
+            characterAdapter.setListType(ListType.GridLayout)
+        } else {
+            binding.characterList.layoutManager = LinearLayoutManager(requireContext())
+            characterAdapter.setListType(ListType.LinearLayout)
+        }
+    }
 
     private fun getListData() {
         lifecycleScope.launch {
@@ -90,10 +111,6 @@ class CharacterListFragment : Fragment() {
     }
 
     private fun prepareCharacterAdapter() {
-        val layoutManager = GridLayoutManager(requireContext(), 2)
-        binding.characterList.layoutManager = layoutManager
-
-
         characterAdapter = CharacterAdapter(
             ItemClickListener {
                 val action =
@@ -107,7 +124,7 @@ class CharacterListFragment : Fragment() {
                 showAlertDialog(it)
             }
         )
-
+        setCharacterListLayoutManager()
         characterAdapter.stateRestorationPolicy =
             RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
         binding.characterList.adapter = characterAdapter
@@ -147,10 +164,10 @@ class CharacterListFragment : Fragment() {
     }
 
     private fun showToastMessage() {
-        if (viewModel.state.value.isShowToastMessage) {
+        if (viewModel.getIsShowToastMessage()) {
             Toast.makeText(
                 requireContext(),
-                viewModel.state.value.toastMessage,
+                viewModel.getToastMessage(),
                 Toast.LENGTH_SHORT
             ).show()
         }

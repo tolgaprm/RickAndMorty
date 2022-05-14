@@ -1,6 +1,7 @@
 package comprmto.rickyandmorty.util
 
 import android.graphics.Color
+import android.graphics.drawable.Drawable
 import android.view.View
 import android.widget.ImageView
 import android.widget.ProgressBar
@@ -13,9 +14,9 @@ import com.google.android.material.card.MaterialCardView
 import comprmto.rickyandmorty.R
 import comprmto.rickyandmorty.domain.CharactersDomain
 import comprmto.rickyandmorty.domain.model.EpisodeDomain
+import comprmto.rickyandmorty.presentation.character.viewmodel.states.ListType
 import comprmto.rickyandmorty.presentation.episode.adapter.EpisodeAdapter
 import comprmto.rickyandmorty.presentation.location.adapter.LocationDetailAdapter
-import org.w3c.dom.Text
 
 @BindingAdapter("imageUrl")
 fun downloadImage(imageView: ImageView, url: String?) {
@@ -98,12 +99,4 @@ fun changeColor(textView: TextView, status: String) {
     }
 }
 
-// if character is in the my favorite list, new view of the card  have stroke
-@BindingAdapter("withStrokeIfIsFavorite")
-fun withStrokeIfIsFavorite(cardView: MaterialCardView, isFavorite: Boolean) {
-    if (isFavorite) {
-        cardView.strokeWidth = 4
-    } else {
-        cardView.strokeWidth = 0
-    }
-}
+

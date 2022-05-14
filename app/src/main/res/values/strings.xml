@@ -41,6 +41,7 @@
     <string name="toast_message_success_added">Successfully added to your Favorite List</string>
     <string name="toast_message_success">Successfully completed</string>
     <string name="toast_message_success_remove">Successfully removed to your from Favorite List</string>
+    <string name="list_type">List Type</string>
 
 
 </resources>
