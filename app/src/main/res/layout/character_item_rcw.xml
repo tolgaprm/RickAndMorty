@@ -11,10 +11,10 @@
     <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
         app:cardCornerRadius="8dp"
@@ -27,7 +27,7 @@
 
             <ImageView
                 android:id="@+id/characterImage"
-                android:layout_width="150dp"
+                android:layout_width="match_parent"
                 android:layout_height="140dp"
                 android:scaleType="centerCrop"
                 app:imageUrl="@{characterModel.image}"
@@ -45,7 +45,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="16dp"
                     app:cardCornerRadius="10dp"
-                    app:isDead="@{characterModel.status}" />
+                    app:statusColor="@{characterModel.status}"/>
 
                 <TextView
                     android:id="@+id/characterStatus"

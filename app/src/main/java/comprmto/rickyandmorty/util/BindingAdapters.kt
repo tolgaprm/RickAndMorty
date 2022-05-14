@@ -15,6 +15,7 @@ import comprmto.rickyandmorty.domain.CharactersDomain
 import comprmto.rickyandmorty.domain.model.EpisodeDomain
 import comprmto.rickyandmorty.presentation.episode.adapter.EpisodeAdapter
 import comprmto.rickyandmorty.presentation.location.adapter.LocationDetailAdapter
+import org.w3c.dom.Text
 
 @BindingAdapter("imageUrl")
 fun downloadImage(imageView: ImageView, url: String?) {
@@ -73,7 +74,7 @@ fun isLoading(progressBar: ProgressBar, isLoading: Boolean) {
 
 
 // We determine the color according to the status of the characters.
-@BindingAdapter("isDead")
+@BindingAdapter("statusColor")
 fun changeColor(card: CardView, status: String) {
 
     if (status == "Dead") {
@@ -82,6 +83,18 @@ fun changeColor(card: CardView, status: String) {
         card.setCardBackgroundColor(Color.GREEN)
     } else {
         card.setCardBackgroundColor(Color.GRAY)
+    }
+}
+
+@BindingAdapter("statusColor")
+fun changeColor(textView: TextView, status: String) {
+
+    if (status == "Dead") {
+        textView.setTextColor(Color.RED)
+    } else if (status == "Alive") {
+        textView.setTextColor(Color.GREEN)
+    } else {
+        textView.setTextColor(Color.GRAY)
     }
 }
 

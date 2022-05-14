@@ -10,144 +10,81 @@
             type="comprmto.rickyandmorty.domain.CharactersDomain" />
     </data>
 
-    <com.google.android.material.card.MaterialCardView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="2dp"
-        app:strokeColor="@color/lightPurple"
-        app:strokeWidth="2dp">
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="8dp">
 
-        <LinearLayout
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/circleImageView"
+            imageUrl="@{characterModel.image}"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@tools:sample/avatars[3]" />
+
+        <TextView
+            android:id="@+id/characterStatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:layout_marginStart="16dp"
+            android:text="@{characterModel.status}"
+            android:textAppearance="@style/TextAppearance.body2"
+            app:statusColor="@{characterModel.status}"
+            app:layout_constraintStart_toEndOf="@+id/circleImageView"
+            app:layout_constraintTop_toTopOf="@+id/circleImageView"
+            tools:text="Dead" />
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/imgCharacter"
-                imageUrl="@{characterModel.image}"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:layout_marginVertical="8dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginBottom="16dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintDimensionRatio=""
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.419"
-                tools:src="@tools:sample/avatars[2]" />
+        <TextView
+            android:id="@+id/characterName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@{characterModel.name}"
+            android:textAppearance="@style/TextAppearance.subtitle1"
+            android:textColor="@color/basic_black"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/characterStatus"
+            app:layout_constraintTop_toBottomOf="@+id/characterStatus"
+            tools:text="Agency Director" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/characterGender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@{characterModel.gender}"
+            android:textAppearance="@style/TextAppearance.caption"
+            app:layout_constraintStart_toStartOf="@+id/characterName"
+            app:layout_constraintTop_toBottomOf="@+id/characterName"
+            tools:text="Human," />
 
+        <TextView
+            android:id="@+id/characterSpecies"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:text="@{characterModel.species}"
+            android:textAppearance="@style/TextAppearance.caption"
+            app:layout_constraintBottom_toBottomOf="@+id/characterGender"
+            app:layout_constraintStart_toEndOf="@+id/characterGender"
+            app:layout_constraintTop_toTopOf="@+id/characterGender"
+            app:layout_constraintVertical_bias="0.0"
+            tools:text="Species" />
 
-                <TextView
-                    android:id="@+id/txtCharacterName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:text="@{characterModel.name}"
-                    android:textAlignment="center"
-                    android:layout_marginEnd="8dp"
-                    android:textAppearance="@style/TextAppearance.h6"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="Abadango Cluster Prince" />
-
-                <View
-                    android:id="@+id/divider10"
-                    android:layout_width="190dp"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="8dp"
-                    android:background="?android:attr/listDivider"
-                    app:layout_constraintEnd_toEndOf="@+id/txtCharacterName"
-                    app:layout_constraintHorizontal_bias="0.38"
-                    app:layout_constraintStart_toStartOf="@+id/txtCharacterName"
-                    app:layout_constraintTop_toBottomOf="@+id/txtCharacterName" />
-
-                <TextView
-                    android:id="@+id/txtTitleGender"
-                    style="@style/Theme.SubTitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="8dp"
-                    android:paddingBottom="4dp"
-                    android:text="@string/gender_favorite"
-                    app:layout_constraintStart_toStartOf="@+id/divider10"
-                    app:layout_constraintTop_toBottomOf="@+id/divider10" />
-
-                <TextView
-                    android:id="@+id/txtGender"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:text="@{characterModel.gender}"
-                    android:textAppearance="@style/TextAppearance.body1"
-                    app:layout_constraintBottom_toBottomOf="@+id/txtTitleGender"
-                    app:layout_constraintStart_toEndOf="@+id/txtTitleGender"
-                    app:layout_constraintTop_toTopOf="@+id/txtTitleGender"
-                    app:layout_constraintVertical_bias="0.0"
-                    tools:text="Male" />
-
-                <TextView
-                    android:id="@+id/txtTitleSpecies"
-                    style="@style/Theme.SubTitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:paddingBottom="4dp"
-                    android:text="@string/species_favorite"
-                    app:layout_constraintStart_toStartOf="@+id/txtTitleGender"
-                    app:layout_constraintTop_toBottomOf="@+id/txtTitleGender" />
-
-                <TextView
-                    android:id="@+id/txtHuman"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@{characterModel.species}"
-                    android:textAppearance="@style/TextAppearance.body1"
-                    app:layout_constraintBottom_toBottomOf="@+id/txtTitleSpecies"
-                    app:layout_constraintEnd_toEndOf="@+id/txtCharacterName"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="@+id/txtGender"
-                    app:layout_constraintTop_toTopOf="@+id/txtTitleSpecies"
-                    app:layout_constraintVertical_bias="0.0"
-                    tools:text="Human" />
-
-                <TextView
-                    android:id="@+id/txtTitleStatus"
-                    style="@style/Theme.SubTitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:paddingBottom="4dp"
-                    android:text="@string/status_favorite"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/txtTitleSpecies"
-                    app:layout_constraintTop_toBottomOf="@+id/txtTitleSpecies" />
-
-                <TextView
-                    android:id="@+id/txtStatus"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@{characterModel.status}"
-                    android:textAppearance="@style/TextAppearance.body1"
-                    app:layout_constraintBottom_toBottomOf="@+id/txtTitleStatus"
-                    app:layout_constraintStart_toStartOf="@+id/txtHuman"
-                    app:layout_constraintTop_toTopOf="@+id/txtTitleStatus"
-                    tools:text="Alive" />
+        <View
+            android:id="@+id/divider10"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="8dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/circleImageView" />
 
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </LinearLayout>
-
-
-    </com.google.android.material.card.MaterialCardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

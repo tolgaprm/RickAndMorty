@@ -82,7 +82,7 @@
             android:id="@+id/characterList"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginHorizontal="16dp"
+
             android:layout_marginBottom="50dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
