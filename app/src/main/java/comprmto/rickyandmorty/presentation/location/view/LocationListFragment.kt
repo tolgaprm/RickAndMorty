@@ -9,7 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import comprmto.rickyandmorty.databinding.FragmentLocationListBinding
-import comprmto.rickyandmorty.presentation.adapter.LocationListAdapter
+import comprmto.rickyandmorty.presentation.location.adapter.LocationListAdapter
 import comprmto.rickyandmorty.presentation.location.viewModel.LocationListViewModel
 import comprmto.rickyandmorty.util.ItemClickListener
 import comprmto.rickyandmorty.util.Util

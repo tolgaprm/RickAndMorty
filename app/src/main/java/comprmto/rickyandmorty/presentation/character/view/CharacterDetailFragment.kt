@@ -11,7 +11,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import comprmto.rickyandmorty.databinding.FragmentCharacterDetailBinding
 
-import comprmto.rickyandmorty.presentation.adapter.EpisodeAdapter
+import comprmto.rickyandmorty.presentation.episode.adapter.EpisodeAdapter
 import comprmto.rickyandmorty.presentation.character.viewmodel.CharacterDetailViewModel
 import comprmto.rickyandmorty.util.NavigateState
 import dagger.hilt.android.AndroidEntryPoint
@@ -41,7 +41,6 @@ class CharacterDetailFragment : Fragment() {
 
         val characterID = characterArgument.characterID
         val stateNavigate = characterArgument.stateNavigate
-        val locationID = characterArgument.locationID
         val episodeID = characterArgument.episodeId
 
         viewModel.setCharacterId(characterID)

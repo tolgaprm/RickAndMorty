@@ -1,4 +1,4 @@
-package comprmto.rickyandmorty.presentation.adapter
+package comprmto.rickyandmorty.presentation.episode.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -11,6 +11,7 @@ import comprmto.rickyandmorty.databinding.SeparatorItemViewBinding
 import comprmto.rickyandmorty.domain.model.EpisodeDomain
 import comprmto.rickyandmorty.domain.model.EpisodeListItem
 import comprmto.rickyandmorty.util.ItemClickListener
+import timber.log.Timber
 
 class EpisodeListAdapter(val onclickListener: ItemClickListener) :
     PagingDataAdapter<EpisodeListItem, RecyclerView.ViewHolder>(DiffUtilEpisode()) {
@@ -81,13 +82,16 @@ class EpisodeListAdapter(val onclickListener: ItemClickListener) :
             when (episodeListItem) {
                 is EpisodeListItem.EpisodeItem -> {
                     (holder as EpisodeViewHolder).bind(episodeListItem.episode)
-                    (holder as EpisodeViewHolder).itemView.setOnClickListener {
+                    holder.itemView.setOnClickListener {
                         onclickListener.onClick(episodeListItem.episode.id)
                     }
                 }
                 is EpisodeListItem.SeparatorItem -> (holder as SeparatorViewHolder).bind(
                     episodeListItem.season
                 )
+                else -> {
+                    Timber.e("unknown type")
+                }
             }
         }
 

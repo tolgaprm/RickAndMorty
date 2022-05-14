@@ -10,7 +10,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import comprmto.rickyandmorty.databinding.FragmentEpisodeDetailBinding
-import comprmto.rickyandmorty.presentation.adapter.LocationDetailAdapter
+import comprmto.rickyandmorty.presentation.location.adapter.LocationDetailAdapter
 import comprmto.rickyandmorty.presentation.episode.viewModel.EpisodeDetailViewModel
 import comprmto.rickyandmorty.util.ItemClickListener
 import comprmto.rickyandmorty.util.NavigateState

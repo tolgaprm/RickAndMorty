@@ -13,8 +13,8 @@ import com.google.android.material.card.MaterialCardView
 import comprmto.rickyandmorty.R
 import comprmto.rickyandmorty.domain.CharactersDomain
 import comprmto.rickyandmorty.domain.model.EpisodeDomain
-import comprmto.rickyandmorty.presentation.adapter.EpisodeAdapter
-import comprmto.rickyandmorty.presentation.adapter.LocationDetailAdapter
+import comprmto.rickyandmorty.presentation.episode.adapter.EpisodeAdapter
+import comprmto.rickyandmorty.presentation.location.adapter.LocationDetailAdapter
 
 @BindingAdapter("imageUrl")
 fun downloadImage(imageView: ImageView, url: String?) {

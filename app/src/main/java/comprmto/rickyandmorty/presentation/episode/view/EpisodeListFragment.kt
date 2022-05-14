@@ -10,7 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import comprmto.rickyandmorty.databinding.FragmentEpisodeListBinding
-import comprmto.rickyandmorty.presentation.adapter.EpisodeListAdapter
+import comprmto.rickyandmorty.presentation.episode.adapter.EpisodeListAdapter
 import comprmto.rickyandmorty.presentation.episode.viewModel.EpisodeListViewModel
 import comprmto.rickyandmorty.util.ItemClickListener
 import comprmto.rickyandmorty.util.Util
