@@ -16,15 +16,20 @@
         android:paddingHorizontal="16dp"
         android:paddingVertical="8dp">
 
-        <de.hdodenhof.circleimageview.CircleImageView
+        <androidx.cardview.widget.CardView
             android:id="@+id/circleImageView"
-            imageUrl="@{characterModel.image}"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:scaleType="centerCrop"
+            app:cardCornerRadius="80dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:src="@tools:sample/avatars[3]" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                imageUrl="@{characterModel.image}"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"/>
+        </androidx.cardview.widget.CardView>
 
         <TextView
             android:id="@+id/characterStatus"
@@ -33,9 +38,9 @@
             android:layout_marginStart="16dp"
             android:text="@{characterModel.status}"
             android:textAppearance="@style/TextAppearance.body2"
-            app:statusColor="@{characterModel.status}"
             app:layout_constraintStart_toEndOf="@+id/circleImageView"
             app:layout_constraintTop_toTopOf="@+id/circleImageView"
+            app:statusColor="@{characterModel.status}"
             tools:text="Dead" />
 
         <TextView

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -78,18 +79,23 @@ class CharacterListFragment : Fragment() {
         binding.imgListType.apply {
             this.setOnClickListener {
                 viewModel.setLayoutManager()
-                val icon = when (viewModel.getListType()) {
-                    ListType.GridLayout -> R.drawable.grid_list
-                    else -> R.drawable.ic_list_icon
-                }
-                this.setImageResource(icon)
 
+                setListTypeIcon(this)
                 setCharacterListLayoutManager()
             }
 
 
         }
         return binding.root
+    }
+
+    private fun setListTypeIcon(imageView: ImageView) {
+        val icon = when (viewModel.getListType()) {
+            ListType.GridLayout -> R.drawable.grid_list
+            else -> R.drawable.ic_list_icon
+        }
+        imageView.setImageResource(icon)
+
     }
 
     private fun setCharacterListLayoutManager() {
@@ -213,4 +219,9 @@ class CharacterListFragment : Fragment() {
         }
     }
 
+
+    override fun onStart() {
+        super.onStart()
+        setListTypeIcon(binding.imgListType)
+    }
 }

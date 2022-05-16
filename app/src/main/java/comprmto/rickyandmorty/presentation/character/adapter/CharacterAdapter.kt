@@ -5,9 +5,11 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import comprmto.rickyandmorty.R
 import comprmto.rickyandmorty.databinding.CharacterItemRcwBinding
 import comprmto.rickyandmorty.domain.CharactersDomain
 import comprmto.rickyandmorty.presentation.character.viewmodel.states.ListType
+import comprmto.rickyandmorty.presentation.favorite.adapter.FavoriteCharacterAdapter
 import comprmto.rickyandmorty.util.ItemClickListener
 import comprmto.rickyandmorty.util.ItemLongClickListener
 
@@ -17,7 +19,7 @@ class CharacterAdapter(
     private val onLongClickListener: ItemLongClickListener,
     private var listType: ListType = ListType.GridLayout
 ) :
-    PagingDataAdapter<CharactersDomain, CharacterAdapter.CharacterViewHolder>(DiffUtilCallBack()) {
+    PagingDataAdapter<CharactersDomain, RecyclerView.ViewHolder>(DiffUtilCallBack()) {
 
     fun setListType(listType: ListType) {
         this.listType = listType
@@ -47,16 +49,35 @@ class CharacterAdapter(
 
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharacterViewHolder {
-        return CharacterViewHolder.from(parent)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        return if (viewType == R.layout.character_item_rcw) {
+            CharacterViewHolder.from(parent)
+        } else {
+            FavoriteCharacterAdapter.CharacterViewHolder.create(parent)
+        }
+
     }
 
+    override fun getItemViewType(position: Int): Int {
+        return when (listType) {
+            ListType.GridLayout -> R.layout.character_item_rcw
+            ListType.LinearLayout -> R.layout.character_item_fav_list
+            null -> throw UnsupportedOperationException("Unknown view")
+        }
+    }
 
-    override fun onBindViewHolder(holder: CharacterViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
         val characterModel = getItem(position)
+        if (listType == ListType.GridLayout) {
 
-        holder.bind(characterModel!!)
+            holder as CharacterViewHolder
+            holder.bind(characterModel!!)
+
+        } else {
+            holder as FavoriteCharacterAdapter.CharacterViewHolder
+            holder.bind(characterModel!!)
+        }
 
         holder.itemView.setOnClickListener {
             onClickListener.onClick(characterModel.id)
@@ -66,17 +87,6 @@ class CharacterAdapter(
             onLongClickListener.onLongClick(characterModel)
             it == it
         }
-
-        if (listType == ListType.LinearLayout) {
-            holder.binding.characterImage.layoutParams.height = 500
-            holder.binding.characterImage.requestLayout()
-        } else {
-
-            holder.binding.characterImage.layoutParams.height = 400
-            holder.binding.characterImage.requestLayout()
-        }
-
-
     }
 }
 

@@ -32,7 +32,7 @@ class FavoriteCharacterAdapter :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharacterViewHolder {
-        return CharacterViewHolder.create(parent)
+        return CharacterViewHolder.create(parent) as CharacterViewHolder
     }
 
     override fun onBindViewHolder(holder: CharacterViewHolder, position: Int) {
