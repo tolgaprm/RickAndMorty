@@ -72,9 +72,6 @@ class CharacterListFragment : Fragment() {
             }
         }
 
-        binding.refreshBtn.setOnClickListener {
-            characterAdapter.retry()
-        }
 
         binding.imgListType.apply {
             this.setOnClickListener {
@@ -146,7 +143,7 @@ class CharacterListFragment : Fragment() {
             .create()
 
 
-        val isHasAddedCharacter = isHasAddedCharacter(charactersDomain)
+        val isHasAddedCharacter = viewModel.isHasAddedCharacter(charactersDomain)
 
         setDialogText(isHasAddedCharacter, dialogView, charactersDomain)
 
@@ -164,7 +161,7 @@ class CharacterListFragment : Fragment() {
                 alertDialog.cancel()
             }
             showToastMessage()
-            viewModel.showedToastMessage()
+            viewModel.doneToastMessage()
         }
 
     }
@@ -196,19 +193,7 @@ class CharacterListFragment : Fragment() {
         }
     }
 
-    private fun isHasAddedCharacter(charactersDomain: CharactersDomain): Boolean {
 
-        val myFavoriteList = viewModel.state.value.favoriteCharacter
-        var result = false
-
-        myFavoriteList.forEach {
-            if (it.id == charactersDomain.id) {
-                result = true
-            }
-        }
-
-        return result
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -218,7 +203,6 @@ class CharacterListFragment : Fragment() {
             Navigation.findNavController(it).navigate(action)
         }
     }
-
 
     override fun onStart() {
         super.onStart()

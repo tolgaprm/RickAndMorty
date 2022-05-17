@@ -55,7 +55,6 @@ class FilterDialog : BottomSheetDialogFragment() {
 
         }
 
-
         binding.clear.setOnClickListener {
             viewModel.setStatusState(StatusState.NONE)
             viewModel.setGenderState(GenderState.NONE)
@@ -63,7 +62,6 @@ class FilterDialog : BottomSheetDialogFragment() {
         }
 
         binding.rgStatus.setOnCheckedChangeListener { radioGroup, idThatSelected ->
-
             viewModel.setStatusState(
                 when (idThatSelected) {
                     binding.rbAlive.id -> StatusState.ALIVE
@@ -75,7 +73,6 @@ class FilterDialog : BottomSheetDialogFragment() {
         }
 
         binding.rgGender.setOnCheckedChangeListener { radioGroup, idThatSelected ->
-
             viewModel.setGenderState(
                 when (idThatSelected) {
                     binding.rbFemale.id -> GenderState.FEMALE
@@ -88,18 +85,12 @@ class FilterDialog : BottomSheetDialogFragment() {
         }
 
         binding.btnApply.setOnClickListener {
-
             val action = FilterDialogDirections.actionFilterDialogToCharacterListFragment()
             findNavController().navigate(action)
         }
 
         return binding.root
     }
-
-    private fun updateQueryCharacterNameThatLastData(characterName: String) {
-        binding.characterName.setText(characterName)
-    }
-
 
     private fun updateRadioGroupGenderThatLastData(genderState: GenderState) {
 

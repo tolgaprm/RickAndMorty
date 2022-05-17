@@ -10,9 +10,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import comprmto.rickyandmorty.databinding.FragmentCharacterDetailBinding
-
-import comprmto.rickyandmorty.presentation.episode.adapter.EpisodeAdapter
 import comprmto.rickyandmorty.presentation.character.viewmodel.CharacterDetailViewModel
+import comprmto.rickyandmorty.presentation.episode.adapter.EpisodeAdapter
 import comprmto.rickyandmorty.util.NavigateState
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -44,23 +43,18 @@ class CharacterDetailFragment : Fragment() {
         val episodeID = characterArgument.episodeId
 
         viewModel.setCharacterId(characterID)
+        viewModel.setNavigateState(stateNavigate)
         viewModel.getCharacterInvoke()
-
-
 
         binding.recyclerViewEpisode.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerViewEpisode.adapter = adapter
 
-
         binding.locationGroup.setOnClickListener {
-            val locationUrl = viewModel.state.value.character?.location?.url
-
-
+            val locationUrl = viewModel.getLocationUrl()
 
             locationUrl?.let {
                 val locationId = (locationUrl.split("/"))[5].toInt()
                 viewModel.setNavigateLocationId(locationId)
-
 
                 if (viewModel.getNavigationLocationID() != null) {
 
@@ -74,22 +68,19 @@ class CharacterDetailFragment : Fragment() {
         }
 
         binding.imageButton.setOnClickListener {
-
-            when (stateNavigate) {
+            when (viewModel.getNavigateState()) {
                 NavigateState.CHARACTERLIST -> navigateToCharacterList()
                 NavigateState.EPISODEDETAIL -> navigateToEpisodeDetail(episodeID)
                 else -> navigateToCharacterList()
             }
-
-
         }
-
 
         return binding.root
     }
 
     private fun navigateToEpisodeDetail(episodeID: Int) {
-        val action = CharacterDetailFragmentDirections.actionToEpisodeDetailFragment(episodeID)
+        val action =
+            CharacterDetailFragmentDirections.actionToEpisodeDetailFragment(episodeID)
         findNavController().navigate(action)
     }
 
@@ -106,7 +97,7 @@ class CharacterDetailFragment : Fragment() {
                 locationID,
                 false
             )
-        action.characterID = viewModel.state.value.characterIdFromCharacterListFragment
+        action.characterID = viewModel.getCharacterIDFromFragmentList()
 
         findNavController().navigate(action)
     }

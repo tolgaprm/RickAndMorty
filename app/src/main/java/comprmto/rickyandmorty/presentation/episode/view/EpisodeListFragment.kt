@@ -54,8 +54,6 @@ class EpisodeListFragment : Fragment() {
             adapter.retry()
         }
 
-
-
         return binding.root
     }
 
@@ -85,7 +83,6 @@ class EpisodeListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
     }
 
 

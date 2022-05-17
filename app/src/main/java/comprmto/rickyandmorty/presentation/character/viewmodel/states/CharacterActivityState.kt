@@ -2,9 +2,9 @@ package comprmto.rickyandmorty.presentation.character.viewmodel.states
 
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.PagingData
-import androidx.recyclerview.widget.RecyclerView
 import comprmto.rickyandmorty.domain.CharactersDomain
 import comprmto.rickyandmorty.util.GenderState
+import comprmto.rickyandmorty.util.NavigateState
 import comprmto.rickyandmorty.util.StatusState
 
 data class CharacterActivityState(
@@ -15,9 +15,9 @@ data class CharacterActivityState(
     val queryCharacterName: MutableLiveData<String> = MutableLiveData(""),
     val isFilter: Boolean = false,
     val favoriteCharacter: List<CharactersDomain> = emptyList(),
-    val isShowToastMessage: Boolean = false,
+    val showToastMessageEvent: Boolean = false,
     val toastMessage: String = "",
-    val listType: ListType = ListType.GridLayout,
+    val listType: ListType = ListType.GridLayout
 
 )
 

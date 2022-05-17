@@ -127,13 +127,13 @@
 
             <TextView
                 android:id="@+id/textView"
+                style="@style/Theme.SubTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingHorizontal="20dp"
                 android:paddingTop="8dp"
                 android:paddingBottom="5dp"
                 android:text="@string/status"
-                style="@style/Theme.SubTitle"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/inputLayout"
@@ -188,12 +188,12 @@
 
             <TextView
                 android:id="@+id/textView2"
+                style="@style/Theme.SubTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingHorizontal="20dp"
                 android:paddingTop="8dp"
                 android:paddingBottom="5dp"
-                style="@style/Theme.SubTitle"
                 android:text="@string/gender"
                 android:textAppearance="@style/TextAppearance.body2"
                 app:layout_constraintEnd_toEndOf="parent"

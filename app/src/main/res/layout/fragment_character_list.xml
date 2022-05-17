@@ -9,6 +9,10 @@
         <variable
             name="viewModel"
             type="comprmto.rickyandmorty.presentation.character.viewmodel.CharacterViewModel" />
+
+        <variable
+            name="adapter"
+            type="comprmto.rickyandmorty.presentation.adapter.CharacterAdapter" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -103,6 +107,7 @@
             android:layout_marginHorizontal="16dp"
             android:contentDescription="@string/list_type"
             android:padding="8dp"
+
             android:src="@drawable/grid_list"
             app:layout_constraintBottom_toBottomOf="@+id/txtListType"
             app:layout_constraintEnd_toEndOf="parent"
@@ -118,8 +123,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imgListType"
-            />
+            app:layout_constraintTop_toBottomOf="@+id/imgListType" />
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/lottieAnimationView"
@@ -158,6 +162,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="68dp"
+            android:onClick="@{()-> adapter.retry()}"
             android:text="@string/retry"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@+id/characterList"

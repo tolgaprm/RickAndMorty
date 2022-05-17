@@ -1,12 +1,10 @@
 package comprmto.rickyandmorty.presentation.character.viewmodel
 
 import android.app.Application
+import android.widget.RadioGroup
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import comprmto.rickyandmorty.R
 import comprmto.rickyandmorty.data.remote.dto.character.toCharactersDomain
 import comprmto.rickyandmorty.domain.CharactersDomain
@@ -35,7 +33,6 @@ class CharacterViewModel @Inject constructor(
 
     init {
         getAllFavoriteCharacters()
-
 
         viewModelScope.launch {
 
@@ -147,20 +144,37 @@ class CharacterViewModel @Inject constructor(
 
     private fun updateToastState() {
         _state.value = _state.value.copy(
-            isShowToastMessage = true
+            showToastMessageEvent = true
         )
     }
 
-    fun showedToastMessage() {
+    fun doneToastMessage() {
 
         _state.value = _state.value.copy(
-            isShowToastMessage = false,
+            showToastMessageEvent = false,
             toastMessage = ""
         )
     }
 
+    private fun getFavoriteCharacter(): List<CharactersDomain> {
+        return _state.value.favoriteCharacter
+    }
 
-    private fun setListLayoutManager( newType: ListType) {
+    fun isHasAddedCharacter(charactersDomain: CharactersDomain): Boolean {
+
+        val myFavoriteList = this.getFavoriteCharacter()
+        var result = false
+
+        myFavoriteList.forEach {
+            if (it.id == charactersDomain.id) {
+                result = true
+            }
+        }
+
+        return result
+    }
+
+    private fun setListLayoutManager(newType: ListType) {
         _state.value = _state.value.copy(
             listType = newType
         )
@@ -171,7 +185,7 @@ class CharacterViewModel @Inject constructor(
     }
 
     fun getIsShowToastMessage(): Boolean {
-        return _state.value.isShowToastMessage
+        return _state.value.showToastMessageEvent
     }
 
     fun getToastMessage(): String {
