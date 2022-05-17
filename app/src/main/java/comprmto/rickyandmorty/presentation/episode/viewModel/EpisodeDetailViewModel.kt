@@ -23,15 +23,13 @@ class EpisodeDetailViewModel @Inject constructor(
     private val _state = MutableStateFlow(EpisodeDetailState())
     val state: StateFlow<EpisodeDetailState> get() = _state
 
-    init {
-
-    }
 
     fun getEpisodeDetail() {
 
         try {
             _state.value = _state.value.copy(
-                isLoading = true
+                isLoading = true,
+                error = ""
             )
             viewModelScope.launch {
 
@@ -72,6 +70,7 @@ class EpisodeDetailViewModel @Inject constructor(
         }
 
     }
+
 
     fun setEpisodeId(id: Int) {
         _state.value = _state.value.copy(

@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="comprmto.rickyandmorty.presentation.location.viewModel.LocationViewModel" />
+            type="comprmto.rickyandmorty.presentation.location.viewModel.LocationDetailViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

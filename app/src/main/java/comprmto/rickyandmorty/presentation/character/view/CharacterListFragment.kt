@@ -57,6 +57,10 @@ class CharacterListFragment : Fragment() {
 
         getListData()
 
+        binding.refreshBtn.setOnClickListener {
+            characterAdapter.retry()
+        }
+
         lifecycleScope.launch {
             characterAdapter.loadStateFlow.collect {
                 val isListEmpty =
@@ -192,7 +196,6 @@ class CharacterListFragment : Fragment() {
                 getString(R.string.dialog_question_add_character_favorite, charactersDomain.name)
         }
     }
-
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

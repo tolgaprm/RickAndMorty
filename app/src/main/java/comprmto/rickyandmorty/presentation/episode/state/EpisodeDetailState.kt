@@ -8,5 +8,5 @@ data class EpisodeDetailState(
     val characterList: List<CharactersDomain>? = null,
     val episodeId: Int = 0,
     val episodeDetailInfo: EpisodeDetail? = null,
-    val error: String? = null
+    val error: String = ""
 )

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
             type="comprmto.rickyandmorty.presentation.episode.viewModel.EpisodeDetailViewModel" />
@@ -37,11 +38,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
+                    android:maxLength="16"
+                    android:text="@{viewModel.state.episodeDetailInfo.name}"
                     android:textAppearance="@style/TextAppearance.h6"
                     android:textColor="@color/basic_black"
-                    android:text="@{viewModel.state.episodeDetailInfo.name}"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    android:maxLength="16"
                     app:layout_constraintStart_toEndOf="@id/imageButton"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:text="M. Night Shaym-Aliens!" />
@@ -113,11 +114,11 @@
             android:id="@+id/textView7"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="16dp"
             android:text="@string/characters"
             android:textAppearance="@style/TextAppearance.h6"
             android:textColor="@color/gray"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/linearLayout" />
@@ -126,16 +127,16 @@
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginTop="8dp"
             android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="8dp"
             android:paddingBottom="50dp"
             app:bindCharacterList="@{viewModel.state.characterList}"
             app:layout_constraintBottom_toBottomOf="parent"
-            tools:listitem="@layout/character_item_rcw"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView7"
             app:layout_constraintVertical_bias="1.0"
+            tools:listitem="@layout/character_item_rcw"
 
             />
 
@@ -149,6 +150,17 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.state.error}"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

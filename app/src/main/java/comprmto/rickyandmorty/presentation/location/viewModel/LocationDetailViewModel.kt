@@ -16,7 +16,7 @@ import java.lang.Exception
 import javax.inject.Inject
 
 @HiltViewModel
-class LocationViewModel @Inject constructor(
+class LocationDetailViewModel @Inject constructor(
     val repository: RickAndMortyRepository,
 ) : ViewModel() {
 

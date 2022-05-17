@@ -12,7 +12,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import comprmto.rickyandmorty.databinding.FragmentLocationDetailBinding
 import comprmto.rickyandmorty.presentation.location.adapter.LocationDetailAdapter
-import comprmto.rickyandmorty.presentation.location.viewModel.LocationViewModel
+import comprmto.rickyandmorty.presentation.location.viewModel.LocationDetailViewModel
 import comprmto.rickyandmorty.util.ItemClickListener
 import comprmto.rickyandmorty.util.NavigateState
 import dagger.hilt.android.AndroidEntryPoint
@@ -25,7 +25,7 @@ class LocationDetailFragment : Fragment() {
     private var _binding: FragmentLocationDetailBinding? = null
     private val binding get() = _binding!!
     private val locationArgs: LocationDetailFragmentArgs by navArgs()
-    private val viewModel: LocationViewModel by viewModels()
+    private val viewModel: LocationDetailViewModel by viewModels()
     private lateinit var adapter: LocationDetailAdapter
 
     override fun onCreateView(
