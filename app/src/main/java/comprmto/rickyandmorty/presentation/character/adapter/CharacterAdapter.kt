@@ -2,6 +2,7 @@ package comprmto.rickyandmorty.presentation.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -13,6 +14,9 @@ import comprmto.rickyandmorty.presentation.favorite.adapter.FavoriteCharacterAda
 import comprmto.rickyandmorty.util.ItemClickListener
 import comprmto.rickyandmorty.util.ItemLongClickListener
 
+
+const val GRID_LAYOUT = 0
+const val LINEARLAYOUT = 1
 
 class CharacterAdapter(
     private val onClickListener: ItemClickListener,
@@ -50,7 +54,7 @@ class CharacterAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return if (viewType == R.layout.character_item_rcw) {
+        return if (viewType == GRID_LAYOUT) {
             CharacterViewHolder.from(parent)
         } else {
             FavoriteCharacterAdapter.CharacterViewHolder.create(parent)
@@ -60,9 +64,8 @@ class CharacterAdapter(
 
     override fun getItemViewType(position: Int): Int {
         return when (listType) {
-            ListType.GridLayout -> R.layout.character_item_rcw
-            ListType.LinearLayout -> R.layout.character_item_fav_list
-            null -> throw UnsupportedOperationException("Unknown view")
+            ListType.GridLayout -> GRID_LAYOUT
+            ListType.LinearLayout -> LINEARLAYOUT
         }
     }
 
@@ -74,9 +77,19 @@ class CharacterAdapter(
             holder as CharacterViewHolder
             holder.bind(characterModel!!)
 
+            holder.itemView.animation = AnimationUtils.loadAnimation(
+                holder.itemView.context,
+                R.anim.scale_up
+            )
+
         } else {
             holder as FavoriteCharacterAdapter.CharacterViewHolder
             holder.bind(characterModel!!)
+
+            holder.itemView.animation = AnimationUtils.loadAnimation(
+                holder.itemView.context,
+                R.anim.up_anim
+            )
         }
 
         holder.itemView.setOnClickListener {

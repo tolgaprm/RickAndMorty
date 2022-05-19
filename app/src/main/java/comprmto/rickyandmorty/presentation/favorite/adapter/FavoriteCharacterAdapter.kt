@@ -2,8 +2,10 @@ package comprmto.rickyandmorty.presentation.favorite.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import comprmto.rickyandmorty.R
 import comprmto.rickyandmorty.databinding.CharacterItemFavListBinding
 import comprmto.rickyandmorty.domain.CharactersDomain
 import comprmto.rickyandmorty.presentation.adapter.DiffUtilCallBack
@@ -32,12 +34,17 @@ class FavoriteCharacterAdapter :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharacterViewHolder {
-        return CharacterViewHolder.create(parent) as CharacterViewHolder
+        return CharacterViewHolder.create(parent)
     }
 
     override fun onBindViewHolder(holder: CharacterViewHolder, position: Int) {
         val charactersDomain = getItem(position)
         holder.bind(charactersDomain)
+
+        holder.itemView.animation = AnimationUtils.loadAnimation(
+            holder.itemView.context,
+            R.anim.up_anim
+        )
     }
 }
 
