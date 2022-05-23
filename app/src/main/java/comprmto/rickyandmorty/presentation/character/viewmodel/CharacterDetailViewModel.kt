@@ -6,7 +6,6 @@ import comprmto.rickyandmorty.data.remote.dto.episode.toEpisodeDomain
 import comprmto.rickyandmorty.domain.model.EpisodeDomain
 import comprmto.rickyandmorty.domain.repository.RickAndMortyRepository
 import comprmto.rickyandmorty.presentation.character.viewmodel.states.CharacterDetailState
-import comprmto.rickyandmorty.util.NavigateState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -66,24 +65,12 @@ class CharacterDetailViewModel @Inject constructor(
         )
     }
 
-    fun setNavigateState(state: NavigateState) {
-        _state.value = _state.value.copy(
-            stateNavigate = state
-        )
-    }
-
-
-
-    fun getNavigateState(): NavigateState {
-        return _state.value.stateNavigate!!
-    }
-
 
     fun getCharacterInvoke() {
         getCharacter(getCharacterIDFromFragmentList())
     }
 
-     fun getCharacterIDFromFragmentList(): Int {
+    fun getCharacterIDFromFragmentList(): Int {
         return _state.value.characterIdFromCharacterListFragment
     }
 

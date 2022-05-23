@@ -26,27 +26,10 @@
             android:name="characterID"
             app:argType="integer" />
         <action
-            android:id="@+id/action_characterDetailFragment_to_characterListFragment"
-            app:destination="@id/characterListFragment"
-            app:popUpTo="@id/characterDetailFragment"
-            app:popUpToInclusive="true" />
-        <action
             android:id="@+id/actionToLocationDetail"
             app:destination="@id/locationDetailFragment" />
-        <argument
-            android:name="locationID"
-            android:defaultValue="0"
-            app:argType="integer" />
-        <action
-            android:id="@+id/actionToEpisodeDetailFragment"
-            app:destination="@id/episodeDetailFragment" />
-        <argument
-            android:name="stateNavigate"
-            app:argType="comprmto.rickyandmorty.util.NavigateState" />
-        <argument
-            android:name="episodeId"
-            android:defaultValue="0"
-            app:argType="integer" />
+
+
     </fragment>
     <dialog
         android:id="@+id/filterDialog"
@@ -69,8 +52,7 @@
             android:id="@+id/actionToCharacterDetail"
             app:destination="@id/characterDetailFragment"
             app:launchSingleTop="false"
-            app:popUpTo="@id/locationDetailFragment"
-            app:popUpToInclusive="true" />
+            app:popUpToInclusive="false" />
         <argument
             android:name="characterID"
             android:defaultValue="0"
@@ -105,11 +87,6 @@
         android:name="comprmto.rickyandmorty.presentation.episode.view.EpisodeDetailFragment"
         android:label="EpisodeDetailFragment"
         tools:layout="@layout/fragment_location_detail">
-        <action
-            android:id="@+id/actionToEpisodeList"
-            app:destination="@id/episodeListFragment"
-            app:popUpTo="@id/episodeDetailFragment"
-            app:popUpToInclusive="true" />
         <argument
             android:name="episodeId"
             app:argType="integer" />

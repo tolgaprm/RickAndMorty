@@ -4,7 +4,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.paging.PagingData
 import comprmto.rickyandmorty.domain.CharactersDomain
 import comprmto.rickyandmorty.util.GenderState
-import comprmto.rickyandmorty.util.NavigateState
 import comprmto.rickyandmorty.util.StatusState
 
 data class CharacterActivityState(

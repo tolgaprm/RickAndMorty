@@ -25,7 +25,6 @@ import comprmto.rickyandmorty.presentation.character.viewmodel.CharacterViewMode
 import comprmto.rickyandmorty.presentation.character.viewmodel.states.ListType
 import comprmto.rickyandmorty.util.ItemClickListener
 import comprmto.rickyandmorty.util.ItemLongClickListener
-import comprmto.rickyandmorty.util.NavigateState
 import comprmto.rickyandmorty.util.Util
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
@@ -122,8 +121,7 @@ class CharacterListFragment : Fragment() {
             ItemClickListener {
                 val action =
                     CharacterListFragmentDirections.actionCharacterListFragmentToCharacterDetailFragment(
-                        it,
-                        NavigateState.CHARACTERLIST
+                        it
                     )
                 findNavController().navigate(action)
             },
@@ -166,6 +164,10 @@ class CharacterListFragment : Fragment() {
             }
             showToastMessage()
             viewModel.doneToastMessage()
+        }
+
+        dialogView.btnNo.setOnClickListener {
+            alertDialog.cancel()
         }
 
     }

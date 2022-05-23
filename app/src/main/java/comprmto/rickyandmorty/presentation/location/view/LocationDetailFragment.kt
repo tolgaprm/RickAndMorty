@@ -14,7 +14,6 @@ import comprmto.rickyandmorty.databinding.FragmentLocationDetailBinding
 import comprmto.rickyandmorty.presentation.location.adapter.LocationDetailAdapter
 import comprmto.rickyandmorty.presentation.location.viewModel.LocationDetailViewModel
 import comprmto.rickyandmorty.util.ItemClickListener
-import comprmto.rickyandmorty.util.NavigateState
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -23,7 +22,7 @@ import kotlinx.coroutines.launch
 class LocationDetailFragment : Fragment() {
 
     private var _binding: FragmentLocationDetailBinding? = null
-    private val binding get() = _binding!!
+    lateinit var binding:FragmentLocationDetailBinding
     private val locationArgs: LocationDetailFragmentArgs by navArgs()
     private val viewModel: LocationDetailViewModel by viewModels()
     private lateinit var adapter: LocationDetailAdapter
@@ -33,7 +32,7 @@ class LocationDetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentLocationDetailBinding.inflate(inflater, container, false)
-
+        binding = _binding!!
 
         val locationID = locationArgs.locationId
         val isFromNavigateLocationList = locationArgs.isFromLocationList
@@ -55,7 +54,7 @@ class LocationDetailFragment : Fragment() {
             if (isFromNavigateLocationList) {
                 navigateToLocationList()
             } else {
-                navigateToCharacterDetail()
+                findNavController().popBackStack()
             }
 
         }
@@ -73,8 +72,7 @@ class LocationDetailFragment : Fragment() {
     private fun navigateToCharacterDetail() {
         val action =
             LocationDetailFragmentDirections.actionToCharacterDetail(
-                locationArgs.characterID,
-                NavigateState.LOCATIONDETAIL
+                locationArgs.characterID
             )
 
         findNavController().navigate(action)
@@ -82,13 +80,11 @@ class LocationDetailFragment : Fragment() {
 
     private fun prepareAdapter(locationID: Int) {
         adapter = LocationDetailAdapter(
-            ItemClickListener {characterId->
+            ItemClickListener { characterId ->
                 val action =
                     LocationDetailFragmentDirections.actionToCharacterDetail(
-                        characterId,
-                        NavigateState.LOCATIONDETAIL
+                        characterId
                     )
-                action.locationID = locationID
                 findNavController().navigate(action)
             }
         )
@@ -98,7 +94,6 @@ class LocationDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
     }
 
 

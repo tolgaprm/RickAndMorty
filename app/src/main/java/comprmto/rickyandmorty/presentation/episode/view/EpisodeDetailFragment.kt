@@ -13,7 +13,6 @@ import comprmto.rickyandmorty.databinding.FragmentEpisodeDetailBinding
 import comprmto.rickyandmorty.presentation.location.adapter.LocationDetailAdapter
 import comprmto.rickyandmorty.presentation.episode.viewModel.EpisodeDetailViewModel
 import comprmto.rickyandmorty.util.ItemClickListener
-import comprmto.rickyandmorty.util.NavigateState
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -41,16 +40,13 @@ class EpisodeDetailFragment : Fragment() {
         prepareAdapter()
 
         binding.imageButton.setOnClickListener {
-            navigateToEpisodeList()
+           findNavController().popBackStack()
         }
 
         return binding.root
     }
 
-    private fun navigateToEpisodeList() {
-        val action = EpisodeDetailFragmentDirections.actionToEpisodeList()
-        findNavController().navigate(action)
-    }
+
 
     private fun prepareAdapter() {
         val adapter = LocationDetailAdapter(
@@ -67,10 +63,8 @@ class EpisodeDetailFragment : Fragment() {
 
     private fun navigateToCharacterDetail(characterId: Int) {
         val action = EpisodeDetailFragmentDirections.actionToCharacterDetailFragment(
-            characterId,
-            NavigateState.EPISODEDETAIL
+            characterId
         )
-        action.episodeId = episodeDetailArgs.episodeId
         findNavController().navigate(action)
     }
 
@@ -78,7 +72,6 @@ class EpisodeDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()

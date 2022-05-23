@@ -30,13 +30,22 @@
         <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/drawable/selector.xml" value="0.1" />
         <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/drawable/splash_image.xml" value="0.263" />
         <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/font/roboto_medium.xml" value="0.375" />
+        <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/layout-w600dp/activity_character.xml" value="0.44479166666666664" />
+        <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/layout-w600dp/dialog_filter.xml" value="0.25" />
+        <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/layout-w600dp/fragment_character_detail.xml" value="0.1" />
+        <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/layout-w600dp/fragment_character_list.xml" value="0.21927083333333333" />
+        <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/layout-w600dp/fragment_episode_detail.xml" value="0.26197916666666665" />
+        <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/layout-w600dp/fragment_episode_list.xml" value="0.5130208333333334" />
+        <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/layout-w600dp/fragment_favorite_list.xml" value="0.5130208333333334" />
+        <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/layout-w600dp/fragment_location_detail.xml" value="0.1" />
+        <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/layout-w600dp/fragment_location_list.xml" value="0.11614583333333334" />
         <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/layout/activity_character.xml" value="0.34479166666666666" />
         <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/layout/activity_charecter.xml" value="0.34479166666666666" />
         <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/layout/activity_episode.xml" value="0.30925925925925923" />
         <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/layout/activity_location.xml" value="0.34427083333333336" />
         <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/layout/activity_main.xml" value="0.34479166666666666" />
         <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/layout/character_item_fav_list.xml" value="0.33" />
-        <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/layout/character_item_rcw.xml" value="0.34479166666666666" />
+        <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/layout/character_item_rcw.xml" value="0.22" />
         <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/layout/character_item_rcy.xml" value="0.34479166666666666" />
         <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/layout/character_list.xml" value="0.34479166666666666" />
         <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/layout/character_load_state_footer_view_item.xml" value="0.33" />
@@ -45,9 +54,9 @@
         <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/layout/dialog_filter.xml" value="0.33" />
         <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/layout/dialog_view.xml" value="0.33" />
         <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/layout/episode_item_row.xml" value="0.33" />
-        <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/layout/fragment_character_detail.xml" value="0.34479166666666666" />
+        <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/layout/fragment_character_detail.xml" value="0.1" />
         <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/layout/fragment_character_list.xml" value="0.33" />
-        <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/layout/fragment_episode_detail.xml" value="0.34479166666666666" />
+        <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/layout/fragment_episode_detail.xml" value="0.33" />
         <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/layout/fragment_episode_list.xml" value="0.34479166666666666" />
         <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/layout/fragment_favorite_list.xml" value="0.34479166666666666" />
         <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/layout/fragment_location_detail.xml" value="0.34479166666666666" />
@@ -56,6 +65,7 @@
         <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/layout/load_state_layout.xml" value="0.34479166666666666" />
         <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/layout/location_item_row.xml" value="0.34479166666666666" />
         <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/layout/location_litem_row.xml" value="0.5" />
+        <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/layout/navigation_rail_header.xml" value="0.33" />
         <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/layout/repos_load_state_footer_view_item.xml" value="0.34479166666666666" />
         <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/layout/separator_item_view.xml" value="0.34479166666666666" />
         <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/menu/bottom_bar_menu.xml" value="0.34479166666666666" />
@@ -72,7 +82,7 @@
   <component name="VisualizationToolProject">
     <option name="state">
       <ProjectState>
-        <option name="scale" value="0.22" />
+        <option name="scale" value="0.1" />
       </ProjectState>
     </option>
   </component>

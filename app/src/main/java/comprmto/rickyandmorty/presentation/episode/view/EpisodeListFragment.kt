@@ -23,7 +23,7 @@ import kotlinx.coroutines.launch
 class EpisodeListFragment : Fragment() {
 
     private var _binding: FragmentEpisodeListBinding? = null
-    private val binding get() = _binding!!
+    lateinit var binding: FragmentEpisodeListBinding
     private val viewModel: EpisodeListViewModel by viewModels()
     private lateinit var adapter: EpisodeListAdapter
 
@@ -33,7 +33,7 @@ class EpisodeListFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         _binding = FragmentEpisodeListBinding.inflate(layoutInflater, container, false)
-
+        binding = _binding!!
         prepareAdapter()
 
         binding.lifecycleOwner = viewLifecycleOwner

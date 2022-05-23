@@ -12,6 +12,7 @@
 
     </data>
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -116,7 +117,6 @@
             android:id="@+id/characterList"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:paddingBottom="50dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -165,6 +165,7 @@
             app:layout_constraintEnd_toEndOf="@+id/characterList"
             app:layout_constraintStart_toStartOf="@+id/characterList"
             tools:visibility="visible" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -324,7 +324,6 @@
                 android:id="@+id/recyclerViewEpisode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="50dp"
                 app:bindEpisodeList="@{viewModel.state.episodeList}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
