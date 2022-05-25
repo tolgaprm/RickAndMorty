@@ -28,7 +28,7 @@
                 android:id="@+id/characterImage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="140dp"
+                android:minHeight="300dp"
                 android:scaleType="centerCrop"
                 app:imageUrl="@{characterModel.image}"
                 tools:srcCompat="@tools:sample/avatars" />
@@ -40,8 +40,8 @@
                 android:orientation="horizontal">
 
                 <androidx.cardview.widget.CardView
-                    android:layout_width="10dp"
-                    android:layout_height="10dp"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="16dp"
                     app:cardCornerRadius="10dp"
@@ -54,7 +54,8 @@
                     android:layout_marginStart="4dp"
                     android:layout_marginTop="12dp"
                     android:text="@{characterModel.status}"
-                    android:textAppearance="@style/TextAppearance.caption"
+                    android:textColor="@color/gray"
+                    android:textAppearance="@style/TextAppearance.h6"
                     tools:text="Dead" />
 
 
@@ -69,7 +70,7 @@
                 android:layout_marginEnd="12dp"
                 android:layout_marginBottom="12dp"
                 android:text="@{characterModel.name}"
-                android:textAppearance="@style/TextAppearance.subtitle1"
+                android:textAppearance="@style/TextAppearance.h5"
                 android:textColor="@color/basic_black"
                 tools:text="Agency Director" />
 

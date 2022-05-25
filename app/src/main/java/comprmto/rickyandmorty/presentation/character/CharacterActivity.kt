@@ -5,14 +5,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavDestination
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
-import androidx.window.layout.WindowMetricsCalculator
 import comprmto.rickyandmorty.R
 import comprmto.rickyandmorty.databinding.ActivityCharacterBinding
+import comprmto.rickyandmorty.util.CalculateWindowSize
+import comprmto.rickyandmorty.util.WindowSizeClass
 import dagger.hilt.android.AndroidEntryPoint
-import timber.log.Timber
 
-
-enum class WindowSizeClass { COMPACT, MEDIUM, EXPANDED }
 
 @AndroidEntryPoint
 class CharacterActivity : AppCompatActivity() {
@@ -25,16 +23,8 @@ class CharacterActivity : AppCompatActivity() {
         binding = ActivityCharacterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val metrics = WindowMetricsCalculator.getOrCreate()
-            .computeCurrentWindowMetrics(this)
 
-        val heightDp = metrics.bounds.height() / resources.displayMetrics.density
-
-        val heightWindowClasses = when {
-            heightDp < 480f -> WindowSizeClass.COMPACT
-            heightDp < 900f -> WindowSizeClass.MEDIUM
-            else -> WindowSizeClass.EXPANDED
-        }
+        val heightWindowClasses = CalculateWindowSize(this).calculateCurrentHeightSize()
 
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
@@ -46,7 +36,7 @@ class CharacterActivity : AppCompatActivity() {
         binding.navigationRail?.apply {
             setupWithNavController(navController)
 
-            if (heightWindowClasses == WindowSizeClass.MEDIUM) {
+            if (heightWindowClasses == WindowSizeClass.MEDIUM || heightWindowClasses == WindowSizeClass.EXPANDED) {
                 addHeaderView(R.layout.navigation_rail_header)
 
                 headerView?.setOnClickListener {

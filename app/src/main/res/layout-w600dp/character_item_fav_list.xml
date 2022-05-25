@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="characterModel"
+            type="comprmto.rickyandmorty.domain.CharactersDomain" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="8dp">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/circleImageView"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            app:cardCornerRadius="120dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                imageUrl="@{characterModel.image}"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"/>
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/characterStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@{characterModel.status}"
+            android:textAppearance="@style/TextAppearance.body2"
+            android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@+id/circleImageView"
+            app:layout_constraintTop_toTopOf="@+id/circleImageView"
+            app:statusColor="@{characterModel.status}"
+            tools:text="Dead" />
+
+        <TextView
+            android:id="@+id/characterName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@{characterModel.name}"
+            android:textAppearance="@style/TextAppearance.h6"
+            android:textColor="@color/basic_black"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/characterStatus"
+            app:layout_constraintTop_toBottomOf="@+id/characterStatus"
+            tools:text="Agency Director" />
+
+        <TextView
+            android:id="@+id/characterGender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@{characterModel.gender}"
+            android:textAppearance="@style/TextAppearance.caption"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/characterName"
+            app:layout_constraintTop_toBottomOf="@+id/characterName"
+            tools:text="Human," />
+
+        <TextView
+            android:id="@+id/characterSpecies"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:text="@{characterModel.species}"
+            android:textSize="16sp"
+            android:textAppearance="@style/TextAppearance.caption"
+            app:layout_constraintBottom_toBottomOf="@+id/characterGender"
+            app:layout_constraintStart_toEndOf="@+id/characterGender"
+            app:layout_constraintTop_toTopOf="@+id/characterGender"
+            app:layout_constraintVertical_bias="0.0"
+            tools:text="Species" />
+
+        <View
+            android:id="@+id/divider10"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="8dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/circleImageView" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

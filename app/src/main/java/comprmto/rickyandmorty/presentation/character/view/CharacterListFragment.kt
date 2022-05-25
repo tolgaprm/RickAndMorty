@@ -23,13 +23,11 @@ import comprmto.rickyandmorty.domain.CharactersDomain
 import comprmto.rickyandmorty.presentation.adapter.CharacterAdapter
 import comprmto.rickyandmorty.presentation.character.viewmodel.CharacterViewModel
 import comprmto.rickyandmorty.presentation.character.viewmodel.states.ListType
-import comprmto.rickyandmorty.util.ItemClickListener
-import comprmto.rickyandmorty.util.ItemLongClickListener
-import comprmto.rickyandmorty.util.Util
+import comprmto.rickyandmorty.util.*
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 @AndroidEntryPoint
 class CharacterListFragment : Fragment() {
@@ -37,6 +35,7 @@ class CharacterListFragment : Fragment() {
     private lateinit var binding: FragmentCharacterListBinding
     lateinit var viewModel: CharacterViewModel
     private lateinit var characterAdapter: CharacterAdapter
+    lateinit var widthWindowClass: WindowSizeClass
 
 
     override fun onCreateView(
@@ -47,10 +46,16 @@ class CharacterListFragment : Fragment() {
         binding = FragmentCharacterListBinding.inflate(layoutInflater, container, false)
         viewModel = ViewModelProvider(requireActivity())[CharacterViewModel::class.java]
 
+        widthWindowClass = CalculateWindowSize(requireActivity()).calculateCurrentWidthSize()
+
+        Timber.d(widthWindowClass.name)
+
+
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
 
         prepareCharacterAdapter()
+        setCharacterListLayoutManager()
 
         viewModel.checkIfTheFilterHasBeenApplied()
 
@@ -100,7 +105,11 @@ class CharacterListFragment : Fragment() {
 
     private fun setCharacterListLayoutManager() {
         if (viewModel.getListType() == ListType.GridLayout) {
-            binding.characterList.layoutManager = GridLayoutManager(requireContext(), 2)
+
+            val spanCount = if (widthWindowClass == WindowSizeClass.EXPANDED) 3 else 2
+
+            binding.characterList.layoutManager = GridLayoutManager(requireContext(), spanCount)
+
             characterAdapter.setListType(ListType.GridLayout)
         } else {
             binding.characterList.layoutManager = LinearLayoutManager(requireContext())
