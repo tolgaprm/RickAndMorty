@@ -13,7 +13,9 @@ import androidx.recyclerview.widget.GridLayoutManager
 import comprmto.rickyandmorty.databinding.FragmentLocationDetailBinding
 import comprmto.rickyandmorty.presentation.location.adapter.LocationDetailAdapter
 import comprmto.rickyandmorty.presentation.location.viewModel.LocationDetailViewModel
+import comprmto.rickyandmorty.util.CalculateWindowSize
 import comprmto.rickyandmorty.util.ItemClickListener
+import comprmto.rickyandmorty.util.WindowSizeClass
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -26,6 +28,7 @@ class LocationDetailFragment : Fragment() {
     private val locationArgs: LocationDetailFragmentArgs by navArgs()
     private val viewModel: LocationDetailViewModel by viewModels()
     private lateinit var adapter: LocationDetailAdapter
+    lateinit var widthWindowClass: WindowSizeClass
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,10 +37,13 @@ class LocationDetailFragment : Fragment() {
         _binding = FragmentLocationDetailBinding.inflate(inflater, container, false)
         binding = _binding!!
 
+        widthWindowClass = CalculateWindowSize(requireActivity()).calculateCurrentWidthSize()
+
         val locationID = locationArgs.locationId
         val isFromNavigateLocationList = locationArgs.isFromLocationList
         viewModel.setLocationID(locationID)
         viewModel.getLocationInfo()
+
 
         prepareAdapter(locationID)
 
@@ -89,7 +95,9 @@ class LocationDetailFragment : Fragment() {
             }
         )
         binding.recyclerView.adapter = adapter
-        binding.recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
+
+        val spanCount = if (widthWindowClass == WindowSizeClass.EXPANDED) 3 else 2
+        binding.recyclerView.layoutManager = GridLayoutManager(requireContext(), spanCount)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

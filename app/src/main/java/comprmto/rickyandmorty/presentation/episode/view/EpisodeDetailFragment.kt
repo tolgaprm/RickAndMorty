@@ -10,9 +10,11 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import comprmto.rickyandmorty.databinding.FragmentEpisodeDetailBinding
-import comprmto.rickyandmorty.presentation.location.adapter.LocationDetailAdapter
 import comprmto.rickyandmorty.presentation.episode.viewModel.EpisodeDetailViewModel
+import comprmto.rickyandmorty.presentation.location.adapter.LocationDetailAdapter
+import comprmto.rickyandmorty.util.CalculateWindowSize
 import comprmto.rickyandmorty.util.ItemClickListener
+import comprmto.rickyandmorty.util.WindowSizeClass
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -22,6 +24,7 @@ class EpisodeDetailFragment : Fragment() {
     private val binding get() = _binding!!
     private val episodeDetailArgs: EpisodeDetailFragmentArgs by navArgs()
     private val viewModel: EpisodeDetailViewModel by viewModels()
+    lateinit var widthWindowClass: WindowSizeClass
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,6 +33,7 @@ class EpisodeDetailFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentEpisodeDetailBinding.inflate(layoutInflater, container, false)
 
+        widthWindowClass = CalculateWindowSize(requireActivity()).calculateCurrentWidthSize()
 
         binding.lifecycleOwner = viewLifecycleOwner
         val episodeId = episodeDetailArgs.episodeId
@@ -40,12 +44,11 @@ class EpisodeDetailFragment : Fragment() {
         prepareAdapter()
 
         binding.imageButton.setOnClickListener {
-           findNavController().popBackStack()
+            findNavController().popBackStack()
         }
 
         return binding.root
     }
-
 
 
     private fun prepareAdapter() {
@@ -57,7 +60,8 @@ class EpisodeDetailFragment : Fragment() {
 
         binding.recyclerView.adapter = adapter
 
-        binding.recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
+        val spanCount = if (widthWindowClass == WindowSizeClass.EXPANDED) 3 else 2
+            binding.recyclerView.layoutManager = GridLayoutManager(requireContext(), spanCount)
 
     }
 

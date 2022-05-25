@@ -10,157 +10,184 @@
             type="comprmto.rickyandmorty.presentation.episode.viewModel.EpisodeDetailViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
+        <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:elevation="16dp"
-            android:minHeight="?attr/actionBarSize"
-            android:theme="?attr/actionBarTheme"
-            app:contentInsetStart="0dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_height="180dp">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <com.google.android.material.appbar.CollapsingToolbarLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginHorizontal="16dp"
-                android:orientation="horizontal">
+                app:layout_scrollFlags="scroll|snap|exitUntilCollapsed"
+                >
 
-                <TextView
-                    android:id="@+id/toolbarText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:maxLength="16"
-                    android:text="@{viewModel.state.episodeDetailInfo.name}"
-                    android:textAppearance="@style/TextAppearance.h6"
-                    android:textColor="@color/basic_black"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/imageButton"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="M. Night Shaym-Aliens!" />
-
-                <ImageButton
-                    android:id="@+id/imageButton"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_gravity="end"
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
                     android:background="@color/white"
-                    android:contentDescription="@string/character_detail_back_btn_desc"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/ic_arrow_back"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/toolbarText"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:tint="@color/indigo"
-                    tools:ignore="TouchTargetSizeCheck" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.appcompat.widget.Toolbar>
+                    android:elevation="16dp"
+                    android:minHeight="?attr/actionBarSize"
+                    android:theme="?attr/actionBarTheme"
+                    app:contentInsetStart="0dp"
+                    app:layout_collapseMode="pin"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
-            android:id="@+id/linearLayout"
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginHorizontal="16dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/toolbarText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:maxLength="16"
+                            android:text="@{viewModel.state.episodeDetailInfo.name}"
+                            android:textAppearance="@style/TextAppearance.h6"
+                            android:textColor="@color/basic_black"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/imageButton"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="M. Night Shaym-Aliens!" />
+
+                        <ImageButton
+                            android:id="@+id/imageButton"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="end"
+                            android:background="@color/white"
+                            android:contentDescription="@string/character_detail_back_btn_desc"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_arrow_back"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@id/toolbarText"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:tint="@color/indigo"
+                            tools:ignore="TouchTargetSizeCheck" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.appcompat.widget.Toolbar>
+
+                <LinearLayout
+                    android:id="@+id/linearLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#F2F2F7"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    app:layout_collapseMode="parallax"
+                    android:paddingTop="70dp"
+                    android:paddingBottom="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+                    <TextView
+                        android:id="@+id/episodeDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{viewModel.state.episodeDetailInfo.air_date}"
+                        android:textAppearance="@style/TextAppearance.caption"
+                        android:textColor="#6E798C"
+                        android:textSize="16sp"
+                        tools:text="January 13, 2014" />
+
+
+                    <TextView
+                        android:id="@+id/episodeName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@{viewModel.state.episodeDetailInfo.name}"
+                        android:textAlignment="center"
+                        android:textAppearance="@style/TextAppearance.h4"
+                        android:textColor="@color/basic_black"
+                        tools:text="M. Night Shaym-Aliens!" />
+
+                    <TextView
+                        android:id="@+id/episode"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{viewModel.state.episodeDetailInfo.episode}"
+                        android:textAppearance="@style/TextAppearance.caption"
+                        android:textColor="#6E798C"
+                        android:textSize="16sp"
+                        tools:text="S01E04" />
+
+                </LinearLayout>
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#F2F2F7"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:paddingTop="16dp"
-            android:paddingBottom="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/toolbar">
-
-            <TextView
-                android:id="@+id/episodeDate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{viewModel.state.episodeDetailInfo.air_date}"
-                android:textAppearance="@style/TextAppearance.caption"
-                android:textColor="#6E798C"
-                android:textSize="16sp"
-                tools:text="January 13, 2014" />
+            android:layout_height="match_parent"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
 
             <TextView
-                android:id="@+id/episodeName"
+                android:id="@+id/textView7"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@{viewModel.state.episodeDetailInfo.name}"
-                android:textAlignment="center"
-                android:textAppearance="@style/TextAppearance.h4"
-                android:textColor="@color/basic_black"
-                tools:text="M. Night Shaym-Aliens!" />
+                android:layout_marginHorizontal="16dp"
+                android:text="@string/characters"
+                android:textAppearance="@style/TextAppearance.h6"
+                android:textColor="@color/gray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/episode"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="8dp"
+                app:bindCharacterList="@{viewModel.state.characterList}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView7"
+                app:layout_constraintVertical_bias="1.0"
+                tools:listitem="@layout/character_item_rcw"
+
+                />
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{viewModel.state.episodeDetailInfo.episode}"
-                android:textAppearance="@style/TextAppearance.caption"
-                android:textColor="#6E798C"
-                android:textSize="16sp"
-                tools:text="S01E04" />
+                app:isLoading="@{viewModel.state.loading}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
-        </LinearLayout>
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.state.error}"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/textView7"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="16dp"
-            android:text="@string/characters"
-            android:textAppearance="@style/TextAppearance.h6"
-            android:textColor="@color/gray"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/linearLayout" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="8dp"
-            app:bindCharacterList="@{viewModel.state.characterList}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView7"
-            app:layout_constraintVertical_bias="1.0"
-            tools:listitem="@layout/character_item_rcw"
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-            />
-
-        <ProgressBar
-            android:id="@+id/progressBar"
-            style="?android:attr/progressBarStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:isLoading="@{viewModel.state.loading}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{viewModel.state.error}"
-            android:textColor="@color/black"
-            android:textSize="24sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

@@ -38,7 +38,7 @@
         <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/layout-w600dp/fragment_episode_detail.xml" value="0.26197916666666665" />
         <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/layout-w600dp/fragment_episode_list.xml" value="0.12" />
         <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/layout-w600dp/fragment_favorite_list.xml" value="0.5130208333333334" />
-        <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/layout-w600dp/fragment_location_detail.xml" value="0.1" />
+        <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/layout-w600dp/fragment_location_detail.xml" value="0.33" />
         <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/layout-w600dp/fragment_location_list.xml" value="0.11614583333333334" />
         <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/layout-w800dp/character_item_rcw.xml" value="0.25859375" />
         <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/layout-w840dp/character_item_rcw.xml" value="0.20277777777777778" />
@@ -57,7 +57,7 @@
         <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/layout/dialog_filter.xml" value="0.33" />
         <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/layout/dialog_view.xml" value="0.33" />
         <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/layout/episode_item_row.xml" value="0.33" />
-        <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/layout/fragment_character_detail.xml" value="0.1" />
+        <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/layout/fragment_character_detail.xml" value="0.21388888888888888" />
         <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/layout/fragment_character_list.xml" value="0.25" />
         <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/layout/fragment_episode_detail.xml" value="0.33" />
         <entry key="..\:/AndroidProjects/Projelerim/Ricky and Morty/app/src/main/res/layout/fragment_episode_list.xml" value="0.22" />

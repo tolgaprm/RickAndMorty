@@ -48,9 +48,6 @@ class CharacterListFragment : Fragment() {
 
         widthWindowClass = CalculateWindowSize(requireActivity()).calculateCurrentWidthSize()
 
-        Timber.d(widthWindowClass.name)
-
-
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
 
