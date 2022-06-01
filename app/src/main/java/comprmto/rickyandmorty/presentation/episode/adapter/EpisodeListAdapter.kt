@@ -1,7 +1,9 @@
 package comprmto.rickyandmorty.presentation.episode.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -10,14 +12,28 @@ import comprmto.rickyandmorty.databinding.EpisodeItemRowBinding
 import comprmto.rickyandmorty.databinding.SeparatorItemViewBinding
 import comprmto.rickyandmorty.domain.model.EpisodeDomain
 import comprmto.rickyandmorty.domain.model.EpisodeListItem
+import comprmto.rickyandmorty.presentation.episode.view.EpisodeListFragmentDirections
 import comprmto.rickyandmorty.util.ItemClickListener
 import timber.log.Timber
 
-class EpisodeListAdapter(val onclickListener: ItemClickListener) :
+class EpisodeListAdapter() :
     PagingDataAdapter<EpisodeListItem, RecyclerView.ViewHolder>(DiffUtilEpisode()) {
 
     class EpisodeViewHolder(val binding: EpisodeItemRowBinding) :
         RecyclerView.ViewHolder(binding.root) {
+
+        init {
+            binding.setClickListener {
+                binding.episode?.id?.let { episodeId ->
+                    navigateToEpisodeDetail(episodeId, it)
+                }
+            }
+        }
+
+        private fun navigateToEpisodeDetail(episodeId: Int, view: View) {
+            val direction = EpisodeListFragmentDirections.actionToEpisodeDetail(episodeId)
+            view.findNavController().navigate(direction)
+        }
 
         companion object {
             fun from(parent: ViewGroup): EpisodeViewHolder {
@@ -82,9 +98,6 @@ class EpisodeListAdapter(val onclickListener: ItemClickListener) :
             when (episodeListItem) {
                 is EpisodeListItem.EpisodeItem -> {
                     (holder as EpisodeViewHolder).bind(episodeListItem.episode)
-                    holder.itemView.setOnClickListener {
-                        onclickListener.onClick(episodeListItem.episode.id)
-                    }
                 }
                 is EpisodeListItem.SeparatorItem -> (holder as SeparatorViewHolder).bind(
                     episodeListItem.season

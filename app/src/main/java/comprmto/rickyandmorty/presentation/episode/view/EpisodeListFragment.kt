@@ -7,15 +7,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import comprmto.rickyandmorty.databinding.FragmentEpisodeListBinding
 import comprmto.rickyandmorty.presentation.episode.adapter.EpisodeListAdapter
 import comprmto.rickyandmorty.presentation.episode.viewModel.EpisodeListViewModel
-import comprmto.rickyandmorty.util.ItemClickListener
 import comprmto.rickyandmorty.util.Util
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -67,19 +64,11 @@ class EpisodeListFragment : Fragment() {
     }
 
     private fun prepareAdapter() {
-        adapter = EpisodeListAdapter(
-            ItemClickListener {
-                navigateToEpisodeDetail(it)
-            }
-        )
+        adapter = EpisodeListAdapter()
         binding.recyclerView.adapter = adapter
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
     }
 
-    private fun navigateToEpisodeDetail(id: Int) {
-        val action = EpisodeListFragmentDirections.actionToEpisodeDetail(id)
-        findNavController().navigate(action)
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
