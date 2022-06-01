@@ -4,6 +4,10 @@
     <data>
 
         <variable
+            name="clickListener"
+            type="android.view.View.OnClickListener" />
+
+        <variable
             name="characterModel"
             type="comprmto.rickyandmorty.domain.CharactersDomain" />
     </data>
@@ -15,6 +19,8 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
+
+        android:onClick="@{clickListener}"
         android:layout_marginBottom="8dp"
         app:cardCornerRadius="8dp"
         app:cardElevation="8dp">
@@ -45,7 +51,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="16dp"
                     app:cardCornerRadius="10dp"
-                    app:statusColor="@{characterModel.status}"/>
+                    app:statusColor="@{characterModel.status}" />
 
                 <TextView
                     android:id="@+id/characterStatus"
@@ -54,8 +60,8 @@
                     android:layout_marginStart="4dp"
                     android:layout_marginTop="12dp"
                     android:text="@{characterModel.status}"
-                    android:textColor="@color/gray"
                     android:textAppearance="@style/TextAppearance.h6"
+                    android:textColor="@color/gray"
                     tools:text="Dead" />
 
 

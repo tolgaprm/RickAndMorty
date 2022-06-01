@@ -7,14 +7,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import comprmto.rickyandmorty.databinding.FragmentLocationListBinding
 import comprmto.rickyandmorty.presentation.location.adapter.LocationListAdapter
 import comprmto.rickyandmorty.presentation.location.viewModel.LocationListViewModel
-import comprmto.rickyandmorty.util.ItemClickListener
 import comprmto.rickyandmorty.util.Util
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -66,19 +63,8 @@ class LocationListFragment : Fragment() {
     }
 
     private fun prepareAdapter() {
-        adapter = LocationListAdapter(
-            ItemClickListener { locationId ->
-                navigateToLocationDetail(locationId)
-            }
-        )
-
-
+        adapter = LocationListAdapter()
         binding.recyclerView.adapter = adapter
-    }
-
-    private fun navigateToLocationDetail(locationId: Int) {
-        val action = LocationListFragmentDirections.actionToLocationDetail(locationId, true)
-        findNavController().navigate(action)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

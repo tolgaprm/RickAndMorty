@@ -98,5 +98,9 @@
         android:id="@+id/favoriteListFragment"
         android:name="comprmto.rickyandmorty.presentation.favorite.view.FavoriteListFragment"
         android:label="FavoriteListFragment"
-        tools:layout="@layout/fragment_favorite_list" />
+        tools:layout="@layout/fragment_favorite_list" >
+        <action
+            android:id="@+id/action_favoriteListFragment_to_characterDetailFragment"
+            app:destination="@id/characterDetailFragment" />
+    </fragment>
 </navigation>

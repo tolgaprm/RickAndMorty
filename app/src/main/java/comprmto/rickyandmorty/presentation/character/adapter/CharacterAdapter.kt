@@ -102,6 +102,11 @@ class CharacterAdapter(
 
         } else {
             holder as FavoriteCharacterAdapter.CharacterViewHolder
+            holder.binding.setClickListener {
+                holder.binding?.characterModel?.id?.let { characterId ->
+                    holder.navigateToCharacterDetail(id = characterId, it, FROMCHARACTERLIST)
+                }
+            }
             holder.bind(characterModel!!)
 
             holder.itemView.animation = AnimationUtils.loadAnimation(
@@ -115,6 +120,7 @@ class CharacterAdapter(
             it == it
         }
     }
+
 }
 
 class DiffUtilCallBack : DiffUtil.ItemCallback<CharactersDomain>() {
@@ -127,3 +133,6 @@ class DiffUtilCallBack : DiffUtil.ItemCallback<CharactersDomain>() {
     }
 
 }
+
+const val FROMCHARACTERLIST = "fromCharacterList"
+const val FROMFAVORITELIST = "fromFavoriteList"

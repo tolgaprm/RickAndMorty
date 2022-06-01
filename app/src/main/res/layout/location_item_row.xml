@@ -5,6 +5,10 @@
     <data>
 
         <variable
+            name="clickListener"
+            type="android.view.View.OnClickListener" />
+
+        <variable
             name="location"
             type="comprmto.rickyandmorty.domain.model.LocationDomain" />
     </data>
@@ -14,6 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
+        android:onClick="@{clickListener}"
         app:cardCornerRadius="8dp"
         app:cardElevation="2dp"
         app:strokeColor="#E5E5EA"

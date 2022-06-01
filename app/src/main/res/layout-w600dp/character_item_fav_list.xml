@@ -6,6 +6,10 @@
     <data>
 
         <variable
+            name="clickListener"
+            type="android.view.View.OnClickListener" />
+
+        <variable
             name="characterModel"
             type="comprmto.rickyandmorty.domain.CharactersDomain" />
     </data>
@@ -13,6 +17,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:onClick="@{clickListener}"
         android:paddingHorizontal="16dp"
         android:paddingVertical="8dp">
 
@@ -28,7 +33,7 @@
                 imageUrl="@{characterModel.image}"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scaleType="centerCrop"/>
+                android:scaleType="centerCrop" />
         </androidx.cardview.widget.CardView>
 
         <TextView
@@ -75,8 +80,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:text="@{characterModel.species}"
-            android:textSize="16sp"
             android:textAppearance="@style/TextAppearance.caption"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@+id/characterGender"
             app:layout_constraintStart_toEndOf="@+id/characterGender"
             app:layout_constraintTop_toTopOf="@+id/characterGender"

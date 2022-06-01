@@ -1,22 +1,36 @@
 package comprmto.rickyandmorty.presentation.location.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import comprmto.rickyandmorty.databinding.LocationItemRowBinding
 import comprmto.rickyandmorty.domain.model.LocationDomain
-import comprmto.rickyandmorty.util.ItemClickListener
+import comprmto.rickyandmorty.presentation.location.view.LocationListFragmentDirections
 
-class LocationListAdapter (
-    private val onClickListener:ItemClickListener
-        ):
+class LocationListAdapter(
+) :
     PagingDataAdapter<LocationDomain, LocationListAdapter.LocationViewHolder>(DiffUtilLocation()) {
 
 
     class LocationViewHolder(val binding: LocationItemRowBinding) :
         RecyclerView.ViewHolder(binding.root) {
+
+        init {
+            binding.setClickListener {
+                binding.location?.id?.let { locationId ->
+                    navigateToLocationDetail(locationId, it)
+                }
+            }
+        }
+
+        private fun navigateToLocationDetail(locationId: Int, view: View) {
+            val direction = LocationListFragmentDirections.actionToLocationDetail(locationId, true)
+            view.findNavController().navigate(direction)
+        }
 
         companion object {
             fun from(parent: ViewGroup): LocationViewHolder {
@@ -42,9 +56,6 @@ class LocationListAdapter (
 
         holder.bind(location!!)
 
-        holder.itemView.setOnClickListener {
-            onClickListener.onClick(location.id)
-        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LocationViewHolder {
