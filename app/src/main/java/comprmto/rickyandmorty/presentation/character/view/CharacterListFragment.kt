@@ -77,7 +77,6 @@ class CharacterListFragment : Fragment() {
             }
         }
 
-
         binding.imgListType.apply {
             this.setOnClickListener {
                 viewModel.setLayoutManager()
@@ -88,6 +87,7 @@ class CharacterListFragment : Fragment() {
 
 
         }
+
         return binding.root
     }
 
@@ -124,13 +124,6 @@ class CharacterListFragment : Fragment() {
 
     private fun prepareCharacterAdapter() {
         characterAdapter = CharacterAdapter(
-            ItemClickListener {
-                val action =
-                    CharacterListFragmentDirections.actionCharacterListFragmentToCharacterDetailFragment(
-                        it
-                    )
-                findNavController().navigate(action)
-            },
             ItemLongClickListener {
                 showAlertDialog(it)
             }

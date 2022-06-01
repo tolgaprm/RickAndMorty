@@ -1,17 +1,19 @@
 package comprmto.rickyandmorty.presentation.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
+import androidx.navigation.findNavController
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import comprmto.rickyandmorty.R
 import comprmto.rickyandmorty.databinding.CharacterItemRcwBinding
 import comprmto.rickyandmorty.domain.CharactersDomain
+import comprmto.rickyandmorty.presentation.character.view.CharacterListFragmentDirections
 import comprmto.rickyandmorty.presentation.character.viewmodel.states.ListType
 import comprmto.rickyandmorty.presentation.favorite.adapter.FavoriteCharacterAdapter
-import comprmto.rickyandmorty.util.ItemClickListener
 import comprmto.rickyandmorty.util.ItemLongClickListener
 
 
@@ -19,7 +21,6 @@ const val GRID_LAYOUT = 0
 const val LINEARLAYOUT = 1
 
 class CharacterAdapter(
-    private val onClickListener: ItemClickListener,
     private val onLongClickListener: ItemLongClickListener,
     private var listType: ListType = ListType.GridLayout
 ) :
@@ -32,6 +33,23 @@ class CharacterAdapter(
 
     class CharacterViewHolder(val binding: CharacterItemRcwBinding) :
         RecyclerView.ViewHolder(binding.root) {
+
+        init {
+            binding.setClickListener {
+                binding.characterModel?.id?.let { id ->
+                    navigateToCharacterDetail(id, it)
+                }
+            }
+
+        }
+
+        private fun navigateToCharacterDetail(id: Int, view: View) {
+            val direction =
+                CharacterListFragmentDirections.actionCharacterListFragmentToCharacterDetailFragment(
+                    id
+                )
+            view.findNavController().navigate(direction)
+        }
 
         companion object {
             fun from(parent: ViewGroup): CharacterViewHolder {
@@ -90,10 +108,6 @@ class CharacterAdapter(
                 holder.itemView.context,
                 R.anim.up_anim
             )
-        }
-
-        holder.itemView.setOnClickListener {
-            onClickListener.onClick(characterModel.id)
         }
 
         holder.itemView.setOnLongClickListener {

@@ -105,7 +105,6 @@
             android:layout_marginHorizontal="16dp"
             android:contentDescription="@string/list_type"
             android:padding="8dp"
-
             android:src="@drawable/grid_list"
             app:layout_constraintBottom_toBottomOf="@+id/txtListType"
             app:layout_constraintEnd_toEndOf="parent"
