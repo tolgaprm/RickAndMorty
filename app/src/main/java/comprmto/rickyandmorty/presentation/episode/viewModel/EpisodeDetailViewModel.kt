@@ -26,48 +26,51 @@ class EpisodeDetailViewModel @Inject constructor(
 
     fun getEpisodeDetail() {
 
-        try {
-            _state.value = _state.value.copy(
-                isLoading = true,
-                error = ""
-            )
-            viewModelScope.launch {
+        if (_state.value.characterList==null){
+            try {
+                _state.value = _state.value.copy(
+                    isLoading = true,
+                    error = ""
+                )
+                viewModelScope.launch {
 
-                val response = repository.getEpisodeById(getEpisodeId()).toEpisodeByIdDetail()
+                    val response = repository.getEpisodeById(getEpisodeId()).toEpisodeByIdDetail()
 
-                _state.value = _state.value.copy(episodeDetailInfo = response)
+                    _state.value = _state.value.copy(episodeDetailInfo = response)
 
-                Timber.d(response.episode)
+                    Timber.d(response.episode)
 
-                val characterList = mutableListOf<CharactersDomain>()
-                response.characters.forEach { characterUrl ->
-                    val characterId = (characterUrl.split("/"))[5].toInt()
+                    val characterList = mutableListOf<CharactersDomain>()
+                    response.characters.forEach { characterUrl ->
+                        val characterId = (characterUrl.split("/"))[5].toInt()
 
-                    val character =
-                        repository.getCharacterDetailById(characterId).toCharactersDomain()
+                        val character =
+                            repository.getCharacterDetailById(characterId).toCharactersDomain()
 
-                    Timber.d(character.name)
-                    characterList.add(character)
+                        Timber.d(character.name)
+                        characterList.add(character)
+
+                    }
+
+                    _state.value = _state.value.copy(
+                        characterList = characterList
+                    )
+                    _state.value = _state.value.copy(
+                        isLoading = false
+                    )
+
 
                 }
 
+            } catch (e: Exception) {
+                _state.value = _state.value.copy(error = "An expected error occured")
+            } catch (e: HttpException) {
                 _state.value = _state.value.copy(
-                    characterList = characterList
+                    error = "Please check your internet connection"
                 )
-                _state.value = _state.value.copy(
-                    isLoading = false
-                )
-
-
             }
-
-        } catch (e: Exception) {
-            _state.value = _state.value.copy(error = "An expected error occured")
-        } catch (e: HttpException) {
-            _state.value = _state.value.copy(
-                error = "Please check your internet connection"
-            )
         }
+
 
     }
 

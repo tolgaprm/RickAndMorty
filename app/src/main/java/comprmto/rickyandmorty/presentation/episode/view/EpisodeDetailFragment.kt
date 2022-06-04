@@ -38,7 +38,9 @@ class EpisodeDetailFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
         val episodeId = episodeDetailArgs.episodeId
         viewModel.setEpisodeId(episodeId)
+
         viewModel.getEpisodeDetail()
+
         binding.viewModel = viewModel
 
         prepareAdapter()
@@ -61,7 +63,7 @@ class EpisodeDetailFragment : Fragment() {
         binding.recyclerView.adapter = adapter
 
         val spanCount = if (widthWindowClass == WindowSizeClass.EXPANDED) 3 else 2
-            binding.recyclerView.layoutManager = GridLayoutManager(requireContext(), spanCount)
+        binding.recyclerView.layoutManager = GridLayoutManager(requireContext(), spanCount)
 
     }
 

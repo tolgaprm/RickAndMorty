@@ -28,46 +28,50 @@ class LocationDetailViewModel @Inject constructor(
     }
 
     fun getLocationInfo() {
-        try {
-            _state.value = _state.value.copy(
-                isLoading = true
-            )
-            viewModelScope.launch {
 
-                val data = repository.getLocationDetailById(getLocationId()).toLocationByIdDomain()
-
+        if (_state.value.characterList==null){
+            try {
                 _state.value = _state.value.copy(
-                    locationInfo = data
+                    isLoading = true
                 )
+                viewModelScope.launch {
+
+                    val data = repository.getLocationDetailById(getLocationId()).toLocationByIdDomain()
+
+                    _state.value = _state.value.copy(
+                        locationInfo = data
+                    )
 
 
-                val characterList = mutableListOf<CharactersDomain>()
-                data.residents.forEach {
-                    val characterID = (it.split("/"))[5].toInt()
-                    val characters = repository.getCharacterDetailById(characterID)
+                    val characterList = mutableListOf<CharactersDomain>()
+                    data.residents.forEach {
+                        val characterID = (it.split("/"))[5].toInt()
+                        val characters = repository.getCharacterDetailById(characterID)
 
-                    characterList.add(characters.toCharactersDomain())
+                        characterList.add(characters.toCharactersDomain())
+                    }
+                    _state.value = _state.value.copy(
+                        isLoading = false
+                    )
+
+                    _state.value = _state.value.copy(
+                        characterList = characterList
+                    )
+
+
                 }
+
+            }catch (e:Exception){
                 _state.value = _state.value.copy(
-                    isLoading = false
+                    error = "An unexpected error occured"
                 )
-
+            }catch (e:HttpException){
                 _state.value = _state.value.copy(
-                    characterList = characterList
+                    error = "Please check your internet connection"
                 )
-
-
             }
-
-        }catch (e:Exception){
-            _state.value = _state.value.copy(
-                error = "An unexpected error occured"
-            )
-        }catch (e:HttpException){
-            _state.value = _state.value.copy(
-                error = "Please check your internet connection"
-            )
         }
+
 
 
 
