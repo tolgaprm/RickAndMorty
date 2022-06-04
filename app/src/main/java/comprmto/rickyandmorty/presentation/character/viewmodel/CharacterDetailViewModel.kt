@@ -38,6 +38,7 @@ class CharacterDetailViewModel @Inject constructor(
 
 
             episodeList.let {
+                _state.value = _state.value.copy(isLoadingEpisodeInfo = true)
                 episodeList.forEachIndexed { index, episodeUrl ->
 
                     val episodeId = (episodeUrl.split("/"))[5]
@@ -50,7 +51,8 @@ class CharacterDetailViewModel @Inject constructor(
                 }
 
                 _state.value = _state.value.copy(
-                    episodeList = list
+                    episodeList = list,
+                    isLoadingEpisodeInfo = false
                 )
             }
 
