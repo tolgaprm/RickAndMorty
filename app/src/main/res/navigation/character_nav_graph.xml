@@ -12,7 +12,11 @@
         tools:layout="@layout/fragment_character_list">
         <action
             android:id="@+id/action_characterListFragment_to_characterDetailFragment"
-            app:destination="@id/characterDetailFragment" />
+            app:destination="@id/characterDetailFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_characterListFragment_to_filterDialog"
             app:destination="@id/filterDialog" />
@@ -27,7 +31,11 @@
             app:argType="integer" />
         <action
             android:id="@+id/actionToLocationDetail"
-            app:destination="@id/locationDetailFragment" />
+            app:destination="@id/locationDetailFragment"
+            app:enterAnim="@anim/slide_in_bottom"
+            app:exitAnim="@anim/slide_out_top"
+            app:popEnterAnim="@anim/slide_in_top"
+            app:popExitAnim="@anim/slide_out_bottom" />
 
 
     </fragment>
@@ -51,7 +59,11 @@
         <action
             android:id="@+id/actionToCharacterDetail"
             app:destination="@id/characterDetailFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
             app:launchSingleTop="false"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
             app:popUpToInclusive="false" />
         <argument
             android:name="characterID"
@@ -71,7 +83,11 @@
         tools:layout="@layout/fragment_location_list">
         <action
             android:id="@+id/actionToLocationDetail"
-            app:destination="@id/locationDetailFragment" />
+            app:destination="@id/locationDetailFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/episodeListFragment"
@@ -80,7 +96,11 @@
         tools:layout="@layout/fragment_episode_list">
         <action
             android:id="@+id/actionToEpisodeDetail"
-            app:destination="@id/episodeDetailFragment" />
+            app:destination="@id/episodeDetailFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/episodeDetailFragment"
@@ -92,15 +112,23 @@
             app:argType="integer" />
         <action
             android:id="@+id/actionToCharacterDetailFragment"
-            app:destination="@id/characterDetailFragment" />
+            app:destination="@id/characterDetailFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/favoriteListFragment"
         android:name="comprmto.rickyandmorty.presentation.favorite.view.FavoriteListFragment"
         android:label="FavoriteListFragment"
-        tools:layout="@layout/fragment_favorite_list" >
+        tools:layout="@layout/fragment_favorite_list">
         <action
             android:id="@+id/action_favoriteListFragment_to_characterDetailFragment"
-            app:destination="@id/characterDetailFragment" />
+            app:destination="@id/characterDetailFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
 </navigation>

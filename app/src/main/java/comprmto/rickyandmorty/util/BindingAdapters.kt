@@ -1,7 +1,6 @@
 package comprmto.rickyandmorty.util
 
 import android.graphics.Color
-import android.graphics.drawable.Drawable
 import android.view.View
 import android.widget.ImageView
 import android.widget.ProgressBar
@@ -10,11 +9,9 @@ import androidx.cardview.widget.CardView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import com.google.android.material.card.MaterialCardView
 import comprmto.rickyandmorty.R
 import comprmto.rickyandmorty.domain.CharactersDomain
 import comprmto.rickyandmorty.domain.model.EpisodeDomain
-import comprmto.rickyandmorty.presentation.character.viewmodel.states.ListType
 import comprmto.rickyandmorty.presentation.episode.adapter.EpisodeAdapter
 import comprmto.rickyandmorty.presentation.location.adapter.LocationDetailAdapter
 
@@ -41,9 +38,9 @@ fun bindEpisodeList(recyclerView: RecyclerView, episodeList: List<EpisodeDomain>
     }
 }
 
-@BindingAdapter("isFilter")
-fun isFilter(cardView: CardView, isFilter: Boolean) {
-    cardView.visibility = if (isFilter) View.VISIBLE else View.GONE
+@BindingAdapter("isVisible")
+fun isFilter(view: View, isFilter: Boolean) {
+    view.visibility = if (isFilter) View.VISIBLE else View.GONE
 }
 
 @BindingAdapter("isFilter")

@@ -45,7 +45,7 @@
                     android:visibility="gone"
                     app:cardBackgroundColor="@color/indigo"
                     app:cardCornerRadius="13dp"
-                    app:isFilter="@{viewModel.state.filter}"
+                    app:isVisible="@{viewModel.state.filter}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@+id/imageButton"
                     app:layout_constraintTop_toTopOf="@+id/imageButton"
