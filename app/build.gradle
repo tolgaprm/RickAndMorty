@@ -91,7 +91,7 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 
     // Lottie
-    def lottieVersion="4.2.2"
+    def lottieVersion = "4.2.2"
     implementation "com.airbnb.android:lottie:$lottieVersion"
 
     // Room
@@ -103,6 +103,8 @@ dependencies {
 
     // window Manager
     implementation "androidx.window:window:1.1.0-alpha02"
+
+    implementation "com.github.xabaras:RecyclerViewSwipeDecorator:1.3"
 
 
 }

@@ -47,4 +47,10 @@ class FavoriteViewModel @Inject constructor(
         return repository.getAllFavoriteCharacters()
     }
 
+    fun deleteCharacter(charactersDomain: CharactersDomain) {
+        viewModelScope.launch {
+            repository.deleteCharacterFromMyFavoriteList(charactersDomain)
+        }
+    }
+
 }

@@ -11,7 +11,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
-import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -23,11 +22,13 @@ import comprmto.rickyandmorty.domain.CharactersDomain
 import comprmto.rickyandmorty.presentation.adapter.CharacterAdapter
 import comprmto.rickyandmorty.presentation.character.viewmodel.CharacterViewModel
 import comprmto.rickyandmorty.presentation.character.viewmodel.states.ListType
-import comprmto.rickyandmorty.util.*
+import comprmto.rickyandmorty.util.CalculateWindowSize
+import comprmto.rickyandmorty.util.ItemLongClickListener
+import comprmto.rickyandmorty.util.Util
+import comprmto.rickyandmorty.util.WindowSizeClass
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import timber.log.Timber
 
 @AndroidEntryPoint
 class CharacterListFragment : Fragment() {
@@ -36,8 +37,6 @@ class CharacterListFragment : Fragment() {
     lateinit var viewModel: CharacterViewModel
     private lateinit var characterAdapter: CharacterAdapter
     lateinit var widthWindowClass: WindowSizeClass
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -132,6 +131,7 @@ class CharacterListFragment : Fragment() {
         characterAdapter.stateRestorationPolicy =
             RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
         binding.characterList.adapter = characterAdapter
+
     }
 
     private fun showAlertDialog(charactersDomain: CharactersDomain) {
