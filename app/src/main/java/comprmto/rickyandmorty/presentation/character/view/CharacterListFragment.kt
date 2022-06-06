@@ -153,7 +153,7 @@ class CharacterListFragment : Fragment() {
         dialogView.btnYes.setOnClickListener {
 
             if (isHasAddedCharacter) {
-                viewModel.deleteCharacterFromMyFavoriteList(charactersDomain.id)
+                viewModel.deleteCharacterFromMyFavoriteList(charactersDomain)
                 alertDialog.cancel()
 
             } else {

@@ -86,8 +86,8 @@ class RickAndMortyImpl @Inject constructor(
         dao.insertFavoriteCharacter(character = character)
     }
 
-    override suspend fun deleteCharacterFromMyFavoriteList(characterId: Int) {
-        dao.deleteFavoriteCharacter(characterId)
+    override suspend fun deleteCharacterFromMyFavoriteList(character: CharactersDomain) {
+        dao.deleteFavoriteCharacter(character)
     }
 
 

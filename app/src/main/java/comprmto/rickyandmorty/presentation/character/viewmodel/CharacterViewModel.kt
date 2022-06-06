@@ -1,7 +1,6 @@
 package comprmto.rickyandmorty.presentation.character.viewmodel
 
 import android.app.Application
-import android.widget.RadioGroup
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
@@ -17,7 +16,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
@@ -124,10 +122,10 @@ class CharacterViewModel @Inject constructor(
 
     }
 
-    fun deleteCharacterFromMyFavoriteList(characterId: Int) {
+    fun deleteCharacterFromMyFavoriteList(character: CharactersDomain) {
         viewModelScope.launch {
             try {
-                repository.deleteCharacterFromMyFavoriteList(characterId)
+                repository.deleteCharacterFromMyFavoriteList(character)
                 updateToastMessage(app.getString(R.string.toast_message_success))
             } catch (e: Exception) {
                 updateToastMessage(app.getString(R.string.toast_message_error))

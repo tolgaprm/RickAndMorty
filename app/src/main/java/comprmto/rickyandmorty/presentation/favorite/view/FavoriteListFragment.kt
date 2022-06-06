@@ -12,7 +12,6 @@ import comprmto.rickyandmorty.databinding.FragmentFavoriteListBinding
 import comprmto.rickyandmorty.presentation.favorite.adapter.FavoriteCharacterAdapter
 import comprmto.rickyandmorty.presentation.favorite.viewModel.FavoriteViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint

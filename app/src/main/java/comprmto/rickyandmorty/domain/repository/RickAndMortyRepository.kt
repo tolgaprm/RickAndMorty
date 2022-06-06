@@ -35,5 +35,5 @@ interface RickAndMortyRepository {
 
     suspend fun insertMyFavoriteList(character: CharactersDomain)
 
-    suspend fun deleteCharacterFromMyFavoriteList(characterId: Int)
+    suspend fun deleteCharacterFromMyFavoriteList(character: CharactersDomain)
 }
