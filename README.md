@@ -27,6 +27,21 @@ Rick and Morty demonstrates modern Android development with Hilt, Coroutines, Fl
 # Demo
 ![Demo1](https://media.giphy.com/media/OPvdbIZIkFypU9IHMn/giphy.gif)
 
+# Large Screen Support
+
+### Phone
+
+<img src="ScreenImages/phone.png" width="200" >
+
+### Foldelable - Unfolded
+
+<img src="ScreenImages/Unfolded_Foldable.png" width="442" height="552" >
+
+### Tablet
+
+<img src="ScreenImages/tablet.png" width="800" >
+
+
 # MAD Score
 ![summary](https://user-images.githubusercontent.com/53945332/162614771-97e82be4-6794-46dc-87a2-b8dc6594f6ac.png)
 
