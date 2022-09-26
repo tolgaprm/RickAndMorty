@@ -2,6 +2,10 @@
 # Rick And Morty
 Rick and Morty demonstrates modern Android development with Hilt, Coroutines, Flow on MVVM architecture.
 
+# Rick And Morty Compose Version
+### [Version of this app made with Jetpack Compose ](https://github.com/tolgaprm/RickAndMortyCompose)
+
+
 
 
 
