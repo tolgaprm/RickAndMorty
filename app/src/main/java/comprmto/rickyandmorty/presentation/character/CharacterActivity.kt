@@ -2,6 +2,7 @@ package comprmto.rickyandmorty.presentation.character
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.navigation.NavDestination
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
@@ -32,6 +33,18 @@ class CharacterActivity : AppCompatActivity() {
         val navController = navHostFragment.navController
 
         binding.bottomNavigationBar?.setupWithNavController(navController)
+
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            val isVisibleBottomBar = when (destination.id) {
+                R.id.locationDetailFragment -> false
+                R.id.episodeDetailFragment -> false
+                R.id.characterDetailFragment -> false
+
+                else -> true
+            }
+
+            binding.bottomNavigationBar?.isVisible = isVisibleBottomBar
+        }
 
         binding.navigationRail?.apply {
             setupWithNavController(navController)
