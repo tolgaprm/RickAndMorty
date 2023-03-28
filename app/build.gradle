@@ -61,9 +61,11 @@ dependencies {
     implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
 
     // coroutines for getting off the UI thread
-    def coroutines = "1.5.2"
+    def coroutines = "1.6.4"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1"
+
 
     // retrofit for networking
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'

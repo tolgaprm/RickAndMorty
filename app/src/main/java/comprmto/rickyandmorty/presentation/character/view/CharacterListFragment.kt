@@ -8,8 +8,10 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.Navigation
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.GridLayoutManager
@@ -39,7 +41,7 @@ class CharacterListFragment : Fragment() {
     lateinit var widthWindowClass: WindowSizeClass
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         // Inflate the layout for this fragment
         binding = FragmentCharacterListBinding.inflate(layoutInflater, container, false)
@@ -61,18 +63,20 @@ class CharacterListFragment : Fragment() {
             characterAdapter.retry()
         }
 
-        lifecycleScope.launch {
-            characterAdapter.loadStateFlow.collect {
-                val isListEmpty =
-                    it.refresh is LoadState.Error && characterAdapter.itemCount == 0
-                Util.loadingState(
-                    it,
-                    binding.lottieAnimationView,
-                    binding.refreshBtn,
-                    isListEmpty,
-                    binding.filterErrorMessage,
-                    viewModel.checkIfTheFilterHasBeenApplied()
-                )
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(state = Lifecycle.State.STARTED){
+                characterAdapter.loadStateFlow.collect {
+                    val isListEmpty =
+                        it.refresh is LoadState.Error && characterAdapter.itemCount == 0
+                    Util.loadingState(
+                        it,
+                        binding.lottieAnimationView,
+                        binding.refreshBtn,
+                        isListEmpty,
+                        binding.filterErrorMessage,
+                        viewModel.checkIfTheFilterHasBeenApplied()
+                    )
+                }
             }
         }
 
@@ -184,7 +188,7 @@ class CharacterListFragment : Fragment() {
     private fun setDialogText(
         isHasAddedCharacter: Boolean,
         dialogView: DialogViewBinding,
-        charactersDomain: CharactersDomain
+        charactersDomain: CharactersDomain,
     ) {
         if (isHasAddedCharacter) {
             dialogView.txtHeader.text = getString(R.string.dialog_header_remove_favorite)

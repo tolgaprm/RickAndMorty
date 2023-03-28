@@ -20,7 +20,6 @@ class CharacterDetailFragment : Fragment() {
 
     private var _binding: FragmentCharacterDetailBinding? = null
     private val binding get() = _binding!!
-    private val characterArgument: CharacterDetailFragmentArgs by navArgs()
     private lateinit var viewModel: CharacterDetailViewModel
     private val adapter: EpisodeAdapter by lazy { EpisodeAdapter() }
 
@@ -37,11 +36,6 @@ class CharacterDetailFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
 
-        val characterID = characterArgument.characterID
-
-        viewModel.setCharacterId(characterID)
-        viewModel.getCharacterInvoke()
-
         binding.recyclerViewEpisode.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerViewEpisode.adapter = adapter
 
@@ -57,20 +51,15 @@ class CharacterDetailFragment : Fragment() {
                     navigateToLocationDetail(viewModel.getNavigationLocationID()!!)
                     viewModel.displayDetailComplete()
                 }
-
-
             }
-
         }
 
         binding.imageButton.setOnClickListener {
             findNavController().popBackStack()
         }
 
-
         return binding.root
     }
-
 
     private fun navigateToLocationDetail(locationID: Int) {
         val action =
@@ -78,20 +67,11 @@ class CharacterDetailFragment : Fragment() {
                 locationID,
                 false
             )
-        action.characterID = viewModel.getCharacterIDFromFragmentList()
-
         findNavController().navigate(action)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
-
-
 }
