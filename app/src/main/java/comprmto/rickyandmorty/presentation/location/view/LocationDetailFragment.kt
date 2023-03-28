@@ -24,7 +24,7 @@ import kotlinx.coroutines.launch
 class LocationDetailFragment : Fragment() {
 
     private var _binding: FragmentLocationDetailBinding? = null
-    lateinit var binding:FragmentLocationDetailBinding
+    lateinit var binding: FragmentLocationDetailBinding
     private val locationArgs: LocationDetailFragmentArgs by navArgs()
     private val viewModel: LocationDetailViewModel by viewModels()
     private lateinit var adapter: LocationDetailAdapter
@@ -32,22 +32,16 @@ class LocationDetailFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         _binding = FragmentLocationDetailBinding.inflate(inflater, container, false)
         binding = _binding!!
 
         widthWindowClass = CalculateWindowSize(requireActivity()).calculateCurrentWidthSize()
 
-        val locationID = locationArgs.locationId
         val isFromNavigateLocationList = locationArgs.isFromLocationList
-        viewModel.setLocationID(locationID)
-        viewModel.getLocationInfo()
 
-
-        prepareAdapter(locationID)
-
-
+        prepareAdapter()
 
         lifecycleScope.launch {
             viewModel.state.collectLatest {
@@ -56,7 +50,6 @@ class LocationDetailFragment : Fragment() {
         }
 
         binding.imageButton.setOnClickListener {
-
             if (isFromNavigateLocationList) {
                 navigateToLocationList()
             } else {
@@ -64,7 +57,6 @@ class LocationDetailFragment : Fragment() {
             }
 
         }
-
         return binding.root
     }
 
@@ -75,16 +67,7 @@ class LocationDetailFragment : Fragment() {
         findNavController().navigate(action)
     }
 
-    private fun navigateToCharacterDetail() {
-        val action =
-            LocationDetailFragmentDirections.actionToCharacterDetail(
-                locationArgs.characterID
-            )
-
-        findNavController().navigate(action)
-    }
-
-    private fun prepareAdapter(locationID: Int) {
+    private fun prepareAdapter() {
         adapter = LocationDetailAdapter(
             ItemClickListener { characterId ->
                 val action =
@@ -103,7 +86,6 @@ class LocationDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()

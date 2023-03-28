@@ -23,7 +23,7 @@ import javax.inject.Inject
 @HiltViewModel
 class CharacterViewModel @Inject constructor(
     private val repository: RickAndMortyRepository,
-    private val app: Application
+    private val app: Application,
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(CharacterActivityState())
@@ -44,11 +44,9 @@ class CharacterViewModel @Inject constructor(
         _state.value.favoriteCharacter.forEach {
             Timber.d(it.name)
         }
-
-
     }
 
-    suspend fun getListData(): Flow<PagingData<CharactersDomain>> {
+    fun getListData(): Flow<PagingData<CharactersDomain>> {
 
         var characterName = _state.value.queryCharacterName.value
 
@@ -57,7 +55,6 @@ class CharacterViewModel @Inject constructor(
         }
 
         val list = _state.value.favoriteCharacter
-
 
         return repository.getAllCharacters(
             status = _state.value.statusState,

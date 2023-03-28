@@ -8,10 +8,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.Navigation
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.GridLayoutManager
@@ -64,7 +62,6 @@ class CharacterListFragment : Fragment() {
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
-            repeatOnLifecycle(state = Lifecycle.State.STARTED){
                 characterAdapter.loadStateFlow.collect {
                     val isListEmpty =
                         it.refresh is LoadState.Error && characterAdapter.itemCount == 0
@@ -77,7 +74,6 @@ class CharacterListFragment : Fragment() {
                         viewModel.checkIfTheFilterHasBeenApplied()
                     )
                 }
-            }
         }
 
         binding.imgListType.apply {

@@ -22,14 +22,14 @@ import javax.inject.Inject
 
 class RickAndMortyImpl @Inject constructor(
     val api: RickyAndMortyApi,
-    private val dao: RickAndMortyDao
+    private val dao: RickAndMortyDao,
 ) : RickAndMortyRepository {
 
 
-    override suspend fun getAllCharacters(
+    override fun getAllCharacters(
         status: StatusState,
         gender: GenderState,
-        name: String
+        name: String,
     ): Flow<PagingData<CharacterData>> {
         return Pager(
             config = PagingConfig(pageSize = 25),
@@ -50,7 +50,7 @@ class RickAndMortyImpl @Inject constructor(
         return api.getCharacter(characterId)
     }
 
-    override suspend fun getAllLocation(): Flow<PagingData<LocationDomain>> {
+    override fun getAllLocation(): Flow<PagingData<LocationDomain>> {
         return Pager(
             config = PagingConfig(
                 pageSize = 25
@@ -65,7 +65,7 @@ class RickAndMortyImpl @Inject constructor(
         return api.getLocation(locationId)
     }
 
-    override suspend fun getAllEpisode(): Flow<PagingData<EpisodeDomain>> {
+    override fun getAllEpisode(): Flow<PagingData<EpisodeDomain>> {
         return Pager(
             config = PagingConfig(pageSize = 25),
             pagingSourceFactory = {
@@ -78,7 +78,7 @@ class RickAndMortyImpl @Inject constructor(
         return api.getEpisodeById(episodeId)
     }
 
-    override suspend fun getAllFavoriteCharacters(): Flow<List<CharactersDomain>> {
+    override fun getAllFavoriteCharacters(): Flow<List<CharactersDomain>> {
         return dao.getAllFavoriteCharacters()
     }
 
@@ -89,6 +89,4 @@ class RickAndMortyImpl @Inject constructor(
     override suspend fun deleteCharacterFromMyFavoriteList(character: CharactersDomain) {
         dao.deleteFavoriteCharacter(character)
     }
-
-
 }

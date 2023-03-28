@@ -16,12 +16,11 @@ import javax.inject.Inject
 
 @HiltViewModel
 class EpisodeListViewModel @Inject constructor(
-    val repository: RickAndMortyRepository
+    val repository: RickAndMortyRepository,
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(EpisodeListState())
     val state: StateFlow<EpisodeListState> get() = _state
-
 
     init {
         viewModelScope.launch {
@@ -33,7 +32,7 @@ class EpisodeListViewModel @Inject constructor(
         }
     }
 
-    suspend fun getEpisodeList(): Flow<PagingData<EpisodeListItem>> {
+    fun getEpisodeList(): Flow<PagingData<EpisodeListItem>> {
         return repository.getAllEpisode()
             .map { pagingData -> pagingData.map { EpisodeListItem.EpisodeItem(it) } }
             .map {
@@ -54,7 +53,6 @@ class EpisodeListViewModel @Inject constructor(
                     } else {
                         null
                     }
-
                 }
             }
     }

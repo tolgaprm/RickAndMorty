@@ -37,9 +37,6 @@ class EpisodeDetailFragment : Fragment() {
 
         binding.lifecycleOwner = viewLifecycleOwner
         val episodeId = episodeDetailArgs.episodeId
-        viewModel.setEpisodeId(episodeId)
-
-        viewModel.getEpisodeDetail()
 
         binding.viewModel = viewModel
 
@@ -59,12 +56,9 @@ class EpisodeDetailFragment : Fragment() {
                 navigateToCharacterDetail(characterId)
             }
         )
-
         binding.recyclerView.adapter = adapter
-
         val spanCount = if (widthWindowClass == WindowSizeClass.EXPANDED) 3 else 2
         binding.recyclerView.layoutManager = GridLayoutManager(requireContext(), spanCount)
-
     }
 
     private fun navigateToCharacterDetail(characterId: Int) {

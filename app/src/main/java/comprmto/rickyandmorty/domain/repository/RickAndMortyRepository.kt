@@ -14,24 +14,24 @@ import retrofit2.http.Path
 
 interface RickAndMortyRepository {
 
-    suspend fun getAllCharacters(
+    fun getAllCharacters(
         status: StatusState = StatusState.NONE,
         gender: GenderState = GenderState.NONE,
-        name: String = ""
+        name: String = "",
     ): Flow<PagingData<CharacterData>>
 
 
     suspend fun getCharacterDetailById(characterId: Int): CharacterData
 
-    suspend fun getAllLocation(): Flow<PagingData<LocationDomain>>
+    fun getAllLocation(): Flow<PagingData<LocationDomain>>
 
     suspend fun getLocationDetailById(locationId: Int): LocationResults
 
-    suspend fun getAllEpisode(): Flow<PagingData<EpisodeDomain>>
+    fun getAllEpisode(): Flow<PagingData<EpisodeDomain>>
 
     suspend fun getEpisodeById(@Path("id") episodeId: Int): EpisodeResult
 
-    suspend fun getAllFavoriteCharacters(): Flow<List<CharactersDomain>>
+    fun getAllFavoriteCharacters(): Flow<List<CharactersDomain>>
 
     suspend fun insertMyFavoriteList(character: CharactersDomain)
 

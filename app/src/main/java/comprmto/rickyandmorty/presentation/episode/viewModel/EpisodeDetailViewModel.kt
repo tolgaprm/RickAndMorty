@@ -1,5 +1,6 @@
 package comprmto.rickyandmorty.presentation.episode.viewModel
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import comprmto.rickyandmorty.data.remote.dto.character.toCharactersDomain
@@ -8,6 +9,7 @@ import comprmto.rickyandmorty.domain.CharactersDomain
 import comprmto.rickyandmorty.domain.repository.RickAndMortyRepository
 import comprmto.rickyandmorty.presentation.episode.state.EpisodeDetailState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -17,16 +19,22 @@ import javax.inject.Inject
 
 @HiltViewModel
 class EpisodeDetailViewModel @Inject constructor(
-    private val repository: RickAndMortyRepository
+    private val repository: RickAndMortyRepository,
+    private val savedStateHandle: SavedStateHandle,
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(EpisodeDetailState())
     val state: StateFlow<EpisodeDetailState> get() = _state
 
+    init {
+        savedStateHandle.get<Int>("episodeId")?.let {
+            getEpisodeDetail(it)
+        }
+    }
 
-    fun getEpisodeDetail() {
+    fun getEpisodeDetail(episodeId: Int) {
 
-        if (_state.value.characterList==null){
+        if (_state.value.characterList == null) {
             try {
                 _state.value = _state.value.copy(
                     isLoading = true,
@@ -34,7 +42,7 @@ class EpisodeDetailViewModel @Inject constructor(
                 )
                 viewModelScope.launch {
 
-                    val response = repository.getEpisodeById(getEpisodeId()).toEpisodeByIdDetail()
+                    val response = repository.getEpisodeById(episodeId).toEpisodeByIdDetail()
 
                     _state.value = _state.value.copy(episodeDetailInfo = response)
 
@@ -42,14 +50,13 @@ class EpisodeDetailViewModel @Inject constructor(
 
                     val characterList = mutableListOf<CharactersDomain>()
                     response.characters.forEach { characterUrl ->
-                        val characterId = (characterUrl.split("/"))[5].toInt()
-
-                        val character =
-                            repository.getCharacterDetailById(characterId).toCharactersDomain()
-
-                        Timber.d(character.name)
-                        characterList.add(character)
-
+                        val characterDeferred = async {
+                            val characterId = (characterUrl.split("/"))[5].toInt()
+                            val character =
+                                repository.getCharacterDetailById(characterId).toCharactersDomain()
+                            character
+                        }
+                        characterList.add(characterDeferred.await())
                     }
 
                     _state.value = _state.value.copy(
@@ -70,18 +77,5 @@ class EpisodeDetailViewModel @Inject constructor(
                 )
             }
         }
-
-
-    }
-
-
-    fun setEpisodeId(id: Int) {
-        _state.value = _state.value.copy(
-            episodeId = id
-        )
-    }
-
-    private fun getEpisodeId(): Int {
-        return _state.value.episodeId
     }
 }
